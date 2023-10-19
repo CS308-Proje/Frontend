@@ -1,13 +1,16 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Open Sans'
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 150vh;
+  height: 100vh;
   background: linear-gradient(#232324, #000);
+  overflow-x: hidden;
 }
+
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -27,11 +30,12 @@ video{
 }
 
 
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
 /* Keep your existing CSS and add the following styles */
 .cool-text {
-  font-family: "Open Sans";
-  font-size: 2rem; /* Adjust the font size as needed */
+  font-family: 'Josefin Sans', cursive;
+  font-size: 2.8rem; /* Adjust the font size as needed */
   text-align: center;
   line-height: 1.5;
   font-weight: 1000;
@@ -49,8 +53,8 @@ video{
 }
 
 .small-text {
-  font-family: "Open Sans";
-  font-size: 1rem; /* Adjust the font size for the smaller text */
+  
+  font-size: 1.1rem; /* Adjust the font size for the smaller text */
   text-align: center;
   line-height: 1.5;
   font-weight: normal; /* Adjust the font weight as needed */
@@ -73,8 +77,8 @@ video{
 
 .additional-content h2 {
   font-weight: bold;
-  font-family: "Open Sans";
-  font-size: 1.5rem; /* Adjust the font size as needed */
+  font-family: 'Josefin Sans', cursive;
+  font-size: 2.5rem; /* Adjust the font size as needed */
   color: #8bbe52; /* Adjust the color as needed */
   position: relative;
   top: 140px; /* Adjust the top value to position it as desired */
@@ -86,9 +90,9 @@ video{
 }
 
 .additional-content p {
-  font-weight: bold;
-  font-family: "Open Sans";
-  font-size: 1rem; /* Adjust the font size as needed */
+
+  font-family: 'Josefin Sans', cursive;
+  font-size: 1.2rem; /* Adjust the font size as needed */
   color: #fff; /* Adjust the color as needed */
   line-height: 1.5;
   position: relative; 
@@ -110,6 +114,7 @@ video{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
 
 
@@ -120,5 +125,12 @@ video{
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
   
 }
+
+
+.Main {
+  padding-top: 50px; /* or whatever value is needed to push the Main content below the Navbar */
+}
+

@@ -19,6 +19,7 @@ const Main = () => {
             Our mission is to elevate your musical experience. With cutting-edge machine learning technology,
             we deliver personalized song recommendations for every moment. Explore new horizons
             effortlessly as we curate the perfect soundtrack for your life.
+            
           </p>
         </div>
       </div>

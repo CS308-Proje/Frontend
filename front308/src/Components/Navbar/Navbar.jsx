@@ -4,7 +4,7 @@ import logo from "../Assets/logo-white.png";
 
 const Navbar = () => {
   const location = useLocation();
-  const isLoginPage = location.pathname === "/login";
+  const isLoginPageOrSignUpPage = location.pathname === "/login" || location.pathname === "/signup";
 
   return (
     <nav>
@@ -12,17 +12,16 @@ const Navbar = () => {
         <img src={logo} alt="Logo" className="logo" />
       </Link>
       <ul>
-        {isLoginPage ? null : (
+        {!isLoginPageOrSignUpPage ? (
           <>
-           <li>
-            <a href="/login" className="button">Log in</a>
-          </li>
-          <li>
-            <a href="/signup" className="button gray">Sign Up</a>
-          </li>
-
+            <li>
+              <Link to="/login" className="button">Log in</Link>
+            </li>
+            <li>
+              <Link to="/signup" className="button gray">Sign Up</Link>
+            </li>
           </>
-        )}
+        ) : null}
       </ul>
     </nav>
   );

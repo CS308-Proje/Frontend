@@ -7,6 +7,12 @@ const Navbar = () => {
 
   const isLoginPage = location.pathname === "/login";
   const isSignUpPage = location.pathname === "/signup";
+  const isDashboard = location.pathname === "/dashboard";
+
+  // Conditionally render the Navbar only if not on the dashboard page
+  if (isDashboard) {
+    return null; // Don't render the Navbar
+  }
 
   return (
     <nav>

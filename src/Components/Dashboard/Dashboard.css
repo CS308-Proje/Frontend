@@ -1,0 +1,18 @@
+.dashboard {
+  display: flex;
+}
+
+.sidebar {
+  /* Style your sidebar */
+  width: 200px; /* Adjust as per your layout */
+  height: 100vh;
+  background-color: #333;
+  color: white;
+  /* more styles */
+}
+
+.dashboard-content {
+  flex-grow: 1;
+  padding: 20px;
+  /* more styles */
+}

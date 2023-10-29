@@ -2,6 +2,8 @@ import "./App.css";
 import Signup from "./Components/LoginSignup/Signup";
 import Main from "./Components/Main/Main";
 import Login from "./Components/LoginSignup/Login";
+import Dashboard from "./Components/Dashboard/Dashboard";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -16,6 +18,7 @@ const App = () => {
       <Navbar isLoginPage={window.location.pathname === "/login"}></Navbar>
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/login" element={<Login showLogin={true} />} />
         <Route path="/signup" element={<Signup showLogin={false} />} />
       </Routes>

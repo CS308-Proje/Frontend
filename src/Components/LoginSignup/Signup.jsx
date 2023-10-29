@@ -12,24 +12,21 @@ const Signup = () => {
     const btn = document.getElementById("btn");
     btn.addEventListener("click", async () => {
       const nameInput = document.getElementById("name");
-      const usernameInput = document.getElementById("username");
       const emailInput = document.getElementById("email");
       const passwordInput = document.getElementById("password");
 
       const name = nameInput.value;
-      const username = usernameInput.value;
       const email = emailInput.value;
       const password = passwordInput.value;
 
       const userData = {
         name: name,
-        username: username,
         email: email,
         password: password,
       };
 
       try {
-        const response = await fetch("http://localhost:5000/auth/register", {
+        const response = await fetch("http://localhost:5001/auth/register", {
           method: "POST",
           credentials: "include",
           headers: {

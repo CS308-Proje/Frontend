@@ -1,29 +1,20 @@
 import React from 'react';
-import './Sidebar.css'; // Assuming you have a CSS file for Sidebar
 
-function Sidebar() {
+import {Sidebardata} from "./Sidebardata"
+
+function Sidebar({ isOpen }) {
   return (
-    <div className="sidebar">
-      <div className="sidebar-header">
-        <h2>My Sidebar</h2>
-      </div>
-      <ul className="sidebar-menu">
-        <li>
-          <a href="#">Home</a>
-        </li>
-        <li>
-          <a href="#">About</a>
-        </li>
-        <li>
-          <a href="#">Services</a>
-        </li>
-        <li>
-          <a href="#">Contact</a>
-        </li>
+    <div className={`Sidebar ${isOpen ? "open" : ""}`}>
+      <ul className='SidebarList'>
+      {Sidebardata.map((val,key)=>{
+        return(
+          <li className='row' onClick={()=> {window.location.pathname = val.link}}>
+            <div>{val.icon}</div>
+            <div>{val.title}</div>
+          </li>
+        )
+      })}
       </ul>
-      <div className="sidebar-footer">
-        <p>&copy; 2023 My Website</p>
-      </div>
     </div>
   );
 }

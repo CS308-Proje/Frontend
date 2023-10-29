@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 import logo from "../Assets/logo-white.png";
 
+
 const Navbar = () => {
   const location = useLocation();
 

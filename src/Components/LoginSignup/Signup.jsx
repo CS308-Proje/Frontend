@@ -8,31 +8,34 @@ import password_icon from "../Assets/password.png";
 const Signup = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
+
   const handleSignup = async () => {
-    const btn = document.getElementById("btn");
-    btn.addEventListener("click", async () => {
+
+      const usernameInput = document.getElementById("username");
       const nameInput = document.getElementById("name");
       const emailInput = document.getElementById("email");
       const passwordInput = document.getElementById("password");
 
+      const username = usernameInput.value;
       const name = nameInput.value;
       const email = emailInput.value;
       const password = passwordInput.value;
 
       const userData = {
+        username: username,
         name: name,
         email: email,
         password: password,
       };
 
       try {
-        const response = await fetch("http://localhost:5001/auth/register", {
+        const response = await fetch("http://localhost:5000/auth/register", {
           method: "POST",
           credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ name, email, password }),
+          body: JSON.stringify({ username, name, email, password }),
         });
   
         if (!response.ok) {
@@ -46,11 +49,19 @@ const Signup = () => {
       } catch (err) {
         setError(err.message);
       }
-    });
+    
     //axios.post("http://localhost:5000/auth/register")
     //navigate("/"); //* burdan user dashboardına gidecekler
-    navigate("/dashboard"); // Update with your dashboard route
+    //navigate("/dashboard"); // Update with your dashboard route
   };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("btn1");
+
+    if (btn) {
+      btn.addEventListener("click", handleSignup);
+    }
+  });
 
   return (
     <div className="container">
@@ -59,6 +70,9 @@ const Signup = () => {
         <div className="underline"></div>
       </div>
       <div className="inputs">
+        <div className="input">
+          <input id="username" type="text" placeholder="Username" />
+        </div>
         <div className="input">
           <img src={user_icon} alt="" />
           <input id="name" type="text" placeholder="Name" />
@@ -74,7 +88,7 @@ const Signup = () => {
       </div>
       {error && <div className="error">{error}</div>}
       <div className="submit-container">
-        <div className="submit" onClick={handleSignup}>Sign Up</div>
+        <div className="submit" onClick={handleSignup} id="btn1">Sign Up</div>
 
       </div>
     </div>

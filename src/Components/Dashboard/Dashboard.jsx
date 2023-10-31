@@ -8,7 +8,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import "./Dashboard.css";
 
 const Dashboard = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false); 
   const navigate = useNavigate();
 
   const navigateToProfile = () => {

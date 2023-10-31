@@ -4,6 +4,7 @@ import Main from "./Components/Main/Main";
 import Login from "./Components/LoginSignup/Login";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import React, { useState } from "react";
+import SubmissionPage from "./Components/Submission/Submission";
 import {
   BrowserRouter as Router,
   Route,
@@ -19,6 +20,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/submitmusic" element={<SubmissionPage />} />
         <Route path="/login" element={<Login showLogin={true} />} />
         <Route path="/signup" element={<Signup showLogin={false} />} />
       </Routes>

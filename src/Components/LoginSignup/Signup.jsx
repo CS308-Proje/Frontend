@@ -4,7 +4,7 @@ import "./LoginSignup.css";
 import user_icon from "../Assets/person.png";
 import email_icon from "../Assets/email.png";
 import password_icon from "../Assets/password.png";
-
+import username_icon from "../Assets/username.png"
 const Signup = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
@@ -71,6 +71,7 @@ const Signup = () => {
       </div>
       <div className="inputs">
         <div className="input">
+          <img src={username_icon} alt="" />
           <input id="username" type="text" placeholder="Username" />
         </div>
         <div className="input">

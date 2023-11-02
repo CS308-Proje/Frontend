@@ -7,46 +7,51 @@ import password_icon from "../Assets/password.png";
 const Login = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  
   const handleLogin = async () => {
-    const btn = document.getElementById("btn");
-    btn.addEventListener("click", async () => {
-      const emailInput = document.getElementById("email");
-      const passwordInput = document.getElementById("password");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
 
-      const email = emailInput.value;
-      const password = passwordInput.value;
+    const email = emailInput.value;
+    const password = passwordInput.value;
 
-      const userData = {
-        email: email,
-        password: password,
-      };
+    const userData = {
+      email: email,
+      password: password,
+    };
 
-      try {
-        const response = await fetch("http://localhost:5000/auth/login", {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        });
-  
-        if (!response.ok) {
-          throw new Error("Login failed");
-        }
-  
-        // Assuming the response returns the expected data on successful login
-        const data = await response.json();
-        console.log(data);  // Handle or store the response data as needed
-        navigate("/dashboard"); // Redirect to dashboard on success
-      } catch (err) {
-        setError(err.message);
+    try {
+      const response = await fetch("http://localhost:5000/auth/login", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Login failed");
       }
 
-    });
-
-    navigate("/"); //* burdan user dashboardına gidecekler
+      // Assuming the response returns the expected data on successful login
+      const data = await response.json();
+      console.log(data); // Handle or store the response data as needed
+      navigate("/dashboard"); // Redirect to dashboard on success
+    } catch (err) {
+      setError(err.message);
+    }
   };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("btn");
+
+    if (btn) {
+      btn.addEventListener("click", handleLogin);
+    }
+  });
+
+  //navigate("/"); //* burdan user dashboardına gidecekler
 
   return (
     <div className="container">
@@ -66,8 +71,9 @@ const Login = () => {
       </div>
       {error && <div className="error">{error}</div>}
       <div className="submit-container">
-        <div className="submit" onClick={handleLogin}>Log In</div>
-
+        <div className="submit" id="btn" onClick={handleLogin}>
+          Log In
+        </div>
       </div>
     </div>
   );

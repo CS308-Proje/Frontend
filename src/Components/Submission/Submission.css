@@ -217,23 +217,42 @@
     background: #12b04e; /* Darker green on hover */
   }
 
-  .parent-flex-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Adjust this value if you only want to fill the viewport height */
-}
-
+  
 
 .submission-container {
+    position: absolute;
     padding: 20px;
-    background: #2c2c2c;  /* Slightly different background for emphasis */
-    border-radius: 10px;  /* Rounded corners */
-    margin: 20px 0;  /* Spacing from top and bottom */
+    background: #000;  /* Slightly different background for emphasis */
+    border-radius: 20px;  /* Rounded corners */
+    margin: 20px 5%;  /* Adjusted spacing from top and bottom and added side margins */
     color: #fff;
+    width: 40%;  /* Adjusted width from 80% to 40% */
+    max-width: 800px;
+    box-sizing: border-box; /* Ensures padding and border are included in total width */
+}
+
+.text {
+  text-align: center;
+  font-family: 'Josefin Sans', cursive;
+  color: #ffffff;
+  font-size: 50px;
+  font-weight: 700;
+}
+
+.underline {
+  
+  width: 200px;
+  height: 6px;
+  width: 400px;
+  background-color: #8bbe52;
+  border-radius: 9px;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .file-submission .file-controls button {
+  font-family: 'Josefin Sans', cursive;
     margin-right: 10px;
     padding: 8px 16px;
     background-color: #8bbe52;  /* Primary action color */
@@ -244,10 +263,12 @@
 }
 
 .file-submission .file-controls button:hover {
+  font-family: 'Josefin Sans', cursive;
     background-color: #8bbe52;  /* Slightly darker shade on hover */
 }
 
 .file-drag-area {
+    font-family: 'Josefin Sans', cursive;
     border: 2px dashed #fff;
     padding: 20px;
     border-radius: 5px;
@@ -259,10 +280,15 @@
     margin-bottom: 20px;
 }
 .file-info{
+  font-family: 'Josefin Sans', cursive;
     margin-bottom:20px;
 }
-
+.file-info span {
+  font-family: 'Josefin Sans', cursive;
+  display: block;  /* This will make each span take the full width like a div */
+}
 .submission-actions button {
+  font-family: 'Josefin Sans', cursive;
     margin-right: 10px;
     padding: 8px 16px;
     background-color: #8bbe52; 
@@ -284,3 +310,64 @@
     background-color: #fff;  /* Slightly darker on hover */
 }
 
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;  /* or adjust as needed */
+}
+
+.submission-toggle {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  position:absolute;
+  top: 150px;
+}
+
+.track-details-form {
+  
+  font-family: 'Josefin Sans', cursive;
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Adds space between each input field */
+}
+
+.track-input {
+  border-radius: 30px;
+  border: 2px solid #fff;
+  font-family: 'Josefin Sans', cursive;
+  padding: 10px;
+  background-color: #000;
+  font-size: 16px; /* Larger font size for better readability */
+  color: #fff;
+}
+
+.track-input:focus {
+  outline: none;
+  border-color: #8bbe52; /* Change border color on focus */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Adds a glow effect on focus */
+}
+
+
+.dropdown-menu {
+  position: absolute;
+  top: 190px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.dropdown-menu div {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-menu div:hover {
+  background-color: #f6f6f6;
+}

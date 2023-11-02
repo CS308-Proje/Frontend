@@ -29,6 +29,7 @@
     color: #ffffff;
     font-size: 50px;
     font-weight: 700;
+    margin-bottom: 15px;
   }
   
   .underline {
@@ -70,11 +71,11 @@
     background: transparent;
     border: none;
     outline: none;
-    color: #8bbe52;
+    color: #fff;
     font-size: 19px;
     font-weight: 400; /* Adjust font-weight as needed */
   }
-  
+
   .submit-container {
     display: flex;
     gap: 30px;
@@ -82,6 +83,7 @@
   }
   
   .submit {
+    font-family: 'Josefin Sans', cursive;
     display: flex;
     justify-content: center;
     align-items: center;

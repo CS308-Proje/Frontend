@@ -14,19 +14,19 @@ export const Sidebardata = [
     {
         title:"Liked Songs",
         icon:<FavoriteIcon></FavoriteIcon>,
-        link:"/dashboard"
+        link:"/likedsongs"
     }
     ,
     {
         title:"Add Songs",
         icon:<AddIcon></AddIcon>,
-        link:"/dashboard"
+        link:"/submitmusic"
     }
     ,
     {
         title:"Remove Songs",
         icon:<RemoveCircleOutlineIcon></RemoveCircleOutlineIcon>,
-        link:"/login"
+        link:"/likedsongs"
     }
     
 ]

@@ -94,7 +94,7 @@ const Submission = () => {
                 <div className="file-controls">
                     <button>Add</button>
                     <button>Delete</button>
-                    <button>Folder</button>
+                    
                 </div>
                 <div className="file-drag-area">
                     Drag & Drop JSON File Here

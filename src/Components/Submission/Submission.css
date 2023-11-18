@@ -198,7 +198,19 @@
     flex: 3;
     font-weight: 400; /* Regular font weight */
   }
-  
+  .label {
+    background: #1ED760; /* Spotify's green for buttons */
+    color: #181818;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
   .button {
     background: #1ED760; /* Spotify's green for buttons */
     color: #181818;
@@ -371,3 +383,50 @@
 .dropdown-menu div:hover {
   background-color: #f6f6f6;
 }
+
+.btn {
+  color: #000;
+  font-family: 'Josefin Sans', cursive;
+  margin: 0 10px; /* Equal margin on both sides */
+  padding: 8px 16px; /* Consistent padding */
+  background-color: #8bbe52; /* Primary action color */
+  border: none;
+  border-radius: 5px; 
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  vertical-align: middle; /* Aligns buttons on the same baseline */
+  display: inline-flex; /* Align content in the center */
+  align-items: center;
+  justify-content: center;
+}
+
+.btn.file-btn {
+  width: 90px; /* Fixed width for both label and button */
+  /* The height is controlled by padding, remove explicit height if set */
+}
+
+/* Apply the same styling to label to make it look like a button */
+label.btn.file-btn {
+  padding: 8px 16px; /* Should match the .btn padding for consistent height */
+  width: 115px; /* Should match the .btn.file-btn width */
+  box-sizing: border-box; /* Include padding in width */
+}
+
+/* Hover effect for label, if it's styled as a button */
+label.btn.file-btn:hover {
+  background-color: #12b04e; /* Darker shade on hover */
+}
+
+/* Ensure that the hover effect for buttons is consistent */
+.btn:hover, label.btn.file-btn:hover {
+  background-color: #12b04e; /* Darker shade on hover */
+}
+
+/* Additional styling to ensure vertical alignment if necessary */
+button.btn.file-btn, label.btn.file-btn {
+  height: auto; /* Let the height be determined by padding */
+  line-height: normal; /* Allow height to be controlled by padding */
+}
+
+
+

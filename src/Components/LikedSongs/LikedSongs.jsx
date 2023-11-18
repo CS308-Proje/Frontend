@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import MenuIcon from '@mui/icons-material/Menu';
-import UserIcon from '@mui/icons-material/AccountCircle';
-import SearchIcon from '@mui/icons-material/Search'; // Import for Search Icon
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import MenuIcon from "@mui/icons-material/Menu";
+import UserIcon from "@mui/icons-material/AccountCircle";
+import SearchIcon from "@mui/icons-material/Search"; // Import for Search Icon
 import LogoImage from "../Assets/logo-white.png";
 import Sidebar from "../Sidebar/Sidebar";
 import "./LikedSongs.css";
@@ -10,13 +10,14 @@ import "./LikedSongs.css";
 const LikedSongs = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
+  const [songs, setSongs] = useState([]);
 
   const navigateToProfile = () => {
-    navigate('/login');
+    navigate("/login");
   };
 
   const navigateToDashboard = () => {
-    navigate('/dashboard');
+    navigate("/dashboard");
   };
 
   const handleSearch = (event) => {
@@ -24,28 +25,64 @@ const LikedSongs = () => {
     console.log("Searching for:", event.target.value);
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/songs", {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const s = await response.json();
+
+        const data = s.songs;
+
+        setSongs(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="Dashboard">
-
-        <main className={`main-content ${sidebarOpen ? "shifted" : ""}`}>
-            <div className="song-box">
-            <button className="delete-song-btn" >X</button>
-                <img src="path_to_artist_image" className="artist-img" />
-                <div><h1 type="text" className="song-box"> Song Name</h1></div>
-                <div>
-                    <h2 type="text"  className="song-box">Artist Name</h2>
-                    <h3 type="text"  className="song-box">Album Name</h3>
-                </div>
-                <div>
-                    <h4 type="text" className="song-box">Rating:</h4> 
-                    <h5 type="text" className="song-box">Release Date</h5>
-                </div>
-                
-                </div> 
-        </main>
+      <main className={`main-content ${sidebarOpen ? "shifted" : ""}`}>
+        <div className="song-list">
+          {songs.map((song) => (
+            <div key={song._id} className="song-box">
+              <button className="delete-song-btn" onClick={() => song.id}>
+                X
+              </button>
+              <img
+                src={song.albumImg}
+                className="artist-img"
+                alt={`Artist ${song.id}`}
+              />
+              <div>
+                <h1 className="song-box">{song.songName}</h1>
+              </div>
+              <div>
+                <h2 className="song-box">{song.artistName}</h2>
+                <h3 className="song-box">{song.albumName}</h3>
+              </div>
+              <div>
+                <h4 className="song-box">Rating: {song.ratingValue}</h4>
+                <h5 className="song-box">Release Date: {song.releaseDate}</h5>
+              </div>
+            </div>
+          ))}
+        </div>
+      </main>
 
       <nav className="navbar">
-        <button className="menu-btn" onClick={() => setSidebarOpen(!sidebarOpen)}>
+        <button
+          className="menu-btn"
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+        >
           <MenuIcon />
         </button>
 

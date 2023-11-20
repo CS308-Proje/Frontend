@@ -8,7 +8,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import "./MySongs.css";
 import StarRating from '../Star/StarRating'; // Adjust the path as necessary if it's in a different directory
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-
+import AddIcon from '@mui/icons-material/Add';
 
 const MySongs = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -150,10 +150,11 @@ const MySongs = () => {
         <div className="song-list">
           {songs.length === 0 ? (
             <div className="no-songs-message">
-              <h2>There are no songs</h2>
+              <h2>You don't have any songs yet!</h2>
+              <p>To start building your library, just hit the add button below.</p>
               <button className="add-song-btn" onClick={() => navigate("/submitmusic")}>
-          +
-        </button>
+                <AddIcon style={{ fontSize: "60px" }} />
+              </button>
             </div>
         ) : (
           songs.map((song) => (

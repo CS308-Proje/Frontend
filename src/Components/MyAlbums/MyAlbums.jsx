@@ -8,7 +8,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import "./MyAlbums.css";
 import StarRating from '../Star/StarRating'; // Adjust the path as necessary if it's in a different directory
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-
+import AddIcon from '@mui/icons-material/Add';
 
 const MyAlbums = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -150,9 +150,10 @@ const MyAlbums = () => {
         <div className="song-list">
           {albums.length === 0 ? (
             <div className="no-songs-message">
-              <h2>There are no albums</h2>
+              <h2>You don't have any albums yet!</h2>
+              <p>To add albums to your collection, tap the plus icon below.</p>
               <button className="add-song-btn" onClick={() => navigate("/submitmusic")}>
-          +
+              <AddIcon style={{ fontSize: "60px" }} />
         </button>
             </div>
         ) : (

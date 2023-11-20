@@ -8,7 +8,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import "./MyArtists.css";
 import StarRating from '../Star/StarRating'; // Adjust the path as necessary if it's in a different directory
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-
+import AddIcon from '@mui/icons-material/Add';
 
 const MyArtists = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -150,9 +150,10 @@ const MyArtists = () => {
         <div className="song-list">
           {artists.length === 0 ? (
             <div className="no-songs-message">
-              <h2>There are no artists</h2>
+              <h2>You don't have any favorite artists yet!</h2>
+              <p>Discover new music by adding artists to your favorites.</p>
               <button className="add-song-btn" onClick={() => navigate("/submitmusic")}>
-          +
+              <AddIcon style={{ fontSize: "60px" }} />
         </button>
             </div>
         ) : (artists.map((artist) => (

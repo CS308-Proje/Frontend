@@ -1,4 +1,10 @@
-.Dashboard {
+html, body {
+  height: 100%; /* Full viewport height */
+  margin: 0; /* Remove default margin */
+  overflow: hidden; /* Hide overflow */
+}
+
+  .Dashboard {
     position: relative; /* Makes the Dashboard the reference point for Sidebar's absolute positioning */
   }
 
@@ -18,7 +24,8 @@
     flex: 1;
     padding: 20px;
     overflow-y: auto;
-    padding-top: 120px;
+    height: calc(100vh - 120px); /* Take up remaining height after navbar, adjust 120px if navbar height changes */
+    padding-top: 120px; /* Remove padding-top as it's no longer needed */
   }
   
   
@@ -363,15 +370,23 @@
   .no-songs-message {
     font-size: 24px; /* Larger text */
     margin-bottom: 20px; /* Space between text and button */
-    color: #1DB954; /* Spotify green color */
+    color: #8bbe52;; /* Spotify green color */
+    display: flex; /* Use flex display for this container */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center children along the main axis */
+    align-items: center; /* Center children along the cross axis */
+    height: 100%; /* Take up all available height of the parent */
+    
+    font-family: 'Josefin Sans', cursive;
   }
   
   .add-song-btn {
+    margin-top: 20px;
     font-size: 30px; /* Larger '+' symbol */
     width: 60px; /* Button width */
     height: 60px; /* Button height */
     border-radius: 50%; /* Circular button */
-    background-color: #1DB954; /* Spotify green color */
+    background-color: #8bbe52;; /* Spotify green color */
     color: #fff;
     border: none;
     cursor: pointer;

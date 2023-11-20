@@ -1,4 +1,10 @@
-.Dashboard {
+html, body {
+  height: 100%; /* Full viewport height */
+  margin: 0; /* Remove default margin */
+  overflow: hidden; /* Hide overflow */
+}
+
+  .Dashboard {
     position: relative; /* Makes the Dashboard the reference point for Sidebar's absolute positioning */
   }
 
@@ -18,7 +24,8 @@
     flex: 1;
     padding: 20px;
     overflow-y: auto;
-    padding-top: 120px;
+    height: calc(100vh - 120px); /* Take up remaining height after navbar, adjust 120px if navbar height changes */
+    padding-top: 120px; /* Remove padding-top as it's no longer needed */
   }
   
   
@@ -276,6 +283,8 @@
     border-radius: 50%; /* Circular image */
     margin-right: 30px; /* Reduced space between image and song details */
     margin-left: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
   
   .delete-song-btn {
@@ -283,7 +292,7 @@
     color: #f9f9f9; /* Spotify green text color */
     border-radius: 50%; /* Make it a circular button */
     cursor: pointer;
-    position: absolute;
+    position: relative;
     right: 50px;
     top: 50px;
     transition: background-color 0.2s, color 0.2s; /* Smooth transition for hover effect */
@@ -293,6 +302,7 @@
     justify-content: center;
     width: 30px; /* Adjust button width */
     height: 30px; /* Adjust button height */
+    
   }
   
   .delete-song-btn:focus,
@@ -348,5 +358,47 @@
     margin-right: 8px;
     font-size: 16px;
     color: #ffffff; /* Or any color that fits your design */
+  }
+  
+  .no-songs-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .no-songs-message {
+    font-size: 24px; /* Larger text */
+    margin-bottom: 20px; /* Space between text and button */
+    color: #8bbe52;; /* Spotify green color */
+    display: flex; /* Use flex display for this container */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center children along the main axis */
+    align-items: center; /* Center children along the cross axis */
+    height: 100%; /* Take up all available height of the parent */
+    
+    font-family: 'Josefin Sans', cursive;
+  }
+  
+  .add-song-btn {
+    margin-top: 20px;
+    font-size: 30px; /* Larger '+' symbol */
+    width: 60px; /* Button width */
+    height: 60px; /* Button height */
+    border-radius: 50%; /* Circular button */
+    background-color: #8bbe52;; /* Spotify green color */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .add-song-btn:hover {
+    background-color: #17a64a; /* Slightly darker green on hover */
   }
   

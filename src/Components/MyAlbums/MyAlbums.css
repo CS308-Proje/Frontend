@@ -18,6 +18,7 @@
     flex: 1;
     padding: 20px;
     overflow-y: auto;
+    padding-top: 120px;
   }
   
   
@@ -211,93 +212,175 @@
   .button:hover {
     background: #12b04e; /* Darker green on hover */
   }
-  
+
   .song-box {
-    top: 50px;
     display: flex;
-    border-radius: 15px;
-    background-color:rgb(50, 49, 49);
-    padding: 20px;
-    width: 95%;
-    margin: 50px auto;
-    position: relative;
+    align-items: center;
+    background-color: #181818; /* Slightly lighter grey background */
+    border-radius: 20px; /* Rounded corners */
+    padding: 0.5px; /* Reduced padding */
+    margin-bottom: 16px; 
+    position: relative; /* For absolute positioning of children */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+
   }
 
-  .song-box h1{
-    font-size: 30px;
-    top : 10px;
-    color:#fff;
-    font-weight: 700;
-    margin : 10px;
-    background-color: #ffffff00;
-    padding : 0px;
-    left: 15px;
+  .song-box:hover {
+    background-color: #282828; /* Slightly lighter on hover */
+    box-shadow: 0 1px 15px rgba(6, 95, 7, 0.7); /* More pronounced shadow on hover */
+    transform: scale(1.01); /* Slight scale on hover for an interactive feel */
   }
 
-  .song-box h2{
-    font-size: 20px;
-    top : 65px;
-    left: -152px;
-    color:#c0c1c1;
-    font-weight: 600;
-    margin : 10px;
-    background-color: #ffffff00;
-    padding : 0px;
-  }
+ 
+  
 
-  .song-box h3{
-    font-size: 20px;
-    top : 35px;
-    left: 850px;
-    color:#c0c1c1;
-    font-weight: 600;
-    margin : 10px;
-    background-color: #ffffff00;
-    padding : 0px;
-    text-align: right;
-  }
+  .song-box h1,
+  .song-box h2,
+  .song-box h3,
+  .song-box h4,
+  .song-box h5 {
+    color: #ffffff;
+    margin: 5px 0;
+    font-weight: 300; /* Adjust font weight */
 
-  .song-box h4{
-    font-size: 15px;
-    top : 110px;
-    left: -285px;
-    color:#929292;
-    font-weight: 650;
-    margin : 10px;
-    background-color: #ffffff00;
-    padding : 0px;
   }
-  .song-box h5{
-    font-size: 15px;
-    top : 88px;
-    left: 748px;
-    color:#929292;
-    font-weight: 650;
-    margin : 10px;
-    background-color: #ffffff00;
-    padding : 0px;
-    text-align: right;
+  
+  .song-box h1 {
+    color: #8bbe52; /* Highlight color for album name */
+    font-size: 24px;
   }
+  
+  .song-box h2,
+  .song-box h3,
+  .song-box h4,
+  .song-box h5 {
+    font-size: 16px;
+  }
+  
+  .song-box h3 {
+
+    margin-top: 5px; /* Adjust margin for album name */
+  }
+  
+  .song-box h5 {
+
+    font-style: italic; /* Make release date italic */
+  }
+  
   
   .artist-img {
-    width: 150px;
-    height: 150px;
+    width: 100px; /* Standard size for Spotify */
+    height: 100x;
     object-fit: cover;
+    border-radius: 50%; /* Circular image */
+    margin-right: 30px; /* Reduced space between image and song details */
+    margin-left: 20px;
   }
   
   .delete-song-btn {
-    background-color: #b2b4b0;
-    color: white;
-    padding: 5px;
-    border: none;
-    border-radius: 5px;
+    background-color: transparent; /* Transparent background */
+    color: #f9f9f9; /* Spotify green text color */
+    border-radius: 50%; /* Make it a circular button */
     cursor: pointer;
     position: absolute;
-    right: 20px;
-    top: 10px;
+    right: 50px;
+    top: 50px;
+    transition: background-color 0.2s, color 0.2s; /* Smooth transition for hover effect */
+    font-size: 24px; /* Adjust font size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; /* Adjust button width */
+    height: 30px; /* Adjust button height */
+  }
+  
+  .delete-song-btn:focus,
+  .delete-song-btn:hover {
+    background-color: #1ed760; /* Spotify green background on hover and focus */
+    color: #fff; /* White text color on hover and focus */
+    outline: none;
   }
 
-  .delete-song-btn:hover{
-    background-color: #8bbe52;
+  .tooltip-text {
+    font-size: 12px; 
+    visibility: hidden;
+    width: 100px;
+    height: 20px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 5%;
+    margin-left: -40px; /* Use half of the width value to align the tooltip */
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  
+  .delete-song-btn:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+
+  .star-rating {
+    display: flex;
+    align-items: center;
+    color: #ccc; /* Color for inactive stars */
+  }
+  
+  .star-rating .star {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, color 0.2s; /* Smooth transitions for scale and color */
+  }
+  
+  .star-rating .star:hover,
+  .star-rating .star.filled {
+    transform: scale(1.1); /* Slight increase in size on hover */
+    color: #8bbe52; /* Gold color for active stars */
+  }
+  
+  .star-rating span {
+    margin-right: 8px;
+    font-size: 16px;
+    color: #ffffff; /* Or any color that fits your design */
+  }
+  
+  .no-songs-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .no-songs-message {
+    font-size: 24px; /* Larger text */
+    margin-bottom: 20px; /* Space between text and button */
+    color: #1DB954; /* Spotify green color */
+  }
+  
+  .add-song-btn {
+    font-size: 30px; /* Larger '+' symbol */
+    width: 60px; /* Button width */
+    height: 60px; /* Button height */
+    border-radius: 50%; /* Circular button */
+    background-color: #1DB954; /* Spotify green color */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .add-song-btn:hover {
+    background-color: #17a64a; /* Slightly darker green on hover */
   }
   

@@ -216,3 +216,33 @@
 .button:hover {
   background: #12b04e; /* Darker green on hover */
 }
+
+
+.song-box .like-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: absolute;
+  bottom: 50px;
+  right: 30px;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  color: #ffffff; /* White color for the icon */
+  font-size: 32px; /* Increase the font size */
+  padding: 8px; /* Add more padding for a larger clickable area */
+}
+
+.song-box .like-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
+  color: #1DB954; /* Spotify green color on hover */
+}
+
+.song-box .like-btn:focus {
+  outline: none;
+}
+/* If using an SVG icon, you can directly control the size of the SVG */
+.song-box .like-btn svg {
+  width: 32px; /* Set the SVG icon width */
+  height: 32px; /* Set the SVG icon height */
+}

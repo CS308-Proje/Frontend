@@ -5,13 +5,15 @@ import UserIcon from "@mui/icons-material/AccountCircle";
 import SearchIcon from "@mui/icons-material/Search"; // Import for Search Icon
 import LogoImage from "../Assets/logo-white.png";
 import Sidebar from "../Sidebar/Sidebar";
-
+import ReactSelect from "react-select";
 import "./Submission.css";
+
+
 
 const Submission = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [submissionType, setSubmissionType] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
+  
   const navigate = useNavigate();
 
   const [songName, setSongName] = useState("");
@@ -22,6 +24,64 @@ const Submission = () => {
   const [databaseName, setDatabaseName] = useState("");
   const [collectionName, setCollectionName] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  // Function to toggle dropdown state
+  const handleDropdownOpen = () => {
+    setIsDropdownOpen(true);
+  };
+
+  const handleDropdownClose = () => {
+    setIsDropdownOpen(false);
+  };
+
+  // Adjust the styles of the submission container based on the dropdown state
+  const submissionContainerStyle = {
+    transform: isDropdownOpen ? 'translateY(100px)' : 'translateY(0px)', // Adjust '200px' as needed
+    transition: 'transform 0.3s ease', // Add transition effect here to ensure it's applied
+  };
+
+  const selectOptions = [
+    { value: 'Single Track', label: 'Single Track' },
+    { value: 'Multiple Tracks', label: 'Multiple Tracks' },
+    { value: 'Database URI', label: 'Database URI' },
+  ];  
+
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      borderRadius: '10px',
+      backgroundColor: 'black',
+      borderColor: 'white',
+      color: 'white',
+      boxShadow: 'none', // Removes the default box-shadow
+      '&:hover': {
+        borderColor: 'white', // Border color when hovering
+      }
+    }),
+    menu: (provided) => ({
+      ...provided,
+      borderRadius: '1px',
+      backgroundColor: 'black',
+      borderColor: 'white',
+      color: 'white',
+      overflow: 'hidden', // Ensures the rounded corners are respected
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isFocused ? 'grey' : 'white', // Background color when option is focused/hovered
+      color: state.isFocused ? 'black' : 'black', // Text color when option is focused/hovered
+      borderRadius: '1px', // Border radius for each option
+      '&:active': {
+        backgroundColor: '#8bbe52', // Background color when option is selected
+      }
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: 'white',
+    }),
+  };
 
   const handleFileSelect = (event) => {
     const file = event.target.files[0];
@@ -201,44 +261,46 @@ const Submission = () => {
       <Sidebar isOpen={sidebarOpen} />
 
       <div className="center-container">
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="submission-toggle"
-        >
-          {submissionType || "Select Track Type"}
-        </button>
+        
+      <div className="dropdown-container">
+          <ReactSelect
+            styles={customStyles}
+            options={selectOptions}
+            value={selectOptions.find(option => option.value === submissionType)}
+            onChange={(selectedOption) => setSubmissionType(selectedOption.value)}
+            onMenuOpen={handleDropdownOpen}
+            onMenuClose={handleDropdownClose}
+            placeholder="Select Track Type"
+            theme={(theme) => ({
+              ...theme,
+              borderRadius: 10,
+              colors: {
+                ...theme.colors,
+                primary25: 'grey', // color when option is focused
+                primary: 'black', // border color when focused
+              },
+            })}
+          />
+        </div>
 
-        {isOpen && (
-          <div className="dropdown-menu">
-            <div
-              onClick={() => {
-                setSubmissionType("Single Track");
-                setIsOpen(false);
-              }}
-            >
-              Single Track
-            </div>
-            <div
-              onClick={() => {
-                setSubmissionType("Multiple Tracks");
-                setIsOpen(false);
-              }}
-            >
-              Multiple Tracks
-            </div>
-            <div
-              onClick={() => {
-                setSubmissionType("Database URI");
-                setIsOpen(false);
-              }}
-            >
-              Database URI
-            </div>
+        {submissionType === null && (
+          <div className="submission-container" style={submissionContainerStyle}>
+            <div className="text">Welcome to Our Song Recommendation Service</div>
+            <div className="underline"></div>
+
+            <p className="recommendation-message">
+              Welcome to our Song Recommendation Service! We're here to help you discover new music,
+              but we need your help to make our recommendations even better. 
+              Add your favorite songs to our database, and we'll use that information to suggest the perfect tracks for your taste. 
+              Choose an option from the dropdown above to get started!
+            </p>
+            <div className="underline"></div>
+            <p className="instruction-text">Select your way of adding songs with button above:</p>
           </div>
         )}
 
         {submissionType === "Single Track" && (
-          <div className="submission-container">
+          <div className="submission-container" style={submissionContainerStyle}>
             <div className="text">Upload Single Track</div>
             <div className="underline"></div>
 
@@ -280,7 +342,7 @@ const Submission = () => {
         )}
 
         {submissionType === "Multiple Tracks" && (
-          <div className="submission-container">
+          <div className="submission-container" style={submissionContainerStyle}>
             <div className="text">Upload Multiple Tracks</div>
             <div className="underline"></div>
 
@@ -325,7 +387,7 @@ const Submission = () => {
         )}
 
         {submissionType === "Database URI" && (
-          <div className="submission-container">
+          <div className="submission-container" style={submissionContainerStyle}>
             <div className="text">Database URI</div>
             <div className="underline"></div>
 

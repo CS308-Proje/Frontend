@@ -92,24 +92,6 @@ const ExportSongs = () => {
             <div>
               <input
                 type="checkbox"
-                id="album"
-                onChange={e => handleExportTypeChange(e, 'album')}
-              />
-              <label htmlFor="album">By Album</label>
-              {exportCriteria.album !== undefined && (
-                <input
-                  type="text"
-                  placeholder="Enter an album name"
-                  value={exportCriteria.album}
-                  onChange={e => handleCriteriaValueChange('album', e.target.value)}
-                />
-              )}
-            </div>
-          </div>
-          <div className="export-type-selector">
-            <div>
-              <input
-                type="checkbox"
                 id="rating"
                 onChange={e => handleExportTypeChange(e, 'rating')}
               />

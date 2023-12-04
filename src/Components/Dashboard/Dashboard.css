@@ -246,3 +246,94 @@
   width: 32px; /* Set the SVG icon width */
   height: 32px; /* Set the SVG icon height */
 }
+
+
+
+@keyframes shake {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+}
+
+
+
+
+.bell-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 25px; /* Adjusted to 25px from the top */
+  right: 110px; /* Adjusted to 110px from the right */
+  border-radius: 40%;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+.bell-btn:hover {
+  background-color: #8bbe52; /* Green background on hover */
+  transition: 0.3s ease; /* Smooth transition for background color */
+}
+
+.bell-icon {
+  font-size: 25px;
+  color: #B3B3B3;
+}
+
+.bell-icon:hover {
+  animation: shake 0.3s ease-in-out 0s 2; /* duration, timing-function, delay, iteration-count */
+  color : black;
+}
+
+
+
+.dropdown-menu {
+  position: absolute;
+  right: 175px; /* Aligning with the right position of the bell button */
+  top: 25px; /* Adjusted to align just below the bell button */
+  border: 1px solid #ddd;
+  background-color: white;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  width: 200px;
+  border-radius: 4px;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  max-height: 0;
+  transition: opacity 2s, max-height 1s ease-in-out, visibility 3s;
+}
+
+
+.dropdown-menu-visible {
+  opacity: 1;
+  visibility: visible;
+  max-height: 500px; /* Adjust as needed to fit content */
+}
+
+
+.dropdown-item {
+  padding: 10px;
+  margin: 3px 0;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  cursor: pointer; /* Optional, if you want to change the cursor on hover */
+  border-radius: 4px; /* Optional, for rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional, for a subtle shadow */
+  color:black
+}
+
+.dropdown-item:hover{
+  background-color:grey;
+  color:white;
+  }
+
+

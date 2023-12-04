@@ -5,6 +5,8 @@ import UserIcon from "@mui/icons-material/AccountCircle";
 import SearchIcon from "@mui/icons-material/Search";
 import LogoImage from "../Assets/logo-white.png";
 import Sidebar from "../Sidebar/Sidebar";
+import Dashboard from "../Dashboard/Dashboard";
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import "./MyArtists.css";
 import StarRating from '../Star/StarRating'; // Adjust the path as necessary if it's in a different directory
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
@@ -15,6 +17,8 @@ const MyArtists = () => {
   const navigate = useNavigate();
   const [artists, setArtists] = useState([]);
   const [search, setSearch] = useState("");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [inventoryData, setInventoryData] = useState([]);
 
   // Navigate to profile page
   const navigateToProfile = () => {
@@ -33,6 +37,27 @@ const MyArtists = () => {
   };
 
   
+  // Dropdown menu toggle
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  
+
+  const renderDropdownItems = () => {
+    // Hardcoded test data
+    const testData = [
+      { name: "Item 1", quantity: 10 },
+      { name: "Item 2", quantity: 15 },
+      { name: "Item 3", quantity: 5 }
+    ];
+  
+    return testData.map((item, index) => (
+      <div key={index} className="dropdown-item">
+        {item.name} - {item.quantity}
+      </div>
+    ));
+  };
 
   // Fetch artists data
   useEffect(() => {
@@ -129,6 +154,13 @@ const MyArtists = () => {
         <button className="menu-btn" onClick={() => setSidebarOpen(!sidebarOpen)}>
           <MenuIcon />
         </button>
+
+        <button className="bell-btn" onClick={toggleDropdown}>
+         <NotificationsActiveIcon className="bell-icon" style={{ fontSize: 35 }} />
+        </button>
+        <div className={`dropdown-menu ${dropdownOpen ? 'dropdown-menu-visible' : ''}`}>
+          {renderDropdownItems()}
+        </div>
 
         <button className="logo-btn" onClick={navigateToDashboard}>
           <img src={LogoImage} alt="Logo" className="logo" />

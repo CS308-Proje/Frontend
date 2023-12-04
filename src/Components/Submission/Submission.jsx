@@ -6,6 +6,8 @@ import SearchIcon from "@mui/icons-material/Search"; // Import for Search Icon
 import LogoImage from "../Assets/logo-white.png";
 import Sidebar from "../Sidebar/Sidebar";
 import ReactSelect from "react-select";
+import Dashboard from "../Dashboard/Dashboard";
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import "./Submission.css";
 
 
@@ -13,6 +15,8 @@ import "./Submission.css";
 const Submission = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [submissionType, setSubmissionType] = useState(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [inventoryData, setInventoryData] = useState([]);
   
   const navigate = useNavigate();
 
@@ -36,6 +40,27 @@ const Submission = () => {
     setIsDropdownOpen(false);
   };
 
+  // Dropdown menu toggle
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  
+
+  const renderDropdownItems = () => {
+    // Hardcoded test data
+    const testData = [
+      { name: "Item 1", quantity: 10 },
+      { name: "Item 2", quantity: 15 },
+      { name: "Item 3", quantity: 5 }
+    ];
+  
+    return testData.map((item, index) => (
+      <div key={index} className="dropdown-item">
+        {item.name} - {item.quantity}
+      </div>
+    ));
+  };
   // Adjust the styles of the submission container based on the dropdown state
   const submissionContainerStyle = {
     transform: isDropdownOpen ? 'translateY(100px)' : 'translateY(0px)', // Adjust '200px' as needed
@@ -243,6 +268,13 @@ const Submission = () => {
         >
           <MenuIcon />
         </button>
+
+        <button className="bell-btn" onClick={toggleDropdown}>
+         <NotificationsActiveIcon className="bell-icon" style={{ fontSize: 35 }} />
+        </button>
+        <div className={`dropdown-menu ${dropdownOpen ? 'dropdown-menu-visible' : ''}`}>
+          {renderDropdownItems()}
+        </div>
 
         <button className="logo-btn" onClick={navigateToDashboard}>
           <img src={LogoImage} alt="Logo" className="logo" />

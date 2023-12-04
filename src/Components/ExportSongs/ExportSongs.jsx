@@ -5,12 +5,16 @@ import UserIcon from "@mui/icons-material/AccountCircle";
 import SearchIcon from "@mui/icons-material/Search";
 import LogoImage from "../Assets/logo-white.png";
 import Sidebar from "../Sidebar/Sidebar";
+import Dashboard from "../Dashboard/Dashboard";
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import './ExportSongs.css';
 
 const ExportSongs = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [exportCriteria, setExportCriteria] = useState({});
   const navigate = useNavigate();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [inventoryData, setInventoryData] = useState([]);
 
   const handleExportTypeChange = (event, type) => {
     if (event.target.checked) {
@@ -24,6 +28,29 @@ const ExportSongs = () => {
 
   const handleCriteriaValueChange = (type, value) => {
     setExportCriteria({ ...exportCriteria, [type]: value });
+  };
+
+  
+  // Dropdown menu toggle
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  
+
+  const renderDropdownItems = () => {
+    // Hardcoded test data
+    const testData = [
+      { name: "Item 1", quantity: 10 },
+      { name: "Item 2", quantity: 15 },
+      { name: "Item 3", quantity: 5 }
+    ];
+  
+    return testData.map((item, index) => (
+      <div key={index} className="dropdown-item">
+        {item.name} - {item.quantity}
+      </div>
+    ));
   };
 
   const handleExport = (format) => {
@@ -49,6 +76,13 @@ const ExportSongs = () => {
         <button className="menu-btn" onClick={() => setSidebarOpen(!sidebarOpen)}>
           <MenuIcon />
         </button>
+
+        <button className="bell-btn" onClick={toggleDropdown}>
+         <NotificationsActiveIcon className="bell-icon" style={{ fontSize: 35 }} />
+        </button>
+        <div className={`dropdown-menu ${dropdownOpen ? 'dropdown-menu-visible' : ''}`}>
+          {renderDropdownItems()}
+        </div>
 
         <button className="logo-btn" onClick={navigateToDashboard}>
           <img src={LogoImage} alt="Logo" className="logo" />
@@ -107,8 +141,8 @@ const ExportSongs = () => {
             </div>
           </div>
           <div className="export-options">
-            <button onClick={() => handleExport('json')}>Export Songs as .json</button>
-            <button onClick={() => handleExport('csv')}>Export Songs as .csv</button>
+            <button id="btn1" onClick={() => handleExport('json')}>Export Songs as .json</button>
+            <button id="btn2" onClick={() => handleExport('csv')}>Export Songs as .csv</button>
           </div>
         </div>
       </main>

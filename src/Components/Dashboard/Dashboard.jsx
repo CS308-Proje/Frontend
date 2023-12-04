@@ -5,6 +5,7 @@ import UserIcon from '@mui/icons-material/AccountCircle';
 import SearchIcon from '@mui/icons-material/Search';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import LogoImage from '../Assets/logo-white.png';
 import Sidebar from '../Sidebar/Sidebar';
 import './Dashboard.css';
@@ -13,17 +14,20 @@ const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
   const [songs, setSongs] = useState([]);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [inventoryData, setInventoryData] = useState([]);
 
-  // Navigate functions
+  // Navigate to profile
   const navigateToProfile = () => {
     navigate('/login');
   };
 
+  // Navigate to dashboard
   const navigateToDashboard = () => {
     navigate('/dashboard');
   };
 
-  // Search handling
+  // Handle search
   const handleSearch = (event) => {
     console.log('Searching for:', event.target.value);
   };
@@ -36,9 +40,9 @@ const Dashboard = () => {
 
   // Fetch songs data
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchSongsData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/songs', {
+        const response = await fetch('http://localhost:5001/songs', {
           method: 'GET',
           credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
@@ -50,7 +54,10 @@ const Dashboard = () => {
         console.error('Error fetching data:', error);
       }
     };
-    fetchData();
+
+    fetchSongsData();
+
+    
   }, []);
 
   // Toggle like status
@@ -71,7 +78,6 @@ const Dashboard = () => {
           <h3 className="text-box">Album: {song.albumName}</h3>
           <h4 className="text-box">Rating: {song.ratingValue}</h4>
           <h5 className="text-box">Release Date: {formatDate(song.release_date)}</h5>
-          {/* Like Button */}
           <button className="like-btn" aria-label={`Like ${song.songName}`} onClick={() => toggleLike(song._id)}>
             {song.liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
           </button>
@@ -80,9 +86,30 @@ const Dashboard = () => {
     ));
   };
 
+  // Dropdown menu toggle
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  
+
+  const renderDropdownItems = () => {
+    // Hardcoded test data
+    const testData = [
+      { name: "Item 1", quantity: 10 },
+      { name: "Item 2", quantity: 15 },
+      { name: "Item 3", quantity: 5 }
+    ];
+  
+    return testData.map((item, index) => (
+      <div key={index} className="dropdown-item">
+        {item.name} - {item.quantity}
+      </div>
+    ));
+  };
+  
   return (
     <div className="Dashboard">
-      <nav className="navbar">
       <nav className="navbar">
         <button className="menu-btn" onClick={() => setSidebarOpen(!sidebarOpen)}>
           <MenuIcon />
@@ -97,10 +124,17 @@ const Dashboard = () => {
           <SearchIcon />
         </div>
 
+        <button className="bell-btn" onClick={toggleDropdown}>
+         <NotificationsActiveIcon className="bell-icon" style={{ fontSize: 35 }} />
+        </button>
+
+        <div className={`dropdown-menu ${dropdownOpen ? 'dropdown-menu-visible' : ''}`}>
+          {renderDropdownItems()}
+        </div>
+
         <button className="profile-btn" onClick={navigateToProfile}>
           <UserIcon className="profile-icon" style={{ fontSize: 45 }} />
         </button>
-      </nav>
       </nav>
 
       <Sidebar isOpen={sidebarOpen} />

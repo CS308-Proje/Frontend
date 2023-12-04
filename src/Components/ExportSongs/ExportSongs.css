@@ -290,3 +290,40 @@
     margin-left: 10px;
   }
   
+
+  #btn1 {
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 10px;
+  }
+
+
+
+  #btn2 {
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 10px;
+  }
+
+  #btn1:hover {
+    background-color: #45a049;
+    color : white;
+    transition: 0.5s ease-in-out;
+  }
+
+
+  #btn2:hover {
+    background-color: #45a049;
+    color : white;
+    transition: 0.5s ease-in-out;  
+  }

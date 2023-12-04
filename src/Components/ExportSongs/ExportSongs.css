@@ -218,31 +218,75 @@
 }
 
 
-.song-box .like-btn {
-  border: none;
-  background: none;
-  cursor: pointer;
-  position: absolute;
-  bottom: 50px;
-  right: 30px;
-  padding: 5px;
-  border-radius: 50%;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  color: #ffffff; /* White color for the icon */
-  font-size: 32px; /* Increase the font size */
-  padding: 8px; /* Add more padding for a larger clickable area */
-}
+  .export-container {
+    position: center;
+    padding: 15px;
+    background: #000;
+    border-radius: 20px;
+    margin: 20px 5%;
+    color: #fff;
+    width: 40%;
+    box-sizing: border-box;
+    border: 2px solid #ccc ;
+    margin-top: 10% ;
+    padding-bottom: 25px;
+    margin-left: 30%;
+    margin-right: 30%;
+  }
+  
+  .export-container h1 {
+    font-family: 'Josefin Sans', cursive;
+    text-align: center;
+    margin-bottom: 10px;
+    color:#fff;
+    padding: 10px;
+    font-size: 50px;
+  }
+  
+  .export-options select {
+    font-family: 'Josefin Sans', cursive;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: rgb(143, 141, 141);
+    
+  }
+  .export-options button:hover {
+    background-color: #45a049;
+  }
 
-.song-box .like-btn:hover {
-  background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
-  color: #1DB954; /* Spotify green color on hover */
-}
+  .export-buttons button {
+    font-family: 'Josefin Sans', cursive;
+    text-align: center;
+    font-size: 14px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    margin: 10px;
+  }
+  
+  .export-buttons button:hover {
+    background-color: #45a049;
+  }
+  .main-content {
+    text-align: center;
+    padding: 10px;
+  }
 
-.song-box .like-btn:focus {
-  outline: none;
-}
-/* If using an SVG icon, you can directly control the size of the SVG */
-.song-box .like-btn svg {
-  width: 32px; /* Set the SVG icon width */
-  height: 32px; /* Set the SVG icon height */
-}
+  .export-type-selector
+  {
+    font-size: 14 px;
+    margin: 20px;
+    font-family: 'Josefin Sans', cursive;
+    color: white;
+  }
+
+  .export-type-selector input[type="text"] {
+    margin-left: 10px;
+  }
+  

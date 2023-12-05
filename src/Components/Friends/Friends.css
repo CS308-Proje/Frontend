@@ -1,0 +1,79 @@
+.friends-container {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .add-friend-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px; /* More modern, rounded look */
+    margin-bottom: 20px; /* Add more space between the input and the button */
+    width: 250px; /* Fixed width for a uniform look */
+    font-size: 1rem; /* Make the text easily readable */
+  }
+  
+  .add-friend-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 20px; /* Rounded corners to match the input field */
+    cursor: pointer;
+    font-size: 1rem; /* Match font size with input */
+    margin-bottom: 40px; /* Space before the list starts */
+  }
+  
+  .add-friend-button:hover {
+    background-color: #45a049;
+  }
+  
+  .no-friends-message {
+    text-align: center;
+    color: #fff;
+    margin-top: 40px; /* Add space above the message */
+    font-size: 1.2rem; /* Larger font size for the message */
+    max-width: 400px; /* Maximum width of the message */
+  }
+  
+  .friends-list {
+    width: 100%;
+    max-width: 600px; /* Maximum width of the friend list */
+    margin-top: 20px; /* Space between the button and the friend list */
+  }
+  
+  .friend-box {
+    background-color: #2C2C2C; /* Slightly different background for contrast */
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px; /* Slightly rounded corners for the friend box */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Distribute space between elements */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+  }
+  
+  .friend-box h1 {
+    color: #FFFFFF;
+    font-size: 1rem; /* Adjust font size if needed */
+    margin: 0; /* Remove default margins */
+  }
+  
+  .delete-friend-btn {
+    background-color: #FF4136; /* A red color for the delete button for contrast */
+    color: white;
+    border: none;
+    border-radius: 50%; /* Circle shape for the delete button */
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .delete-friend-btn:hover {
+    background-color: #FF4136;
+    box-shadow: 0 2px 10px rgba(255,65,54,0.5); /* Shadow to match button color */
+  }
+  
+  

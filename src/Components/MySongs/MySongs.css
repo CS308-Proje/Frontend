@@ -1,0 +1,545 @@
+html, body {
+  height: 100%; /* Full viewport height */
+  margin: 0; /* Remove default margin */
+  overflow: hidden; /* Hide overflow */
+}
+
+  .Dashboard {
+    position: relative; /* Makes the Dashboard the reference point for Sidebar's absolute positioning */
+  }
+
+  .menu-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #B3B3B3;
+  }
+  
+  .menu-btn:focus {
+    outline: none;
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    height: calc(100vh - 120px); /* Take up remaining height after navbar, adjust 120px if navbar height changes */
+    padding-top: 120px; /* Remove padding-top as it's no longer needed */
+  }
+  
+  
+  
+  .navbar {
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 5px 20px; /* Reduced vertical padding */
+    display: flex;
+    justify-content: flex-start; /* Changed to flex-start to align content to the left */
+    align-items: center;
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+    left: 0;
+  
+  }
+  
+  .profile-btn {
+    background: none;
+    border: none;
+    font-size: px;
+    cursor: pointer;
+    color: #B3B3B3;
+  }
+  
+  .profile-btn:focus {
+    outline: none;
+  }
+  
+  
+  .profile-icon {
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    transition: color 0.3s ease; /* Add transition for color */
+  }
+  
+  .profile-btn:hover .profile-icon {
+    color: #8bbe52; /* Change color on hover */
+  }
+  
+  
+  .navbar .logo {
+    max-height: 90px;
+    width: auto;
+    transition: filter 0.3s ease; /* Add transition for filter effect */
+  }
+  
+  
+  .search-bar {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 400px; 
+    margin: 0 auto; /* Keep the search bar centered */
+  }
+  
+  
+  .search-bar input {
+    flex-grow: 1;
+    padding: 8px 12px;
+    border: 2px solid #ccc;
+    border-radius: 40px; /* Increased border-radius for rounder corners */
+    margin-right: 10px;
+  }
+  
+  .search-bar .search-btn:hover {
+    color: #8bbe52; /* Change to your preferred hover color */
+  }
+  
+  .search-bar input:focus {
+    color: #000;
+    outline: none;
+    border-color: #8bbe52; /* Highlight color when focused */
+  }
+  
+  /* Styling for SearchIcon, if needed */
+  .search-bar svg {
+    color: #ccc;
+    cursor: pointer;
+  }
+  
+  .logo-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .logo-btn:focus {
+    outline: none;
+  }
+  
+  .logo-btn:hover {
+    color: #8bbe52; /* Change color on hover */
+  }
+  
+  
+  
+  
+  
+  .Sidebar {
+    width: 210px;
+    height: 95vh;
+    background: #000;
+    color: #fff;
+    padding: 20px 0;
+    position: absolute;
+    left: -210px; 
+    transition: left 0.3s ease-in-out;
+    top: 100px;  /* Adjust this to the height of the navbar to position Sidebar just below it. */
+  }
+  
+  /* Use a prop to add a class for toggling the sidebar's visibility */
+  .Sidebar.open {
+    left: 0; /* Move into view */
+  }
+  
+  .main-content {
+    transition: margin-left 0.3s ease-in-out; /* Transition for shifting content */
+  }
+  
+  .main-content.shifted {
+    margin-left: 210px; /* Shift the content to the right */
+  }
+  
+  /* Rest of your CSS */
+  
+  
+  .SidebarList {
+    list-style: none;
+    padding: 0;
+    margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  
+  }
+  
+  .row {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    justify-content: flex-start;
+    list-style-type: none;
+    margin: 0;
+    padding: 0 15px;
+    transition: color 0.3s ease;
+    border-radius: 5px;
+  }
+  
+  .row:hover {
+    cursor: pointer;
+    color: #8bbe52; /* Spotify's green highlight color */
+  }
+  
+  .row div {
+    margin-right: 15px;
+  }
+  
+  .row #icon {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    font-size: 20px; /* Adjust icon size if needed */
+  }
+  
+  .row #title {
+    flex: 3;
+    font-weight: 400; /* Regular font weight */
+  }
+  
+  .button {
+    background: #1ED760; /* Spotify's green for buttons */
+    color: #181818;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background: #12b04e; /* Darker green on hover */
+  }
+
+  .song-box {
+    display: flex;
+    align-items: center;
+    background-color: #181818; /* Slightly lighter grey background */
+    border-radius: 20px; /* Rounded corners */
+    padding: 0.5px; /* Reduced padding */
+    margin-bottom: 16px; 
+    position: relative; /* For absolute positioning of children */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+
+  }
+
+  .song-box:hover {
+    background-color: #282828; /* Slightly lighter on hover */
+    box-shadow: 0 1px 15px rgba(6, 95, 7, 0.7); /* More pronounced shadow on hover */
+    transform: scale(1.01); /* Slight scale on hover for an interactive feel */
+  }
+
+ 
+  
+
+  .song-box h1,
+  .song-box h2,
+  .song-box h3,
+  .song-box h4,
+  .song-box h5 {
+    color: #ffffff;
+    margin: 5px 0;
+    font-weight: 300; /* Adjust font weight */
+
+  }
+  
+  .song-box h1 {
+    color: #8bbe52; /* Highlight color for album name */
+    font-size: 24px;
+  }
+  
+  .song-box h2,
+  .song-box h3,
+  .song-box h4,
+  .song-box h5 {
+    font-size: 16px;
+  }
+  
+  .song-box h3 {
+
+    margin-top: 5px; /* Adjust margin for album name */
+  }
+  
+  .song-box h5 {
+
+    font-style: italic; /* Make release date italic */
+  }
+  
+  
+  .artist-img {
+    width: 100px; /* Standard size for Spotify */
+    height: 100x;
+    object-fit: cover;
+    border-radius: 50%; /* Circular image */
+    margin-right: 30px; /* Reduced space between image and song details */
+    margin-left: 20px;
+  }
+  
+  .delete-song-btn {
+    background-color: transparent; /* Transparent background */
+    color: #f9f9f9; /* Spotify green text color */
+    border-radius: 50%; /* Make it a circular button */
+    cursor: pointer;
+    position: absolute;
+    right: 50px;
+    top: 50px;
+    transition: background-color 0.2s, color 0.2s; /* Smooth transition for hover effect */
+    font-size: 24px; /* Adjust font size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; /* Adjust button width */
+    height: 30px; /* Adjust button height */
+  }
+  
+  .delete-song-btn:focus,
+  .delete-song-btn:hover {
+    background-color: #1ed760; /* Spotify green background on hover and focus */
+    color: #fff; /* White text color on hover and focus */
+    outline: none;
+  }
+
+  .tooltip-text {
+    font-size: 12px; 
+    visibility: hidden;
+    width: 100px;
+    height: 20px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 5%;
+    margin-left: -40px; /* Use half of the width value to align the tooltip */
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  
+  .delete-song-btn:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+
+  .star-rating {
+    display: flex;
+    align-items: center;
+    color: #ccc; /* Color for inactive stars */
+  }
+  
+  .star-rating .star {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, color 0.2s; /* Smooth transitions for scale and color */
+  }
+  
+  .star-rating .star:hover,
+  .star-rating .star.filled {
+    transform: scale(1.1); /* Slight increase in size on hover */
+    color: #8bbe52; /* Gold color for active stars */
+  }
+  
+  .star-rating span {
+    margin-right: 8px;
+    font-size: 16px;
+    color: #ffffff; /* Or any color that fits your design */
+  }
+  
+  .no-songs-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .no-songs-message {
+    font-size: 24px; /* Larger text */
+    margin-bottom: 20px; /* Space between text and button */
+    color: #8bbe52;; /* Spotify green color */
+    display: flex; /* Use flex display for this container */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center children along the main axis */
+    align-items: center; /* Center children along the cross axis */
+    height: 100%; /* Take up all available height of the parent */
+    
+    font-family: 'Josefin Sans', cursive;
+  }
+  
+  .add-song-btn {
+    margin-top: 20px;
+    font-size: 30px; /* Larger '+' symbol */
+    width: 60px; /* Button width */
+    height: 60px; /* Button height */
+    border-radius: 50%; /* Circular button */
+    background-color: #8bbe52;; /* Spotify green color */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .add-song-btn:hover {
+    background-color: #17a64a; /* Slightly darker green on hover */
+  }
+  
+
+  .update-song-btn {
+    background-color: transparent; /* Transparent background */
+    color: #f9f9f9; /* Spotify green text color */
+    border-radius: 50%; /* Make it a circular button */
+    cursor: pointer;
+    position: absolute;
+    right: 100px;
+    top: 50px;
+    transition: background-color 0.2s, color 0.2s; /* Smooth transition for hover effect */
+    font-size: 24px; /* Adjust font size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; /* Adjust button width */
+    height: 30px; /* Adjust button height */
+  }
+  
+
+  .update-song-btn:hover {
+    background-color: #1ed760; /* Spotify green background on hover and focus */
+    color: #fff; /* White text color on hover and focus */
+    outline: none;
+  }
+  
+   .tooltip-text2 {
+    font-size: 12px; 
+    visibility: hidden;
+    width: 100px;
+    height: 20px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 3%;
+    margin-left: -40px; /* Use half of the width value to align the tooltip */
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  
+  .update-song-btn:hover .tooltip-text2 {
+    visibility: visible;
+    opacity: 1;
+  }
+
+
+  .update-song-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%; /* Adjust for responsiveness */
+    max-width: 500px;
+    padding: 20px;
+    background-color: #282828; /* Consistent with the dark theme */
+    border-radius: 8px; /* Softer corners */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); /* Smoother shadow for depth */
+    color: #fff;
+    z-index: 1000;
+  }
+  
+  .update-song-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Increase space for better layout */
+  }
+  
+  .update-song-modal label {
+    font-family: 'Josefin Sans', sans-serif; /* Consistent font */
+    color: #ccc; /* Lighter color for less emphasis */
+  }
+  
+  .update-song-modal input,
+  .update-song-modal select,
+  .update-song-modal textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #404040; /* Subtle border change */
+    background-color: #181818; /* Darker background for input fields */
+    color: #fff;
+    font-family: 'Josefin Sans', sans-serif;
+  }
+  
+  .update-song-modal button {
+    padding: 15px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #1DB954; /* Spotify’s brand green */
+    color: #fff;
+    font-weight: bold;
+    font-family: 'Josefin Sans', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s; /* Smooth transitions */
+  }
+  
+  .update-song-modal button:hover {
+    background-color: #1ed760; /* Slightly lighter green on hover */
+    transform: scale(1.05); /* Slight grow effect */
+  }
+  
+  /* Close button styling */
+  .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .close-btn:hover {
+    color: #ccc; /* Change color on hover for feedback */
+  }
+  
+  
+
+  /* Overlay style */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  backdrop-filter: blur(5px); /* Blur effect */
+  z-index: 999; /* Ensure it's below the modal but above other content */
+  display: none; /* Hide by default */
+}
+
+/* Display the overlay when update modal is active */
+.show-backdrop {
+  display: block;
+}
+
+/* Ensure the modal is above the overlay */
+.update-song-modal {
+  z-index: 1000; /* Higher than the backdrop */
+  /* ... other styles ... */
+}

@@ -1,0 +1,273 @@
+.Dashboard {
+  position: relative; /* Makes the Dashboard the reference point for Sidebar's absolute positioning */
+}
+
+
+
+.menu-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #B3B3B3;
+}
+
+.menu-btn:focus {
+  outline: none;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+
+
+.navbar {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  padding: 5px 20px; /* Reduced vertical padding */
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  z-index: 1000;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+}
+
+.profile-btn {
+  background: none;
+  border: none;
+  font-size: px;
+  cursor: pointer;
+  color: #B3B3B3;
+}
+
+.profile-btn:focus {
+  outline: none;
+}
+
+
+.profile-icon {
+  position: absolute;
+  top: 20px;
+  right: 50px;
+  transition: color 0.3s ease; /* Add transition for color */
+}
+
+.profile-btn:hover .profile-icon {
+  color: #8bbe52; /* Change color on hover */
+}
+
+
+.navbar .logo {
+  max-height: 90px;
+  width: auto;
+  transition: filter 0.3s ease; /* Add transition for filter effect */
+}
+
+
+.search-bar {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 400px; 
+  margin: 0 auto; /* Keep the search bar centered */
+}
+
+
+.search-bar input {
+  flex-grow: 1;
+  padding: 8px 12px;
+  border: 2px solid #ccc;
+  border-radius: 40px; /* Increased border-radius for rounder corners */
+  margin-right: 10px;
+}
+
+.search-bar .search-btn:hover {
+  color: #8bbe52; /* Change to your preferred hover color */
+}
+
+
+
+
+.search-bar input:focus {
+  color: #8bbe52;
+  outline: none;
+  border-color: #8bbe52; /* Highlight color when focused */
+}
+
+/* Styling for SearchIcon, if needed */
+.search-bar svg {
+  color: #ccc;
+  cursor: pointer;
+}
+
+.logo-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.logo-btn:focus {
+  outline: none;
+}
+
+.logo-btn:hover {
+  color: #8bbe52; /* Change color on hover */
+}
+
+
+
+
+
+.Sidebar {
+  width: 210px;
+  height: 95vh;
+  background: #000;
+  color: #fff;
+  padding: 20px 0;
+  position: absolute;
+  left: -210px; 
+  transition: left 0.3s ease-in-out;
+  top: 100px;  /* Adjust this to the height of the navbar to position Sidebar just below it. */
+}
+
+/* Use a prop to add a class for toggling the sidebar's visibility */
+.Sidebar.open {
+  left: 0; /* Move into view */
+}
+
+.main-content {
+  transition: margin-left 0.3s ease-in-out; /* Transition for shifting content */
+}
+
+.main-content.shifted {
+  margin-left: 210px; /* Shift the content to the right */
+}
+
+/* Rest of your CSS */
+
+
+.SidebarList {
+  list-style: none;
+  padding: 0;
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  justify-content: flex-start;
+  list-style-type: none;
+  margin: 0;
+  padding: 0 15px;
+  transition: color 0.3s ease;
+  border-radius: 5px;
+}
+
+.row:hover {
+  cursor: pointer;
+  color: #8bbe52; /* Spotify's green highlight color */
+}
+
+.row div {
+  margin-right: 15px;
+}
+
+.row #icon {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  font-size: 20px; /* Adjust icon size if needed */
+}
+
+.row #title {
+  flex: 3;
+  font-weight: 400; /* Regular font weight */
+}
+
+.button {
+  background: #1ED760; /* Spotify's green for buttons */
+  color: #181818;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #12b04e; /* Darker green on hover */
+}
+
+
+.song-box .like-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: absolute;
+  bottom: 50px;
+  right: 30px;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  color: #ffffff; /* White color for the icon */
+  font-size: 32px; /* Increase the font size */
+  padding: 8px; /* Add more padding for a larger clickable area */
+}
+
+.song-box .like-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
+  color: #1DB954; /* Spotify green color on hover */
+}
+
+.song-box .like-btn:focus {
+  outline: none;
+}
+/* If using an SVG icon, you can directly control the size of the SVG */
+.song-box .like-btn svg {
+  width: 32px; /* Set the SVG icon width */
+  height: 32px; /* Set the SVG icon height */
+}
+
+
+.logout-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #B3B3B3;
+  margin-right: 80px;
+  margin-bottom: 15px;
+
+}
+
+.logout-btn:focus {
+  outline: none;
+}
+
+.logout-icon {
+  font-size: 45px; /* Adjust as needed */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.logout-btn:hover .logout-icon {
+  color: #8bbe52; /* Change color on hover */
+}

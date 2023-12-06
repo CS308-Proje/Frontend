@@ -30,7 +30,7 @@
   text-align: center;
   padding: 5px 20px; /* Reduced vertical padding */
   display: flex;
-  justify-content: flex-start; /* Changed to flex-start to align content to the left */
+  justify-content: space-between; 
   align-items: center;
   z-index: 1000;
   position: absolute;
@@ -246,3 +246,5 @@
   width: 32px; /* Set the SVG icon width */
   height: 32px; /* Set the SVG icon height */
 }
+
+

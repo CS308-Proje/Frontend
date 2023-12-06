@@ -1,20 +1,18 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import MenuIcon from "@mui/icons-material/Menu";
-import UserIcon from "@mui/icons-material/AccountCircle";
-import SearchIcon from "@mui/icons-material/Search"; // Import for Search Icon
-import LogoImage from "../Assets/logo-white.png";
+import DoneIcon from '@mui/icons-material/Done';
 import Sidebar from "../Sidebar/Sidebar";
+import jsonicon from "../Assets/jsonicon.png";
 import ReactSelect from "react-select";
 import "./Submission.css";
+import Navbar2 from "../Navbar2/Navbar2";
 
 
 
 const Submission = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [submissionType, setSubmissionType] = useState(null);
+  const [search, setSearch] = useState("");
   
-  const navigate = useNavigate();
 
   const [songName, setSongName] = useState("");
   const [mainArtistName, setMainArtistName] = useState("");
@@ -27,6 +25,13 @@ const Submission = () => {
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  const [uploading, setUploading] = useState(false);
+  const [uploadSuccess, setUploadSuccess] = useState(false);
+  const [uploadError, setUploadError] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
+
+
+
   // Function to toggle dropdown state
   const handleDropdownOpen = () => {
     setIsDropdownOpen(true);
@@ -38,8 +43,8 @@ const Submission = () => {
 
   // Adjust the styles of the submission container based on the dropdown state
   const submissionContainerStyle = {
-    transform: isDropdownOpen ? 'translateY(100px)' : 'translateY(0px)', // Adjust '200px' as needed
-    transition: 'transform 0.3s ease', // Add transition effect here to ensure it's applied
+    top: isDropdownOpen ? '100px' : '5px', // Adjust the top position when the dropdown is open
+    transition: 'top 0.3s ease', // Ensure the transition is smooth
   };
 
   const selectOptions = [
@@ -108,6 +113,10 @@ const Submission = () => {
 
   const handleSingleTrackSubmit = async () => {
     // Prepare the data in the format your backend expects
+    setUploading(true);
+    setUploadSuccess(false);
+    setUploadError(false);
+    setUploadProgress(0);
     const trackData = {
       songName: songName,
       mainArtistName: mainArtistName,
@@ -120,7 +129,7 @@ const Submission = () => {
     try {
       console.log(trackData);
       // Use your backend endpoint, adjust as necessary
-      const response = await fetch("http://localhost:5000/songs", {
+      const response = await fetch("http://localhost:5001/songs", {
         method: "POST",
         credentials: "include",
         headers: {
@@ -134,24 +143,39 @@ const Submission = () => {
       if (response.ok) {
         // Handle success, possibly clear the form or redirect the user
         console.log("Track submitted successfully");
+        setUploadSuccess(true);
+        setUploadProgress(100);
+        setTimeout(() => {
+          setUploading(false); // Hide the progress bar after a delay
+          setUploadSuccess(false);
+        }, 1000);
       } else {
         // If the server responds with an error, handle it here
         throw new Error("Upload failed");
       }
+
     } catch (error) {
       // Handle network errors here
       console.log(error);
+      setUploadError(true);
+      setTimeout(() => {
+        setUploading(false); // Hide the progress bar after a delay
+        setUploadError(false);
+      }, 1000);
     }
   };
   //* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ *//
   const handleFileSubmit = async () => {
     // Prepare the data in the format your backend expects
-
+    setUploading(true);
+    setUploadSuccess(false);
+    setUploadError(false);
+    setUploadProgress(0);
     try {
       const formData = new FormData();
       formData.append("file", selectedFile);
       // Use your backend endpoint, adjust as necessary
-      const response = await fetch("http://localhost:5000/upload-song-file", {
+      const response = await fetch("http://localhost:5001/upload-song-file", {
         method: "POST",
         credentials: "include",
 
@@ -161,6 +185,13 @@ const Submission = () => {
       if (response.ok) {
         // Handle success, possibly clear the form or redirect the user
         console.log("Track submitted successfully");
+        setUploadSuccess(true);
+        setUploadProgress(100);
+        setTimeout(() => {
+          setUploading(false); // Hide the progress bar after a delay
+          setUploadSuccess(false);
+          handleDeleteFile();
+        }, 1000);
       } else {
         // If the server responds with an error, handle it here
         throw new Error("Upload failed");
@@ -168,11 +199,21 @@ const Submission = () => {
     } catch (error) {
       // Handle network errors here
       console.log(error);
+      setUploadError(true);
+      setTimeout(() => {
+        setUploading(false); // Hide the progress bar after a delay
+        setUploadError(false);
+        handleDeleteFile();
+      }, 1000);
     }
   };
   //* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ *//
   const handleTransferDatabase = async () => {
     // Prepare the data in the format your backend expects
+    setUploading(true);
+    setUploadSuccess(false);
+    setUploadError(false);
+    setUploadProgress(0);
     const databaseData = {
       databaseURI: databaseURI,
       databaseName: databaseName,
@@ -182,7 +223,7 @@ const Submission = () => {
     try {
       console.log(databaseData);
       // Use your backend endpoint, adjust as necessary
-      const response = await fetch("http://localhost:5000/transfer-songs", {
+      const response = await fetch("http://localhost:5001/transfer-songs", {
         method: "POST",
         credentials: "include",
         headers: {
@@ -196,6 +237,12 @@ const Submission = () => {
       if (response.ok) {
         // Handle success, possibly clear the form or redirect the user
         console.log("Track submitted successfully");
+        setUploadSuccess(true);
+        setUploadProgress(100);
+        setTimeout(() => {
+          setUploading(false); // Hide the progress bar after a delay
+          setUploadSuccess(false);
+        }, 1000);
       } else {
         // If the server responds with an error, handle it here
         throw new Error("Upload failed");
@@ -203,6 +250,11 @@ const Submission = () => {
     } catch (error) {
       // Handle network errors here
       console.log(error);
+      setUploadError(true);
+      setTimeout(() => {
+        setUploading(false); // Hide the progress bar after a delay
+        setUploadError(false);
+      }, 1000);
     }
   };
   /* document.addEventListener("DOMContentLoaded", () => {
@@ -213,56 +265,24 @@ const Submission = () => {
     }
   }); */
 
-  const navigateToProfile = () => {
-    navigate("/login");
-  };
-
-  const navigateToDashboard = () => {
-    navigate("/dashboard");
-  };
-
-  const handleSearch = (event) => {
-    // Implement search logic here
-    console.log("Searching for:", event.target.value);
-  };
-
-  const toggleSubmissionType = (type) => {
-    setSubmissionType(type);
-  };
 
   const handleDeleteFile = () => {
+    const fileInput = document.getElementById('fileInput');
+    if (fileInput) {
+      fileInput.value = '';
+    }
     setSelectedFile(null);
   };
 
   return (
     <div className="Dashboard">
-      <nav className="navbar">
-        <button
-          className="menu-btn"
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-        >
-          <MenuIcon />
-        </button>
-
-        <button className="logo-btn" onClick={navigateToDashboard}>
-          <img src={LogoImage} alt="Logo" className="logo" />
-        </button>
-
-        <div className="search-bar">
-          <input type="text" placeholder="Search..." onChange={handleSearch} />
-          <SearchIcon />
-        </div>
-
-        <button className="profile-btn" onClick={navigateToProfile}>
-          <UserIcon className="profile-icon" style={{ fontSize: 45 }} />
-        </button>
-      </nav>
+      <Navbar2 sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} setSearch ={setSearch}/>
 
       <Sidebar isOpen={sidebarOpen} />
 
       <div className="center-container">
         
-      <div className="dropdown-container">
+        <div className="dropdown-container">
           <ReactSelect
             styles={customStyles}
             options={selectOptions}
@@ -335,9 +355,29 @@ const Submission = () => {
               />
             </div>
 
+            {!uploading && (
             <div className="submission-actions">
               <button onClick={handleSingleTrackSubmit}>Upload Track</button>
             </div>
+            )}
+
+            {uploading && !uploadSuccess && (
+              <div className="loader"></div>
+            )}
+
+            {uploadSuccess && (
+              <div>
+                <DoneIcon className="material-icons success-icon">check_circle</DoneIcon>
+                <div className="success-message">Uploaded Successfully</div>
+              </div>
+            )}
+
+            {uploadError && (
+              <div>
+                <span style={{ color: 'red' }}>Cannot make an upload. Please try again.</span>
+              </div>
+            )}
+
           </div>
         )}
 
@@ -368,7 +408,11 @@ const Submission = () => {
                 onDrop={handleFileDrop}
               >
                 {selectedFile ? (
-                  <p>{selectedFile.name}</p>
+                  
+                  <p>
+                    <img src={jsonicon} alt="Logo" className="jsnicon" />
+                    <div>{selectedFile.name}</div>
+                  </p>
                 ) : (
                   "Drag & Drop JSON File Here"
                 )}
@@ -379,10 +423,29 @@ const Submission = () => {
                 <span>Maximum file size: 100 MB</span>
               </div>
             </div>
-
+            {!uploading && (        
             <div className="submission-actions">
               <button onClick={handleFileSubmit}>File Upload</button>
             </div>
+            )}
+
+            {uploading && !uploadSuccess && (
+              <div className="loader"></div>
+            )}
+
+            {uploadSuccess && (
+              <div>
+                <DoneIcon className="material-icons success-icon">check_circle</DoneIcon>
+                <div className="success-message">Uploaded Successfully</div>
+              </div>
+            )}
+
+            {uploadError && (
+              <div>
+                <span style={{ color: 'red' }}>Cannot make an upload. Please try again.</span>
+              </div>
+            )}
+
           </div>
         )}
 
@@ -414,12 +477,31 @@ const Submission = () => {
                 onChange={(e) => setCollectionName(e.target.value)}
               />
             </div>
-
+            {!uploading && (  
             <div className="submission-actions">
               <button onClick={handleTransferDatabase}>
                 Transfer Database
               </button>
             </div>
+            )}
+
+            {uploading && !uploadSuccess && (
+              <div className="loader"></div>
+            )}
+
+            {uploadSuccess && (
+              <div>
+                <DoneIcon className="material-icons success-icon">check_circle</DoneIcon>
+                <div className="success-message">Uploaded Successfully</div>
+              </div>
+            )}
+
+            {uploadError && (
+              <div>
+                <span style={{ color: 'red' }}>Cannot make an upload. Please try again.</span>
+              </div>
+            )}
+
           </div>
         )}
       </div>

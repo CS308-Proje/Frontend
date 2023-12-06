@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import MenuIcon from "@mui/icons-material/Menu";
-import UserIcon from "@mui/icons-material/AccountCircle";
-import SearchIcon from "@mui/icons-material/Search";
-import LogoImage from "../Assets/logo-white.png";
 import Sidebar from "../Sidebar/Sidebar";
 import "./MySongs.css";
 import StarRating from '../Star/StarRating'; // Adjust the path as necessary if it's in a different directory
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import AddIcon from '@mui/icons-material/Add';
+import UpdateIcon from '@mui/icons-material/Update';
+import UpdateSong from '../UpdateSong/UpdateSong'
+
+import Navbar2 from "../Navbar2/Navbar2";
+
 
 const MySongs = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -16,22 +17,22 @@ const MySongs = () => {
   const [songs, setSongs] = useState([]);
   const [search, setSearch] = useState("");
 
-  // Navigate to profile page
-  const navigateToProfile = () => {
-    navigate("/login");
+  const [showUpdateScreen, setShowUpdateScreen] = useState(false);
+  const [selectedSong, setSelectedSong] = useState(null);
+
+  const handleUpdateClick = (song) => {
+    setSelectedSong(song);
+    setShowUpdateScreen(true);
   };
 
-  // Navigate to dashboard
-  const navigateToDashboard = () => {
-    navigate("/dashboard");
+  const handleUpdate = (updatedSong) => {
+    // Logic to update the song in the state and send request to backend
+    setShowUpdateScreen(false);
   };
 
-  // Handle search input
-  const handleSearch = (event) => {
-    console.log("Searching for:", event.target.value);
-    setSearch(event.target.value);
+  const handleClose = () => {
+    setShowUpdateScreen(false);
   };
-
   
 
   // Fetch songs data
@@ -39,7 +40,7 @@ const MySongs = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/songs?name=${search}`,
+          `http://localhost:5001/songs?name=${search}`,
           {
             method: "GET",
             credentials: "include",
@@ -71,7 +72,7 @@ const MySongs = () => {
   // Delete a song
   const deleteSong = async (songId) => {
     try {
-      const response = await fetch(`http://localhost:5000/songs/${songId}`, {
+      const response = await fetch(`http://localhost:5001/songs/${songId}`, {
         method: "DELETE",
         credentials: "include",
         headers: {
@@ -97,7 +98,7 @@ const MySongs = () => {
   
     try {
       // Send the PUT request to update the rating
-      const response = await fetch(`http://localhost:5000/songs/${songId}`, {
+      const response = await fetch(`http://localhost:5001/songs/${songId}`, {
         method: 'PUT',
         credentials: 'include',
         headers: {
@@ -125,24 +126,7 @@ const MySongs = () => {
 
   return (
     <div className="Dashboard">
-      <nav className="navbar">
-        <button className="menu-btn" onClick={() => setSidebarOpen(!sidebarOpen)}>
-          <MenuIcon />
-        </button>
-
-        <button className="logo-btn" onClick={navigateToDashboard}>
-          <img src={LogoImage} alt="Logo" className="logo" />
-        </button>
-
-        <div className="search-bar">
-          <input type="text" placeholder="Search..." onChange={handleSearch} />
-          <SearchIcon />
-        </div>
-
-        <button className="profile-btn" onClick={navigateToProfile}>
-          <UserIcon className="profile-icon" style={{ fontSize: 45 }} />
-        </button>
-      </nav>
+      <Navbar2 sidebarOpen = {sidebarOpen} setSidebarOpen={setSidebarOpen} setSearch={setSearch}/>
 
       <Sidebar isOpen={sidebarOpen} />
 
@@ -159,6 +143,10 @@ const MySongs = () => {
         ) : (
           songs.map((song) => (
             <div key={song._id} className="song-box">
+              <button className="update-song-btn" onClick={() => handleUpdateClick(song)}>
+      <UpdateIcon style={{ fontSize: '45px', color: '#fff' } } />
+      <span className="tooltip-text2">Update Song</span>
+    </button>
               <button className="delete-song-btn" onClick={() => deleteSong(song._id)}>
   <RemoveCircleIcon style={{ fontSize: '40px', color: '#fff' }} />
   <span className="tooltip-text">Remove Song</span>
@@ -179,8 +167,19 @@ const MySongs = () => {
           )))}
         </div>
       </main>
+      <div className={`modal-backdrop ${showUpdateScreen ? 'show-backdrop' : ''}`}></div>
+      {showUpdateScreen && (
+        <UpdateSong
+          song={selectedSong}
+          onClose={handleClose}
+          onUpdate={handleUpdate}
+        />
+      )}
     </div>
   );
 };
+
+
+
 
 export default MySongs;

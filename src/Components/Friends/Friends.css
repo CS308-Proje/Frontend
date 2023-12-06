@@ -1,79 +1,213 @@
 .friends-container {
-    margin-top: 150px;
-    display: flex;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.add-friend-input {
+  padding: 10px;
+  border: 2px solid #282828; /* Spotify's almost black borders */
+  border-radius: 50px; /* Fully rounded edges for a modern pill shape */
+  margin-bottom: 20px;
+  width: 300px; /* Increase width for a better visual balance */
+  font-size: 16px; /* Spotify's standard font size for inputs */
+  background-color: #121212; /* Spotify's dark background for inputs */
+  color: white; /* Light text for readability */
+}
+
+.add-friend-button {
+  padding: 10px 20px;
+  background: linear-gradient(to right, #1db954, #1ed760); /* Spotify's green gradient */
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 40px;
+  transition: background 0.3s; /* Smooth transition for hover effect */
+}
+
+.add-friend-button:hover {
+  background: linear-gradient(to right, #1ed760, #1db954); /* Invert gradient on hover */
+}
+
+.no-friends-message {
+  text-align: center;
+  color: #b3b3b3; /* Spotify's grey text */
+  margin-top: 40px;
+  font-size: 20px; /* Slightly larger font for emphasis */
+  max-width: 600px; /* Increase max-width for better line length */
+}
+
+.friends-list {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+}
+
+.friend-box {
+  background-color: #181818; /* Use Spotify's standard background for elements */
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5); /* Increase shadow for more depth */
+}
+
+.friend-box h1 {
+  color: #ffffff;
+  font-size: 18px; /* Increase font size for better visibility */
+  margin: 0;
+}
+
+
+.remove-friend-btn {
+  background-color: #1ed760; /* Spotify green for consistency */
+  color: white;
+  border: none;
+  border-radius: 2000px;
+  padding: 5px 15px;
+  cursor: pointer;
+  font-size: 2rem;
+  transition: background-color 0.3s ease;
+}
+
+.remove-friend-btn:hover {
+  background-color: #d71e1e; /* A lighter green on hover */
+}
+
+
+.friend-actions {
+  display: flex;
+  align-items: center;
+}
+
+.toggle-friend-btn {
+  color: #767676; /* Grey color for the "off" state */
+  cursor: pointer;
+  margin-right: 8px;
+  transition: color 0.3s ease;
+  /* font-size is now controlled in JSX via style property */
+}
+
+.toggle-friend-btn.active {
+  color: #1db954; /* Spotify's green color for the "on" state */
+}
+
+.invitations-container {
+  color: #fff;
+  max-width: 600px;
+  margin: 40px auto;
+}
+
+.invitations-heading {
+  text-align: center;
+  color: #1db954; /* Spotify's green for the heading */
+  margin-bottom: 20px;
+}
+
+.friends-heading {
+  text-align: center;
+  color: #1db954; /* Spotify's green for the heading */
+  margin-bottom: 20px;
+}
+
+.no-invitations-message {
+  text-align: center;
+  color: #b3b3b3; /* Spotify's grey text */
+}
+
+.invitations-list {
+  /* Add more styling as needed */
+}
+
+.invitation-box {
+  background-color: #181818; /* Use Spotify's standard background for elements */
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+}
+
+.invitation-text {
+  flex-grow: 1;
+  margin-right: 10px; /* Space between text and buttons */
+}
+
+.invitation-actions {
+  /* Adjust as necessary */
+}
+
+.invitation-accept-btn, .invitation-reject-btn {
+  border: none;
+  border-radius: 20px;
+  padding: 5px 15px;
+  margin-left: 10px; /* Space between buttons */
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.invitation-accept-btn {
+  background-color: #1db954; /* Spotify green for accept button */
+  color: white;
+}
+
+.invitation-accept-btn:hover {
+  background-color: #1ed760; /* A lighter green on hover */
+}
+
+.invitation-reject-btn {
+  background-color: #e22134; /* A red color for reject button */
+  color: white;
+}
+
+.invitation-reject-btn:hover {
+  background-color: #ff4136; /* A lighter red on hover */
+}
+
+/* Ensure to add responsive behavior if necessary */
+
+
+.content-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  gap: 20px; /* This adds space between your two sections */
+}
+
+.friends-container,
+.invitations-container {
+  flex: 1; /* Each container will take up half the space */
+  max-width: calc(50% - 10px); /* Adjust width calculation as needed */
+  color: white;
+  padding: 20px;
+  background-color: #181818; /* Spotify's standard background for elements */
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+}
+
+/* Update the .friends-list and .invitations-list if you have specific styles for them */
+
+/* ... (rest of your CSS) */
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .content-container {
     flex-direction: column;
-    align-items: center;
-    padding: 20px;
   }
-  
-  .add-friend-input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 20px; /* More modern, rounded look */
-    margin-bottom: 20px; /* Add more space between the input and the button */
-    width: 250px; /* Fixed width for a uniform look */
-    font-size: 1rem; /* Make the text easily readable */
+
+  .friends-container,
+  .invitations-container {
+    max-width: 100%;
   }
-  
-  .add-friend-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 20px; /* Rounded corners to match the input field */
-    cursor: pointer;
-    font-size: 1rem; /* Match font size with input */
-    margin-bottom: 40px; /* Space before the list starts */
-  }
-  
-  .add-friend-button:hover {
-    background-color: #45a049;
-  }
-  
-  .no-friends-message {
-    text-align: center;
-    color: #fff;
-    margin-top: 40px; /* Add space above the message */
-    font-size: 1.2rem; /* Larger font size for the message */
-    max-width: 400px; /* Maximum width of the message */
-  }
-  
-  .friends-list {
-    width: 100%;
-    max-width: 600px; /* Maximum width of the friend list */
-    margin-top: 20px; /* Space between the button and the friend list */
-  }
-  
-  .friend-box {
-    background-color: #2C2C2C; /* Slightly different background for contrast */
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 10px; /* Slightly rounded corners for the friend box */
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Distribute space between elements */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow for depth */
-  }
-  
-  .friend-box h1 {
-    color: #FFFFFF;
-    font-size: 1rem; /* Adjust font size if needed */
-    margin: 0; /* Remove default margins */
-  }
-  
-  .delete-friend-btn {
-    background-color: #FF4136; /* A red color for the delete button for contrast */
-    color: white;
-    border: none;
-    border-radius: 50%; /* Circle shape for the delete button */
-    padding: 5px 10px;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  
-  .delete-friend-btn:hover {
-    background-color: #FF4136;
-    box-shadow: 0 2px 10px rgba(255,65,54,0.5); /* Shadow to match button color */
-  }
-  
-  
+}
+
+

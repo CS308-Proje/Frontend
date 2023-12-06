@@ -137,6 +137,7 @@
   left: -210px; 
   transition: left 0.3s ease-in-out;
   top: 100px;  /* Adjust this to the height of the navbar to position Sidebar just below it. */
+  z-index: 1000;
 }
 
 /* Use a prop to add a class for toggling the sidebar's visibility */
@@ -146,6 +147,7 @@
 
 .main-content {
   transition: margin-left 0.3s ease-in-out; /* Transition for shifting content */
+  z-index: 1;
 }
 
 .main-content.shifted {
@@ -233,22 +235,21 @@
 
 .submission-container {
   position: absolute;
+  top: 50%; /* Adjust top as needed, use JavaScript to change when dropdown is open */
+  left: 50%;
+  transform: translate(-50%, 60%);
   padding: 20px;
   background: #000;
   border-radius: 20px;
-  margin: 20px 5%;
+  margin: 20px auto;
+  
   color: #fff;
-  width: 40%;
+  width: 90%;
   max-width: 800px;
   box-sizing: border-box;
-  z-index: 1000; /* This might be lower or not needed at all */
-  transition: transform 0.3s ease;
 }
 
-.submission-container-push-down {
-  transform: translateY(10%); /* Adjust the value to match the height of your dropdown */
-  transition: transform 0.3s ease; /* Smooth transition for the movement */
-}
+
 
 .text {
 text-align: center;
@@ -297,6 +298,7 @@ font-family: 'Josefin Sans', cursive;
   justify-content: center;
   margin-top: 20px;  /* Added margin for spacing */
   margin-bottom: 20px;
+  position: relative;
 }
 .file-info{
 font-family: 'Josefin Sans', cursive;
@@ -334,6 +336,8 @@ display: flex;
 justify-content: center;
 align-items: center;
 height: 100vh;  /* or adjust as needed */
+width: 100vw;   /* Add this to ensure the width is the full viewport width */
+position: relative;
 }
 
 .dropdown-container {
@@ -433,4 +437,48 @@ font-size: 20px;
 color: #fff;
 text-align: center;
 margin-top: 20px;
+}
+
+.jsnicon {
+  max-height: 90px;
+  width: auto;
+  transition: filter 0.3s ease; /* Add transition for filter effect */
+  margin-bottom: 10px;
+  
+}
+
+/* Circular Loader Styles */
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db; /* Blue color */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Success Icon Styles */
+.success-icon {
+  color: green;
+  font-size: 40px;
+}
+
+.success-message {
+  color: green;
+  margin-top: 10px;
+}
+
+
+.jsnicon {
+  max-height: 90px;
+  width: auto;
+  margin: 0; /* Remove margin to prevent affecting layout */
+  /* ... other styles ... */
+  position:relative;
+  
 }

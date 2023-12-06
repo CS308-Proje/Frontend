@@ -1,32 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import MenuIcon from '@mui/icons-material/Menu';
-import UserIcon from '@mui/icons-material/AccountCircle';
-import SearchIcon from '@mui/icons-material/Search';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import LogoImage from '../Assets/logo-white.png';
 import Sidebar from '../Sidebar/Sidebar';
 import './Dashboard.css';
+import Navbar2 from '../Navbar2/Navbar2';
 
 const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
   const [songs, setSongs] = useState([]);
+  const [search, setSearch] = useState("");
 
-  // Navigate functions
-  const navigateToProfile = () => {
-    navigate('/login');
-  };
-
-  const navigateToDashboard = () => {
-    navigate('/dashboard');
-  };
-
-  // Search handling
-  const handleSearch = (event) => {
-    console.log('Searching for:', event.target.value);
-  };
 
   // Format date
   const formatDate = (dateString) => {
@@ -82,26 +67,7 @@ const Dashboard = () => {
 
   return (
     <div className="Dashboard">
-      <nav className="navbar">
-      <nav className="navbar">
-        <button className="menu-btn" onClick={() => setSidebarOpen(!sidebarOpen)}>
-          <MenuIcon />
-        </button>
-
-        <button className="logo-btn" onClick={navigateToDashboard}>
-          <img src={LogoImage} alt="Logo" className="logo" />
-        </button>
-
-        <div className="search-bar">
-          <input type="text" placeholder="Search..." onChange={handleSearch} />
-          <SearchIcon />
-        </div>
-
-        <button className="profile-btn" onClick={navigateToProfile}>
-          <UserIcon className="profile-icon" style={{ fontSize: 45 }} />
-        </button>
-      </nav>
-      </nav>
+      <Navbar2 sidebarOpen = {sidebarOpen} setSidebarOpen={setSidebarOpen} setSearch={setSearch}/>
 
       <Sidebar isOpen={sidebarOpen} />
 

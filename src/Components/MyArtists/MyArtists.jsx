@@ -42,8 +42,8 @@ const MyArtists = () => {
     };
 
     fetchData();
-  }, [search]);
-
+  });
+  
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const formattedDate = new Date(dateString).toLocaleDateString(undefined, options);
@@ -105,6 +105,7 @@ const MyArtists = () => {
     }
   };
 
+  
   return (
     <div className="Dashboard">
       <Navbar2 sidebarOpen = {sidebarOpen} setSidebarOpen={setSidebarOpen} setSearch={setSearch}/>
@@ -118,24 +119,24 @@ const MyArtists = () => {
               <h2>You don't have any favorite artists yet!</h2>
               <p>Discover new music by adding artists to your favorites.</p>
               <button className="add-song-btn" onClick={() => navigate("/submitmusic")}>
-              <AddIcon style={{ fontSize: "60px" }} />
-        </button>
+                <AddIcon style={{ fontSize: "60px" }} />
+              </button>
             </div>
         ) : (artists.map((artist) => (
             <div key={artist._id} className="song-box">
               <button className="delete-song-btn" onClick={() => deleteArtist(artist._id)}>
-  <RemoveCircleIcon style={{ fontSize: '40px', color: '#fff' }} />
-  <span className="tooltip-text">Remove Artist</span>
-</button>
+                <RemoveCircleIcon style={{ fontSize: '40px', color: '#fff' }} />
+                <span className="tooltip-text">Remove Artist</span>
+              </button>
 
               <img src={artist.artistImg} className="artist-img" alt={`Artist ${artist.id}`} />
               <div>
                 <h1 className="text-box"><b>{artist.artistName}</b></h1>
                 
                 <StarRating
-      initialRating={artist.ratingValue}
-      onRating={(newRating) => updateRating(artist._id, newRating)}
-    />
+                  initialRating={artist.ratingValue}
+                  onRating={(newRating) => updateRating(artist._id, newRating)}
+                />
                 
               </div>
             </div>

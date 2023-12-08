@@ -145,6 +145,16 @@
   /* Adjust as necessary */
 }
 
+
+.invitation-accept-btn,
+.invitation-reject-btn {
+  border: none;
+  border-radius: 10px; /* Adjust border radius to make the buttons smaller */
+  padding: 5px 10px; /* Adjust padding to make the buttons smaller */
+  margin-left: 10px; /* Space between buttons */
+  cursor: pointer;
+  font-size: 0.9rem; /* Adjust font size to make the buttons smaller */
+
 .invitation-accept-btn, .invitation-reject-btn {
   border: none;
   border-radius: 20px;
@@ -152,6 +162,7 @@
   margin-left: 10px; /* Space between buttons */
   cursor: pointer;
   font-size: 1rem;
+
   transition: background-color 0.3s;
 }
 

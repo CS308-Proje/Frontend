@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import "./LoginSignup.css";
 import email_icon from "../Assets/email.png";
 import password_icon from "../Assets/password.png";
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -74,6 +76,9 @@ const Login = () => {
         <div className="submit" id="btn" onClick={handleLogin}>
           Log In
         </div>
+      </div>
+      <div className="forgot-password-link">
+        <Link to="/forgot" className="forgot-link">Forgot your password?</Link>
       </div>
     </div>
   );

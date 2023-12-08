@@ -9,6 +9,8 @@ import MySongs from "./Components/MySongs/MySongs";
 import MyArtists from "./Components/MyArtists/MyArtists";
 import MyAlbums from "./Components/MyAlbums/MyAlbums";
 import ExportSongs from "./Components/ExportSongs/ExportSongs";
+import ForgotPassword from "./Components/LoginSignup/ForgotPassword";
+
 import {
   BrowserRouter as Router,
   Route,
@@ -16,6 +18,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import Navbar from "./Components/Navbar/Navbar";
+
 
 const App = () => {
   return (
@@ -31,6 +34,7 @@ const App = () => {
         <Route path="/artists" element={<MyArtists />} />
         <Route path="/albums" element={<MyAlbums />} />
         <Route path="/export" element={<ExportSongs />} />
+        <Route path="/forgot" element={<ForgotPassword />} />
       </Routes>
     </Router>
   );

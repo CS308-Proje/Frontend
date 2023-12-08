@@ -8,10 +8,56 @@ import LogoutIcon from '@mui/icons-material/Logout'; // Import Logout icon
 import { useAuth } from "../Authentication/Auth.jsx"; // Adjust this path based on your project structure
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import './Navbar2.css'
+import Badge from '@mui/material/Badge';
+
 const Navbar2 = ({ sidebarOpen, setSidebarOpen, setSearch }) => {
     const { logout } = useAuth();
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [inventoryData, setInventoryData] = useState([]);
+    const [isLoadingNotifications, setIsLoadingNotifications] = useState(true);
+
+    const [notifications, setNotifications] = useState({
+        invitations: "",
+        friendActivities: "",
+        temporalRecommendations: ""
+    });
+
+    const [hasNewNotifications, setHasNewNotifications] = useState(false);
+
+    const handleInvitationClick = () => {
+        if (notifications.invitations) {
+            navigate('/friends');
+        }
+    };
+
+    useEffect(() => {
+        const fetchNotifications = async () => {
+            setIsLoadingNotifications(true);
+            try {
+                const response = await fetch('http://localhost:5001/getAllNotification', {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: { 'Content-Type': 'application/json' },
+                });
+                const data = await response.json();
+                setNotifications(data);
+            } catch (error) {
+                console.error('Error fetching notifications:', error);
+            }
+            setIsLoadingNotifications(false);
+        };
+
+        fetchNotifications();
+    }, []);
+
+    useEffect(() => {
+        const newNotifications =
+            notifications.invitations !== "No pending invitations at the time" ||
+            notifications.friendActivities !== "No new friend activity." ||
+            notifications.temporalRecommendations !== "You do not have temporal recommendations yet.";
+
+        setHasNewNotifications(newNotifications);
+    }, [notifications]);
 
     const handleSearch = (event) => {
         console.log('Searching for:', event.target.value);
@@ -19,6 +65,7 @@ const Navbar2 = ({ sidebarOpen, setSidebarOpen, setSearch }) => {
     };
 
     const navigate = useNavigate();
+
     const navigateToDashboard = () => {
         navigate('/dashboard');
     };
@@ -32,30 +79,28 @@ const Navbar2 = ({ sidebarOpen, setSidebarOpen, setSearch }) => {
         navigate('/');
     };
 
-  // Dropdown menu toggle
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
-  };
+    // Dropdown menu toggle
+    const toggleDropdown = () => {
+        setDropdownOpen(!dropdownOpen);
+    };
 
-  
+    const renderDropdownItems = () => {
+        return (
+            <div>
+                <div className="dropdown-item" onClick={handleInvitationClick}>
+                    Invitations: {notifications.invitations || "You have no new invitations."}
+                </div>
+                <div className="dropdown-item">
+                    Friend Activities: {notifications.friendActivities || "No new friend activity."}
+                </div>
+                <div className="dropdown-item">
+                    Temporal Recommendations: {notifications.temporalRecommendations || "You do not have temporal recommendations yet."}
+                </div>
+            </div>
+        );
+    };
 
-  const renderDropdownItems = () => {
-    // Hardcoded test data
-    const testData = [
-      { name: "Item 1", quantity: 10 },
-      { name: "Item 2", quantity: 15 },
-      { name: "Item 3", quantity: 5 }
-    ];
-  
-    return testData.map((item, index) => (
-      <div key={index} className="dropdown-item">
-        {item.name} - {item.quantity}
-      </div>
-    ));
-  };
     return (
-    
-        <nav className="navbar">
         <nav className="navbar">
             <button className="menu-btn" onClick={() => setSidebarOpen(!sidebarOpen)}>
                 <MenuIcon />
@@ -71,7 +116,9 @@ const Navbar2 = ({ sidebarOpen, setSidebarOpen, setSearch }) => {
             </div>
 
             <button className="bell-btn" onClick={toggleDropdown}>
-                <NotificationsActiveIcon className="bell-icon" style={{ fontSize: 35 }} />
+                <Badge color="secondary" variant="dot" invisible={!hasNewNotifications || isLoadingNotifications}>
+                    <NotificationsActiveIcon className="bell-icon" style={{ fontSize: 35 }} />
+                </Badge>
             </button>
 
             <div className={`dropdown-menu ${dropdownOpen ? 'dropdown-menu-visible' : ''}`}>
@@ -86,11 +133,6 @@ const Navbar2 = ({ sidebarOpen, setSidebarOpen, setSearch }) => {
                 <LogoutIcon className="logout-icon" style={{ fontSize: 38 }} />
             </button>
         </nav>
-        </nav>
-
-            
-       
-      
     )
 }
 

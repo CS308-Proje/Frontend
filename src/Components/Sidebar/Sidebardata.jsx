@@ -2,9 +2,9 @@ import React from "react";
 import HomeIcon from '@mui/icons-material/Home';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddIcon from '@mui/icons-material/Add';
-import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import ArtistIcon from '@mui/icons-material/SpatialAudioOff';
 import AlbumIcon from '@mui/icons-material/LibraryMusic';
+import PlaylistAddCircleIcon from '@mui/icons-material/PlaylistAddCircle';
 export const Sidebardata = [
     {
         title:"Home",
@@ -34,6 +34,12 @@ export const Sidebardata = [
         title:"My Artists",
         icon:<ArtistIcon></ArtistIcon>,
         link:"/artists"
+    }
+    ,
+    {
+        title:"Recommendations",
+        icon:<PlaylistAddCircleIcon></PlaylistAddCircleIcon>,
+        link:"/recommendations"
     }
     
 ]

@@ -15,6 +15,7 @@ import MyAlbums from "./Components/MyAlbums/MyAlbums";
 import Login from "./Components/LoginSignup/Login";
 import Signup from "./Components/LoginSignup/Signup";
 import Friends from "./Components/Friends/Friends";
+import Recommendations from "./Components/Recommendations/Recommendation";
 import { useAuth, AuthProvider } from "./Components/Authentication/Auth";
 
 // Protected Route Component
@@ -84,6 +85,14 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <Friends />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/recommendations"
+            element={
+              <ProtectedRoute>
+                <Recommendations />
               </ProtectedRoute>
             }
           />

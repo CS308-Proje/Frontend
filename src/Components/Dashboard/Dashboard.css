@@ -248,26 +248,3 @@
 }
 
 
-.logout-btn {
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #B3B3B3;
-  margin-right: 80px;
-  margin-bottom: 15px;
-
-}
-
-.logout-btn:focus {
-  outline: none;
-}
-
-.logout-icon {
-  font-size: 45px; /* Adjust as needed */
-  transition: color 0.3s ease; /* Smooth color transition */
-}
-
-.logout-btn:hover .logout-icon {
-  color: #8bbe52; /* Change color on hover */
-}

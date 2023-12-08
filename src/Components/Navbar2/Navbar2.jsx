@@ -8,12 +8,14 @@ import LogoutIcon from '@mui/icons-material/Logout'; // Import Logout icon
 import { useAuth } from "../Authentication/Auth.jsx"; // Adjust this path based on your project structure
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import './Navbar2.css'
+
 import Badge from '@mui/material/Badge';
 
 const Navbar2 = ({ sidebarOpen, setSidebarOpen, setSearch }) => {
     const { logout } = useAuth();
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [inventoryData, setInventoryData] = useState([]);
+
     const [isLoadingNotifications, setIsLoadingNotifications] = useState(true);
 
     const [notifications, setNotifications] = useState({
@@ -59,6 +61,7 @@ const Navbar2 = ({ sidebarOpen, setSidebarOpen, setSearch }) => {
         setHasNewNotifications(newNotifications);
     }, [notifications]);
 
+
     const handleSearch = (event) => {
         console.log('Searching for:', event.target.value);
         setSearch(event.target.value);
@@ -78,6 +81,7 @@ const Navbar2 = ({ sidebarOpen, setSidebarOpen, setSearch }) => {
         logout();
         navigate('/');
     };
+
 
     // Dropdown menu toggle
     const toggleDropdown = () => {
@@ -101,6 +105,32 @@ const Navbar2 = ({ sidebarOpen, setSidebarOpen, setSearch }) => {
     };
 
     return (
+
+  // Dropdown menu toggle
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  
+
+  const renderDropdownItems = () => {
+    // Hardcoded test data
+    const testData = [
+      { name: "Item 1", quantity: 10 },
+      { name: "Item 2", quantity: 15 },
+      { name: "Item 3", quantity: 5 }
+    ];
+  
+    return testData.map((item, index) => (
+      <div key={index} className="dropdown-item">
+        {item.name} - {item.quantity}
+      </div>
+    ));
+  };
+    return (
+    
+        <nav className="navbar">
+
         <nav className="navbar">
             <button className="menu-btn" onClick={() => setSidebarOpen(!sidebarOpen)}>
                 <MenuIcon />
@@ -116,9 +146,12 @@ const Navbar2 = ({ sidebarOpen, setSidebarOpen, setSearch }) => {
             </div>
 
             <button className="bell-btn" onClick={toggleDropdown}>
+
                 <Badge color="secondary" variant="dot" invisible={!hasNewNotifications || isLoadingNotifications}>
                     <NotificationsActiveIcon className="bell-icon" style={{ fontSize: 35 }} />
                 </Badge>
+
+                <NotificationsActiveIcon className="bell-icon" style={{ fontSize: 35 }} />
             </button>
 
             <div className={`dropdown-menu ${dropdownOpen ? 'dropdown-menu-visible' : ''}`}>
@@ -133,6 +166,11 @@ const Navbar2 = ({ sidebarOpen, setSidebarOpen, setSearch }) => {
                 <LogoutIcon className="logout-icon" style={{ fontSize: 38 }} />
             </button>
         </nav>
+
+        </nav>
+
+            
+     
     )
 }
 

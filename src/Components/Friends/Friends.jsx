@@ -19,8 +19,10 @@ const Friends = () => {
   const navigate = useNavigate();
   const { logout } = useAuth();
   const [search, setSearch] = useState("");
+
   const [friendRemoved, setFriendRemoved] = useState(false);
   const [allowFriendRecommendations, setAllowFriendRecommendations] = useState([]);
+
 
   const [friends, setFriends] = useState([]); // Changed from setUsername to setFriends
   const [username, setUsername] = useState(''); // Changed from setFriendName to setUsername
@@ -199,12 +201,52 @@ const Friends = () => {
         return friend;
       }));
     }
+
+
+  useEffect(() => {
+    fetch("http://localhost:5001/invitation/getallinv")
+      .then(response => response.json())
+      .then(data => {
+        console.log('Fetched invitations:', data.invitations); // Check the fetched data
+        setInvitations(data.invitations || []); // Set state with fetched data or empty array
+      })
+      .catch(error => {
+        console.error('Error fetching data: ', error);
+        setInvitations([]); // Fallback to an empty array on error
+        console.log('Invitations state:', invitations); 
+      });
+  }, []);
+  
+
+  const acceptInvitation = (_id) => {
+    const invitation = invitations.find(inv => inv._id === _id);
+    if (invitation) {
+      // Adjust the logic here based on how you want to handle accepted invitations
+      setFriends([...friends, { id: invitation._id, name: 'Invited User', isActive: false }]);
+      setInvitations(invitations.filter(inv => inv._id !== _id));
+    }
+  };
+  
+  const rejectInvitation = (_id) => {
+    setInvitations(invitations.filter(inv => inv._id !== _id));
+  };
+  
+
+  const toggleFriendActive = (id) => {
+    setFriends(friends.map(friend => {
+      if (friend.id === id) {
+        return { ...friend, isActive: !friend.isActive };
+      }
+      return friend;
+    }));
+
   };
 
 
   const handleInputChange = (event) => {
     setUsername(event.target.value); 
   };
+
 
   const removeFriend = async (friendId) => {
 
@@ -266,6 +308,33 @@ const Friends = () => {
       setUsername('');
     }
   };
+  const removeFriend = (id) => {
+    setFriends(friends.filter(friend => friend.id !== id));
+  };
+  
+
+  const handleSubmit = () => {
+    // Check if the username is not empty and not already in the friends list
+    if (username && !friends.some(friend => friend.name === username)) {
+      // Create a new friend object
+      const newFriend = {
+        id: friends.length + 1, // Just a simple incrementing ID, you might want to use something like UUID in a real app
+        name: username,
+        isActive: false
+      };
+
+      // Add the new friend to the friends array
+      setFriends([...friends, newFriend]);
+
+      // Clear the input field after adding
+      setUsername('');
+    }
+  };
+
+    // Navigate to profile page
+    const navigateToProfile = () => {
+      navigate("/friends");
+    };
   
 
   
@@ -277,6 +346,7 @@ const Friends = () => {
 
 
 
+  
 
 
 
@@ -314,23 +384,39 @@ const Friends = () => {
                   <h1 className="text-box">{friend.name}</h1>
                   <div className="friend-actions">
                     <Tooltip title={friend.isActive ? "Deactivate Recommendation" : "Activate Recommendation"}>
+
                       {allowFriendRecommendations.includes(friend._id) ? (
                         <ToggleOnIcon
                           style={{ fontSize: '4rem' }} // Adjust the size as needed
                           className="toggle-friend-btn active"
                           onClick={() => toggleFriendActive(friend._id, true)}
+
+                      {friend.isActive ? (
+                        <ToggleOnIcon
+                          style={{ fontSize: '4rem' }} // Adjust the size as needed
+                          className="toggle-friend-btn active"
+                          onClick={() => toggleFriendActive(friend.id)}
+
                         />
                       ) : (
                         <ToggleOffIcon
                           style={{ fontSize: '4rem' }} // Adjust the size as needed
                           className="toggle-friend-btn"
+
                           onClick={() => toggleFriendActive(friend._id, false)}
+
+                          onClick={() => toggleFriendActive(friend.id)}
+
                         />
                       )}
                     </Tooltip>
                     <Tooltip title="Remove Friend">
                       <button
+
                         onClick={() => removeFriend(friend._id)}
+
+                        onClick={() => removeFriend(friend.id)}
+
                         className="remove-friend-btn"
                         aria-label="Remove friend"
                       >
@@ -353,7 +439,9 @@ const Friends = () => {
           <div className="invitations-list">
   {invitations.map((invitation) => (
     <div key={invitation._id} className="invitation-box">
+
       <span className="invitation-text">Invitation from User ID: {invitation.user_id.username}</span>
+
       <div className="invitation-actions">
         <button onClick={() => acceptInvitation(invitation._id)} className="invitation-accept-btn">
           Accept

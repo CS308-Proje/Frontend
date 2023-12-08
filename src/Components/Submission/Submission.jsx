@@ -129,7 +129,7 @@ const Submission = () => {
     try {
       console.log(trackData);
       // Use your backend endpoint, adjust as necessary
-      const response = await fetch("http://localhost:5000/songs", {
+      const response = await fetch("http://localhost:5001/songs", {
         method: "POST",
         credentials: "include",
         headers: {
@@ -175,7 +175,7 @@ const Submission = () => {
       const formData = new FormData();
       formData.append("file", selectedFile);
       // Use your backend endpoint, adjust as necessary
-      const response = await fetch("http://localhost:5000/upload-song-file", {
+      const response = await fetch("http://localhost:5001/upload-song-file", {
         method: "POST",
         credentials: "include",
 
@@ -223,7 +223,7 @@ const Submission = () => {
     try {
       console.log(databaseData);
       // Use your backend endpoint, adjust as necessary
-      const response = await fetch("http://localhost:5000/transfer-songs", {
+      const response = await fetch("http://localhost:5001/transfer-songs", {
         method: "POST",
         credentials: "include",
         headers: {

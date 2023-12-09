@@ -4,13 +4,12 @@ import './ResetPassword.css';
 
 const ResetPassword = () => {
   const [input, setInput] = useState({
-    email: '', // Add email state
     password: '',
     confirmPassword: ''
   });
   const [error, setError] = useState('');
 
-  const { email, password, confirmPassword } = input;
+  const { password, confirmPassword } = input;
   const { token } = useParams(); // Extract the token from the URL
 
   const handleChange = (e) => {
@@ -31,7 +30,7 @@ const ResetPassword = () => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email, password }) // Include email in the request
+        body: JSON.stringify({password }) 
       });
 
       const data = await response.json();
@@ -53,16 +52,6 @@ const ResetPassword = () => {
     <div className="reset-password-container">
      <div className="reset-instructions">Please enter your new password</div>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-            placeholder="Enter your email"
-            required
-          />
-        </div>
         <div className="form-group">
           <input
             type="password"

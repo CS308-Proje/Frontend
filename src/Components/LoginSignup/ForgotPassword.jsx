@@ -6,15 +6,31 @@ const ForgotPassword = () => {
   const [message, setMessage] = useState("");
 
   const handleSubmit = async () => {
+    // We assume emailOrUsername is already defined in your component's state.
     try {
-      // Implement the logic to handle the password reset with emailOrUsername
-      console.log("Password reset request for:", emailOrUsername);
-      setMessage("Check your email for a reset link.");
+      const response = await fetch('http://localhost:5001/auth/forgotpassword', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ emailOrUsername: emailOrUsername }),
+      });
+  
+      const data = await response.json();
+  
+      // Check if the backend response is successful.
+      if (response.ok) {
+        setMessage('Check your email for a reset link.');
+      } else {
+        setMessage(data.message || 'Error sending reset link. Try Again.');
+      }
     } catch (error) {
-      setMessage("Error sending reset link.");
+      // Catch any network errors and log them.
+      console.error('Network error:', error);
+      setMessage('Network error when trying to send reset link.');
     }
   };
-
+  
   return (
     <div className="forgot-container">
       <div className="forgot-header">

@@ -53,11 +53,48 @@ const ExportSongs = () => {
     ));
   };
 
-  const handleExport = (format) => {
+  const handleExport = async (format) => {
     console.log(`Exporting songs as ${format} with criteria:`, exportCriteria);
-    // Implement the export logic here
+  
+    // Construct the query parameters based on exportCriteria
+    const queryParams = new URLSearchParams();
+    for (const [key, value] of Object.entries(exportCriteria)) {
+      if (value) {
+        queryParams.append(key, value);
+      }
+    }
+  
+    // Add the format to the query parameters
+    queryParams.append('format', format);
+  
+    // Construct the URL with query parameters
+    const url = `http://localhost:5001/export?${queryParams.toString()}`;
+  
+    try {
+      // Make the HTTP request to the backend
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      // Handle the response (e.g., download the file)
+      const blob = await response.blob();
+      downloadFile(blob, `exported_songs.${format}`);
+    } catch (error) {
+      console.error('Error during export:', error);
+    }
   };
-
+  
+  // Utility function to trigger file download
+  const downloadFile = (blob, fileName) => {
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
+  
   const navigateToProfile = () => {
     navigate('/login');
   };

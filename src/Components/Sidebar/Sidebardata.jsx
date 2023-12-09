@@ -5,6 +5,8 @@ import AddIcon from '@mui/icons-material/Add';
 import ArtistIcon from '@mui/icons-material/SpatialAudioOff';
 import AlbumIcon from '@mui/icons-material/LibraryMusic';
 import PlaylistAddCircleIcon from '@mui/icons-material/PlaylistAddCircle';
+import InsertChartIcon from '@mui/icons-material/InsertChart';
+
 export const Sidebardata = [
     {
         title:"Home",
@@ -40,6 +42,12 @@ export const Sidebardata = [
         title:"Recommendations",
         icon:<PlaylistAddCircleIcon></PlaylistAddCircleIcon>,
         link:"/recommendations"
+    }
+    ,
+    {
+        title:"Analysis",
+        icon:<InsertChartIcon></InsertChartIcon>,
+        link:"/analysis"
     }
     
 ]

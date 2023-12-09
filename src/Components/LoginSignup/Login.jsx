@@ -4,6 +4,7 @@ import { useAuth } from "../Authentication/Auth.jsx"; // Adjust this path based 
 import "./LoginSignup.css";
 import email_icon from "../Assets/email.png";
 import password_icon from "../Assets/password.png";
+import Navbar from "../Navbar/Navbar.jsx";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -44,6 +45,7 @@ const Login = () => {
 
   return (
     <div className="container">
+      <Navbar/>
       <div className="header">
         <div className="text">Log in to SRS</div>
         <div className="underline"></div>

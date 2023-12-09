@@ -1,5 +1,6 @@
-.Dashboard {
+.Dashboard1 {
   position: relative; /* Makes the Dashboard the reference point for Sidebar's absolute positioning */
+  
 }
 
 
@@ -338,6 +339,7 @@ align-items: center;
 height: 100vh;  /* or adjust as needed */
 width: 100vw;   /* Add this to ensure the width is the full viewport width */
 position: relative;
+overflow-y: auto;
 }
 
 .dropdown-container {
@@ -481,4 +483,130 @@ margin-top: 20px;
   /* ... other styles ... */
   position:relative;
   
+}
+
+
+/* Styles for the search bar container */
+.search-bar1 {
+  left: 50%;
+  width: 100%;
+  z-index: 10; /* Ensure it's above the scrolled content */
+}
+
+/* Styles for the input field */
+.search-bar1 input.track-input {
+  flex-grow: 1; /* Allows the input to grow and fill space */
+  margin-right: 10px; /* Spacing between input and button */
+  padding: 10px;
+  border-radius: 30px;
+  border: 2px solid #fff;
+  background-color: #000;
+  color: #fff;
+  font-size: 16px;
+}
+
+.search-bar1 input.track-input:focus {
+  outline: none;
+  border-color: #8bbe52; /* Highlight color when focused */
+}
+
+/* Styles for the search button */
+.search-bar1 button.btn {
+  padding: 10px 20px;
+  background-color: #8bbe52;
+  color: #181818;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.search-bar1 button.btn:hover {
+  background-color: #12b04e; /* Darker green on hover */
+}
+
+/* Styles for the song list */
+.song-list1 {
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* Stack song items vertically */
+  align-items: center; /* Align song items */
+  padding-top: 10px; /* Space between search bar and first song item */
+}
+
+/* Styles for each song item */
+.song-item1 {
+  width: 100%; /* Song items take full width of container */
+  padding: 10px;
+  border-bottom: 1px solid #fff; /* Separator for song items */
+}
+
+.song-item1:last-child {
+  border-bottom: none; /* Removes border from the last item */
+}
+.song-item1 p {
+  margin: 0; /* Removes default paragraph margins */
+}
+
+.submission-container2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: #000;
+  border-radius: 20px;
+  color: #fff;
+  width: 90%;
+  max-width: 800px;
+  /* Adjust the top value to where you want the container to start */
+  margin-top: 300px; /* Example: Change this to the desired fixed starting position */
+  box-sizing: border-box;
+  position: absolute; /* Changed to absolute to fix the position */
+  overflow: hidden; /* Hide overflow */
+  transition: max-height 0.3s ease-in; /* Smooth transition for max-height */
+}
+
+/* Set a starting max-height that will expand when there are songs */
+.submission-container2 {
+  max-height: 200px; /* Start with a smaller height */
+}
+
+
+
+.submission-container2.with-songs {
+  max-height: 70vh; /* Adjust as needed */
+  overflow-y: auto; /* Show scroll */
+  margin-top: 250px;
+}
+
+.search-results-container {
+  width: 100%;
+  max-height: 500px; /* Adjust this value to fit your design needs */
+  overflow-y: auto; /* Enable vertical scrolling */
+  position: absolute; /* Absolute position to stay at top */
+  top: 0; /* Align to the top */
+  left: 0; /* Align to the left */
+}
+
+/* This styles the scrollbar track */
+.submission-container2::-webkit-scrollbar-track {
+  background-color: #000; /* Scrollbar track color */
+  border-radius: 10px;
+}
+
+/* This styles the scrollbar handle */
+.submission-container2::-webkit-scrollbar-thumb {
+  background-color: #8bbe52; /* Scrollbar handle color */
+  border-radius: 10px;
+  border: 3px solid #000; /* Creates a border between the track and handle */
+}
+
+/* This sets the size of the scrollbar */
+.submission-container2::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+/* Optionally, you can style the scrollbar handle on hover */
+.submission-container2::-webkit-scrollbar-thumb:hover {
+  background-color: #12b04e; /* Handle color on hover */
 }

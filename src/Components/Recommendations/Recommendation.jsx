@@ -24,7 +24,7 @@ const Recommendation = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [songStatus, setSongStatus] = useState({});
     const [noDataMessage, setNoDataMessage] = useState("");
-    const [friends, setFriend]= useState("");
+    const [friends, setFriend]= useState([]);
 
     const submissionContainerStyle = {
       top: isDropdownOpen ? '100px' : '5px', // Adjust the top position when the dropdown is open
@@ -218,6 +218,8 @@ useEffect(() => {
           case 'friend-activity':
               setIsLoading(true);
               url = 'http://localhost:5000/based-on-friends'
+              console.log("buraya geldi");
+              break;
           default:
               return;
       }
@@ -231,7 +233,7 @@ useEffect(() => {
               },
           });
           const data = await response.json();
-
+          console.log("test");
           if (recommendationType === 'song-ratings') {
               setSongs(data.songs || []);
           } else if (recommendationType === 'album-ratings') {
@@ -244,6 +246,7 @@ useEffect(() => {
               setSpotify(data.songs || []);
           } else if (recommendationType === 'friend-activity') {
               setFriend(data.songs || []);
+              console.log(friends);
           }
           // Handle other recommendation types similarly
       } catch (error) {
@@ -479,20 +482,33 @@ useEffect(() => {
                   }
 
               case "temporal-values":
-                return(
-                  
-                  <div key={temporal.songName} className="song-box1">
-                      <img src={temporal.albumImg} className="artist-img" alt={`Artist ${temporal.mainArtistName}`} />
-                      <div>
-                          <h1 className="text-box"><b>{temporal.songName}</b></h1>
-                          <h2 className="text-box"><b>Artist:</b> {temporal.mainArtistName}</h2>
-                          <h3 className="text-box"><b>Album: </b>{temporal.albumName}</h3>
-                          <h5 className="text-box">Release Date: {formatDate(temporal.release_date)}</h5>
+                
+                  if(temporal.length === 0 && !isLoading){
+                    return(
+                           <div className="recommendation-container" style={recommendationContainerStyle}>
+                              <SentimentVeryDissatisfiedIcon style={{ fontSize: '100px', margin: '15 auto', display: 'block' }} />
+                              <div className="text1">Unfortunately, We Can't Help You</div>
+                              <div className="underline1"></div>
+                              <p className="recommendation-message1">
+                                Arkadas ekle asosyal
+                              </p>
+                           </div>
+                          );
+                  }
+                  else{
+                    return(
+                      <div key={temporal.songName} className="song-box1">
+                          <img src={temporal.albumImg} className="artist-img" alt={`Artist ${temporal.mainArtistName}`} />
+                          <div>
+                              <h1 className="text-box"><b>{temporal.songName}</b></h1>
+                              <h2 className="text-box"><b>Artist:</b> {temporal.mainArtistName}</h2>
+                              <h3 className="text-box"><b>Album: </b>{temporal.albumName}</h3>
+                              <h5 className="text-box">Release Date: {formatDate(temporal.release_date)}</h5>
+                          </div>
+                          <AddIcon className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(temporal)} />
                       </div>
-                      <AddIcon className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(temporal)} />
-                  </div>
-                );
-
+                    );
+                  }
                 case "friend-activity":
                   if(friends.length === 0 && !isLoading){
                     return(<div className="recommendation-container" style={recommendationContainerStyle}>
@@ -507,17 +523,18 @@ useEffect(() => {
                   }
                   else{
                   return (
-                    friends.map(({ song, recommendedBy }) => (
-                      <div key={song._id} className="song-box1">
-                        <img src={song.albumImg} className="artist-img" alt={`Album cover for ${song.albumName}`} />
+
+                    friends.map(({ recommendedBy, recommendedSong }) => (
+                      <div key={recommendedSong._id} className="song-box1">
+                        <img src={recommendedSong.albumImg} className="artist-img" alt={`Album cover for ${recommendedSong.albumName}`} />
                         <div>
-                          <h1 className="text-box"><b>{song.songName}</b></h1>
-                          <h2 className="text-box"><b>Artist:</b> {song.mainArtistName}</h2>
-                          <h3 className="text-box"><b>Album: </b>{song.albumName}</h3>
-                          <h5 className="text-box">Release Date: {formatDate(song.release_date)}</h5>
-                          <h5 className="text-box">Recommended by: {recommendedBy.name}</h5>
+                          <h1 className="text-box"><b>{recommendedSong.songName}</b></h1>
+                          <h2 className="text-box"><b>Artist:</b> {recommendedSong.mainArtistName}</h2>
+                          <h3 className="text-box"><b>Album: </b>{recommendedSong.albumName}</h3>
+                          <h5 className="text-box">Release Date: {formatDate(recommendedSong.release_date)}</h5>
+                          <h5 className="text-box">Recommended by: {recommendedBy}</h5>
                         </div>
-                        <AddIcon className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(song)} />
+                        <AddIcon className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(recommendedSong)} />
                       </div>
                     ))
                   );

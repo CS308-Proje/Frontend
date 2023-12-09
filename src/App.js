@@ -17,6 +17,8 @@ import Signup from "./Components/LoginSignup/Signup";
 import Friends from "./Components/Friends/Friends";
 import Recommendations from "./Components/Recommendations/Recommendation";
 import { useAuth, AuthProvider } from "./Components/Authentication/Auth";
+import Analysis from "./Components/Analysis/Analysis";
+
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -34,7 +36,7 @@ const App = () => {
   return (
     <AuthProvider>
       <Router>
-        <Navbar />
+        
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
@@ -93,6 +95,14 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <Recommendations />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/analysis"
+            element={
+              <ProtectedRoute>
+                <Analysis />
               </ProtectedRoute>
             }
           />

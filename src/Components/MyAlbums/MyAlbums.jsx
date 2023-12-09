@@ -129,13 +129,13 @@ const MyAlbums = () => {
               <img src={album.albumImg} className="artist-img" alt={`Artist ${album.id}`} />
               <div>
                 <h1 className="text-box"><b>{album.name}</b></h1>
-                <h2 className="text-box"><b>Artist:</b> {album.mainArtistName}</h2>
+                <h2 className="text-box"><b>Artist:</b> {album.artistId.artistName}</h2>
                 
                 <StarRating
       initialRating={album.ratingValue}
       onRating={(newRating) => updateRating(album._id, newRating)}
     />
-                <h5 className="text-box">Release Date: {formatDate(album.release_date)}</h5>
+                {/*<h5 className="text-box">Release Date: {formatDate(album.createdAt)}</h5>*/}
               </div>
             </div>
           )))}

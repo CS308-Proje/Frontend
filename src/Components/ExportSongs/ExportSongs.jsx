@@ -5,7 +5,6 @@ import UserIcon from "@mui/icons-material/AccountCircle";
 import SearchIcon from "@mui/icons-material/Search";
 import LogoImage from "../Assets/logo-white.png";
 import Sidebar from "../Sidebar/Sidebar";
-import Dashboard from "../Dashboard/Dashboard";
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import './ExportSongs.css';
 
@@ -14,7 +13,6 @@ const ExportSongs = () => {
   const [exportCriteria, setExportCriteria] = useState({});
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [inventoryData, setInventoryData] = useState([]);
 
   const handleExportTypeChange = (event, type) => {
     if (event.target.checked) {
@@ -30,16 +28,12 @@ const ExportSongs = () => {
     setExportCriteria({ ...exportCriteria, [type]: value });
   };
 
-  
   // Dropdown menu toggle
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
-  
-
   const renderDropdownItems = () => {
-    // Hardcoded test data
     const testData = [
       { name: "Item 1", quantity: 10 },
       { name: "Item 2", quantity: 15 },
@@ -55,37 +49,41 @@ const ExportSongs = () => {
 
   const handleExport = async (format) => {
     console.log(`Exporting songs as ${format} with criteria:`, exportCriteria);
-  
-    // Construct the query parameters based on exportCriteria
+
     const queryParams = new URLSearchParams();
     for (const [key, value] of Object.entries(exportCriteria)) {
       if (value) {
         queryParams.append(key, value);
       }
     }
-  
-    // Add the format to the query parameters
+
     queryParams.append('format', format);
-  
-    // Construct the URL with query parameters
-    const url = `http://localhost:5001/export?${queryParams.toString()}`;
-  
+
+    // Corrected the URL string
+    const url = `http://localhost:5001/export?${queryParams}`;
+
     try {
-      // Make the HTTP request to the backend
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        method: 'GET',
+        credentials: 'include',
+      });
+
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`HTTP error! status: ${response.statusText}`);
       }
-  
-      // Handle the response (e.g., download the file)
+
       const blob = await response.blob();
-      downloadFile(blob, `exported_songs.${format}`);
+      const contentDisposition = response.headers.get('Content-Disposition');
+      let filename = contentDisposition
+        ? contentDisposition.split('filename=')[1].split(';')[0].replace(/"/g, '')
+        : `exportedData.${format}`;
+
+      downloadFile(blob, filename);
     } catch (error) {
       console.error('Error during export:', error);
     }
   };
-  
-  // Utility function to trigger file download
+
   const downloadFile = (blob, fileName) => {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -94,9 +92,9 @@ const ExportSongs = () => {
     a.click();
     window.URL.revokeObjectURL(url);
   };
-  
+
   const navigateToProfile = () => {
-    navigate('/login');
+    navigate('/profile');
   };
 
   const navigateToDashboard = () => {
@@ -188,3 +186,4 @@ const ExportSongs = () => {
 };
 
 export default ExportSongs;
+

@@ -64,7 +64,7 @@ const MyArtists = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/artists?name=${search}`,
+          `http://localhost:5001/artists?name=${search}`,
           {
             method: "GET",
             credentials: "include",
@@ -96,7 +96,7 @@ const MyArtists = () => {
   // Delete a artist
   const deleteArtist = async (artistId) => {
     try {
-      const response = await fetch(`http://localhost:5000/artists/${artistId}`, {
+      const response = await fetch(`http://localhost:5001/artists/${artistId}`, {
         method: "DELETE",
         credentials: "include",
         headers: {
@@ -122,7 +122,7 @@ const MyArtists = () => {
   
     try {
       // Send the PUT request to update the rating
-      const response = await fetch(`http://localhost:5000/artists/${artistId}`, {
+      const response = await fetch(`http://localhost:5001/artists/${artistId}`, {
         method: 'PUT',
         credentials: 'include',
         headers: {

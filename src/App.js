@@ -10,6 +10,7 @@ import MyArtists from "./Components/MyArtists/MyArtists";
 import MyAlbums from "./Components/MyAlbums/MyAlbums";
 import ExportSongs from "./Components/ExportSongs/ExportSongs";
 import ForgotPassword from "./Components/LoginSignup/ForgotPassword";
+import ResetPassword from './Components/ResetPassword/ResetPassword';
 
 import {
   BrowserRouter as Router,
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="/albums" element={<MyAlbums />} />
         <Route path="/export" element={<ExportSongs />} />
         <Route path="/forgot" element={<ForgotPassword />} />
+        <Route path="/auth/resetpassword/:token" element={<ResetPassword />} />
       </Routes>
     </Router>
   );

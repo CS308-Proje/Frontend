@@ -64,7 +64,7 @@ const MySongs = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/songs?name=${search}`,
+          `http://localhost:5001/songs?name=${search}`,
           {
             method: "GET",
             credentials: "include",
@@ -96,7 +96,7 @@ const MySongs = () => {
   // Delete a song
   const deleteSong = async (songId) => {
     try {
-      const response = await fetch(`http://localhost:5000/songs/${songId}`, {
+      const response = await fetch(`http://localhost:5001/songs/${songId}`, {
         method: "DELETE",
         credentials: "include",
         headers: {
@@ -122,7 +122,7 @@ const MySongs = () => {
   
     try {
       // Send the PUT request to update the rating
-      const response = await fetch(`http://localhost:5000/songs/${songId}`, {
+      const response = await fetch(`http://localhost:5001/songs/${songId}`, {
         method: 'PUT',
         credentials: 'include',
         headers: {

@@ -539,6 +539,9 @@ margin-top: 20px;
   width: 100%; /* Song items take full width of container */
   padding: 10px;
   border-bottom: 1px solid #fff; /* Separator for song items */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .song-item1:last-child {
@@ -609,4 +612,23 @@ margin-top: 20px;
 /* Optionally, you can style the scrollbar handle on hover */
 .submission-container2::-webkit-scrollbar-thumb:hover {
   background-color: #12b04e; /* Handle color on hover */
+}
+
+.add-icon-container {
+  /* Styles to ensure the icon stays on the right */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 16px; /* Or any suitable value */
+  
+}
+
+.song-details {
+  flex-grow: 1;
+  /* Rest of your styles */
+}
+
+.add-icon:hover {
+  color: #8bbe52;
+  transition: transform 0.3s, color 0.3s;
 }

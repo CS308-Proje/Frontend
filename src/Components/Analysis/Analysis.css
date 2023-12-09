@@ -1,9 +1,4 @@
 
-body{
-  overflow-y: auto;
-  height: 100%; /* Full viewport height */
-  margin: 0; /* Remove default margin */
-}
 .Dashboard1 {
   min-height: 100vh; /* Minimum height of 100% of the viewport height */
   display: flex;

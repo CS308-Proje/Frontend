@@ -6,6 +6,7 @@ import ArtistIcon from '@mui/icons-material/SpatialAudioOff';
 import AlbumIcon from '@mui/icons-material/LibraryMusic';
 import PlaylistAddCircleIcon from '@mui/icons-material/PlaylistAddCircle';
 import InsertChartIcon from '@mui/icons-material/InsertChart';
+import DownloadIcon from '@mui/icons-material/Download';
 
 export const Sidebardata = [
     {
@@ -48,6 +49,12 @@ export const Sidebardata = [
         title:"Analysis",
         icon:<InsertChartIcon></InsertChartIcon>,
         link:"/analysis"
+    }
+    ,
+    {
+        title:"Export Songs",
+        icon:<DownloadIcon></DownloadIcon>,
+        link:"/export"
     }
     
 ]

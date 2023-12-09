@@ -491,18 +491,22 @@ const Submission = () => {
                 {songs1.map((song) => (
                   <div key={song._id} className="song-item1">
                     {/* Render song details here */}
-                    <img src={song.albumImg} className="artist-img" alt={`Artist ${song.id}`} />
-                    <div>
-                      <h1 className="text-box"><b>{song.songName}</b></h1>
-                      <h2 className="text-box"><b>Artist:</b> {song.mainArtistName}</h2>
-                      <h3 className="text-box"><b>Album: </b>{song.albumName}</h3>
-                      <AddIcon 
-                        className= "add-icon"
-                        style={{ cursor: 'pointer', fontSize: '40px' }} 
-                        onClick={() => handleAddSpotifySong(song)}
-                      />
+                    <div className="song-details">
+                      <img src={song.albumImg} className="artist-img" alt={`Artist ${song.id}`} />
+                      <div>
+                        <h1 className="text-box"><b>{song.songName}</b></h1>
+                        <h2 className="text-box"><b>Artist:</b> {song.mainArtistName}</h2>
+                        <h3 className="text-box"><b>Album: </b>{song.albumName}</h3>
+                        
+                      </div>
                     </div>
-                    
+                    <div className="add-icon-container">
+                        <AddIcon 
+                          className= "add-icon"
+                          style={{ cursor: 'pointer', fontSize: '40px' }} 
+                          onClick={() => handleAddSpotifySong(song)}
+                        />
+                    </div>
                   </div>
                 ))}
               </div>

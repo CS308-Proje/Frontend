@@ -5,7 +5,6 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import Navbar from "./Components/Navbar/Navbar";
 import Main from "./Components/Main/Main";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import SubmissionPage from "./Components/Submission/Submission";
@@ -18,6 +17,9 @@ import Friends from "./Components/Friends/Friends";
 import Recommendations from "./Components/Recommendations/Recommendation";
 import { useAuth, AuthProvider } from "./Components/Authentication/Auth";
 import Analysis from "./Components/Analysis/Analysis";
+import ForgotPassword from "./Components/LoginSignup/ForgotPassword";
+import ResetPassword from './Components/ResetPassword/ResetPassword';
+import ExportSongs from "./Components/ExportSongs/ExportSongs";
 
 
 // Protected Route Component
@@ -41,6 +43,8 @@ const App = () => {
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/forgot" element={<ForgotPassword />} />
+          <Route path="/auth/resetpassword/:token" element={<ResetPassword />} />
           {/* Protected Routes */}
           <Route
             path="/dashboard"
@@ -103,6 +107,14 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <Analysis />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/export"
+            element={
+              <ProtectedRoute>
+                <ExportSongs />
               </ProtectedRoute>
             }
           />

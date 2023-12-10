@@ -490,7 +490,7 @@ useEffect(() => {
                               <div className="text1">Unfortunately, We Can't Help You</div>
                               <div className="underline1"></div>
                               <p className="recommendation-message1">
-                                Arkadas ekle asosyal
+                                You don't have any temporal values yet!
                               </p>
                            </div>
                           );
@@ -516,7 +516,7 @@ useEffect(() => {
                               <div className="text1">Unfortunately, We Can't Help You</div>
                               <div className="underline1"></div>
                               <p className="recommendation-message1">
-                                Arkadas ekle asosyal
+                                There is no friend activities yet!
                               </p>
                            </div>
                           );

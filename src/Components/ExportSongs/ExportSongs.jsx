@@ -9,7 +9,6 @@ const ExportSongs = () => {
   const [exportCriteria, setExportCriteria] = useState({});
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [inventoryData, setInventoryData] = useState([]);
   const [search, setSearch] = useState("");
 
   const handleExportTypeChange = (event, type) => {
@@ -26,56 +25,40 @@ const ExportSongs = () => {
     setExportCriteria({ ...exportCriteria, [type]: value });
   };
 
-  
-  // Dropdown menu toggle
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
-  };
 
-  
-
-  const renderDropdownItems = () => {
-    // Hardcoded test data
-    const testData = [
-      { name: "Item 1", quantity: 10 },
-      { name: "Item 2", quantity: 15 },
-      { name: "Item 3", quantity: 5 }
-    ];
-  
-    return testData.map((item, index) => (
-      <div key={index} className="dropdown-item10">
-        {item.name} - {item.quantity}
-      </div>
-    ));
-  };
 
   const handleExport = async (format) => {
     console.log(`Exporting songs as ${format} with criteria:`, exportCriteria);
-  
-    // Construct the query parameters based on exportCriteria
+
     const queryParams = new URLSearchParams();
     for (const [key, value] of Object.entries(exportCriteria)) {
       if (value) {
         queryParams.append(key, value);
       }
     }
-  
-    // Add the format to the query parameters
+
     queryParams.append('format', format);
-  
-    // Construct the URL with query parameters
-    const url = `http://localhost:5000/export?${queryParams.toString()}`;
-  
+
+    // Corrected the URL string
+    const url = `http://localhost:5000/export?${queryParams}`;
+
     try {
-      // Make the HTTP request to the backend
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        method: 'GET',
+        credentials: 'include',
+      });
+
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`HTTP error! status: ${response.statusText}`);
       }
-  
-      // Handle the response (e.g., download the file)
+
       const blob = await response.blob();
-      downloadFile(blob, `exported_songs.${format}`);
+      const contentDisposition = response.headers.get('Content-Disposition');
+      let filename = contentDisposition
+        ? contentDisposition.split('filename=')[1].split(';')[0].replace(/"/g, '')
+        : `exportedData.${format}`;
+
+      downloadFile(blob, filename);
     } catch (error) {
       console.error('Error during export:', error);
     }
@@ -139,8 +122,8 @@ const ExportSongs = () => {
             </div>
           </div>
           <div className="export-options">
-            <button id="btn1" onClick={() => handleExport('json')}>Export Songs as .json</button>
-            <button id="btn2" onClick={() => handleExport('csv')}>Export Songs as .csv</button>
+            <button id="btn2" onClick={() => handleExport('json')}>Export Songs as .json</button>
+            <button id="btn3" onClick={() => handleExport('csv')}>Export Songs as .csv</button>
           </div>
         </div>
       </main>

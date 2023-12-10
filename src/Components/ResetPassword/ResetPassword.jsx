@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './ResetPassword.css';
-import Navbar from '../Navbar/Navbar';
+import Navbar from "../Navbar/Navbar.jsx";
 
 const ResetPassword = () => {
   const [input, setInput] = useState({
@@ -26,7 +26,7 @@ const ResetPassword = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/auth/resetpassword/${token}`, {
+      const response = await fetch(`http://localhost:5001/auth/resetpassword/${token}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -49,14 +49,15 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="center-wrapper5">
-      <Navbar/>
-    <div className="reset-password-container5">
-     <div className="reset-instructions5">Please enter your new password</div>
+    
+    <div className="center-wrapper">
+        <Navbar/>
+    <div className="reset-password-container">
+     <div className="reset-instructions">Please enter your new password</div>
       <form onSubmit={handleSubmit}>
-        <div className="form-group5">
-          <input
-            type="password5"
+        <div className="form-group">
+        <input id="reset-input"
+            type="password"
             name="password"
             value={password}
             onChange={handleChange}
@@ -64,9 +65,9 @@ const ResetPassword = () => {
             required
           />
         </div>
-        <div className="form-group5">
-          <input
-            type="password5"
+        <div className="form-group">
+          <input id="reset-input"
+            type="password"
             name="confirmPassword"
             value={confirmPassword}
             onChange={handleChange}
@@ -74,8 +75,8 @@ const ResetPassword = () => {
             required
           />
         </div>
-        {error && <div className="error-message5">{error}</div>}
-        <button type="submit">Reset Password</button>
+        {error && <div className="error-message">{error}</div>}
+        <button id="resetbtn" type="submit">Reset Password</button>
       </form>
     </div>
     </div>

@@ -23,7 +23,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/songs', {
+        const response = await fetch('http://localhost:5001/songs', {
           method: 'GET',
           credentials: 'include',
           headers: { 'Content-Type': 'application/json' },

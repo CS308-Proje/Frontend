@@ -46,7 +46,7 @@ const Recommendation = () => {
       try {
         console.log(trackData);
         
-        const response = await fetch("http://localhost:5000/songs", {
+        const response = await fetch("http://localhost:5001/songs", {
           method: "POST",
           credentials: "include",
           headers: {
@@ -73,121 +73,7 @@ const Recommendation = () => {
       }
     };
 
-   /* const handleSongRatingRec = () => {
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const response = await fetch(
-              `http://localhost:5000/based-on-song-ratings`,
-              {
-                method: "GET",
-                credentials: "include",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              }
-            );
-            const s = await response.json();
-    
-            const data = Array.isArray(s.songs) ? s.songs : [];
-    
-            setSongs(data);
-          } catch (error) {
-            console.error("Error fetching data:", error);
-            setSongs([]);
-          }
-        };
-    
-        fetchData();
-    });
-  }
-
-  const handleAlbumRatingRec = () => {
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const response = await fetch(
-              `http://localhost:5000/based-on-album-ratings`,
-              {
-                method: "GET",
-                credentials: "include",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              }
-            );
-            const s = await response.json();
-    
-            const data = Array.isArray(s.songs) ? s.songs : [];
-    
-            setAlbums(data);
-          } catch (error) {
-            console.error("Error fetching data:", error);
-            setAlbums([]);
-          }
-        };
-    
-        fetchData();
-    });
-  }
-
-  const handleArtistRatingRec = () => {
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await fetch(
-            `http://localhost:5000/based-on-artist-ratings`,
-            {
-              method: "GET",
-              credentials: "include",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-          const s = await response.json();
-  
-          const data = Array.isArray(s.songs) ? s.songs : [];
-  
-          setArtists(data);
-        } catch (error) {
-          console.error("Error fetching data:", error);
-          setArtists([]);
-        }
-      };
-  
-      fetchData();
-    });0
-  }
-
-  const handleSpotifyRec = () => {
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await fetch(
-            `http://localhost:5000/based-on-spotify`,
-            {
-              method: "GET",
-              credentials: "include",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-          const s = await response.json();
-  
-          const data = Array.isArray(s.songs) ? s.songs : [];
-  
-          setSpotify(data);
-        } catch (error) {
-          console.error("Error fetching data:", error);
-          setSpotify([]);
-        }
-      };
-  
-      fetchData();
-  });
-}*/
+   
 
 useEffect(() => {
   const fetchData = async () => {
@@ -196,28 +82,28 @@ useEffect(() => {
           
           case 'song-ratings':
               setIsLoading(true); // Start loading
-              url = `http://localhost:5000/based-on-song-ratings`;
+              url = `http://localhost:5001/based-on-song-ratings`;
               break;
           case 'album-ratings':
               setIsLoading(true); // Start loading
-              url = `http://localhost:5000/based-on-album-ratings`;
+              url = `http://localhost:5001/based-on-album-ratings`;
               break;
           // Add more cases as needed
           case 'temporal-values':
               setIsLoading(true); // Start loading
-              url = 'http://localhost:5000/based-on-temporal';
+              url = 'http://localhost:5001/based-on-temporal';
               break;
           case 'artist-ratings':
               setIsLoading(true); // Start loading
-              url = 'http://localhost:5000/based-on-artist-ratings';
+              url = 'http://localhost:5001/based-on-artist-ratings';
               break;
           case 'spotify-recommendations':
               setIsLoading(true); // Start loading
-              url = 'http://localhost:5000/based-on-spotify';
+              url = 'http://localhost:5001/based-on-spotify';
               break;
           case 'friend-activity':
               setIsLoading(true);
-              url = 'http://localhost:5000/based-on-friends'
+              url = 'http://localhost:5001/based-on-friends'
               console.log("buraya geldi");
               break;
           default:
@@ -258,36 +144,6 @@ useEffect(() => {
 
   fetchData();
 }, [recommendationType]);
-
-/*const handleTemporalRec = () => {
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:5000/based-on-temporal`,
-          {
-            method: "GET",
-            credentials: "include",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const s = await response.json();
-        console.log(s);
-
-        const data = Array.isArray(s.songs) ? s.songs : [];
-
-        setTemporal(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setTemporal([]);
-      }
-    };
-
-    fetchData();
-});
-}*/
 
 
     const formatDate = (dateString) => {

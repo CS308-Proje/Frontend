@@ -175,7 +175,7 @@ const Submission = () => {
     try {
       console.log(trackData);
       
-      const response = await fetch("http://localhost:5000/songs", {
+      const response = await fetch("http://localhost:5001/songs", {
         method: "POST",
         credentials: "include",
         headers: {
@@ -314,7 +314,7 @@ const Submission = () => {
   const handleSpotifySearch = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/directly-from-spotify?songName=${search}`,
+        `http://localhost:5001/directly-from-spotify?songName=${search}`,
         {
           method: "GET",
           credentials: "include",

@@ -18,7 +18,7 @@ const MyAlbums = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/albums?name=${search}`,
+          `http://localhost:5001/albums?name=${search}`,
           {
             method: "GET",
             credentials: "include",
@@ -50,7 +50,7 @@ const MyAlbums = () => {
   // Delete a album
   const deleteAlbum = async (albumId) => {
     try {
-      const response = await fetch(`http://localhost:5000/albums/${albumId}`, {
+      const response = await fetch(`http://localhost:5001/albums/${albumId}`, {
         method: "DELETE",
         credentials: "include",
         headers: {
@@ -76,7 +76,7 @@ const MyAlbums = () => {
   
     try {
       // Send the PUT request to update the rating
-      const response = await fetch(`http://localhost:5000/albums/${albumId}`, {
+      const response = await fetch(`http://localhost:5001/albums/${albumId}`, {
         method: 'PUT',
         credentials: 'include',
         headers: {

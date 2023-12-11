@@ -6,6 +6,7 @@ import ReactSelect from "react-select";
 import "./Submission.css";
 import Navbar2 from "../Navbar2/Navbar2";
 import AddIcon from '@mui/icons-material/Add';
+import HeaderIcon from "../HeaderIcon/HeaderIcon";
 
 const Submission = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -501,7 +502,9 @@ const Submission = () => {
                       </div>
                     </div>
                     <div className="add-icon-container">
-                        <AddIcon 
+                        <HeaderIcon 
+                          inactiveIcon={<AddIcon />} 
+                          activeIcon={<DoneIcon />} 
                           className= "add-icon"
                           style={{ cursor: 'pointer', fontSize: '40px' }} 
                           onClick={() => handleAddSpotifySong(song)}

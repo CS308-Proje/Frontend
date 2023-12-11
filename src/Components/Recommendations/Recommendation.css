@@ -146,7 +146,7 @@ html, body {
     visibility: visible;
     opacity: 1;
   }
-  
+
   .song-box1 {
     display: flex;
     align-items: center;
@@ -225,8 +225,7 @@ html, body {
     color: #8bbe52;
     transition: transform 0.3s, color 0.3s;
   }
- 
-
+  
   .recommendation-loading {
     display: block; /* Ensures the loader is block-level for centering */
     margin-top: 200px;

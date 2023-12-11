@@ -5,11 +5,12 @@ import "./Recommendation.css";
 import Navbar2 from "../Navbar2/Navbar2";
 import ReactSelect from "react-select";
 import AddIcon from '@mui/icons-material/Add';
-
+import HeaderIcon from './HeaderIcon';
 import DoneIcon from '@mui/icons-material/Done';
 import ClearIcon from '@mui/icons-material/Clear';
 import CircularProgress from '@mui/material/CircularProgress';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+
 const Recommendation = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [songs, setSongs] = useState([]);
@@ -38,6 +39,8 @@ const Recommendation = () => {
     const handleDropdownClose = () => {
     setIsDropdownOpen(false);
     };
+
+    
 
     const handleAddSong = async (song) => {
 
@@ -233,7 +236,7 @@ useEffect(() => {
                     
                     <h5 className="text-box">Release Date: {formatDate(song.release_date)}</h5>
                   </div>
-                  <AddIcon className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(song)} />
+                  <HeaderIcon inactiveIcon={<AddIcon />} activeIcon={<DoneIcon />} className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(song)}/>
                 </div>
               ))
             );
@@ -265,7 +268,7 @@ useEffect(() => {
                     
                     <h5 className="text-box">Release Date: {formatDate(song.release_date)}</h5>
                   </div>
-                  <AddIcon className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(song)} />
+                  <HeaderIcon inactiveIcon={<AddIcon />} activeIcon={<DoneIcon />} className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(song)} />
                 </div>
               ))
               
@@ -298,7 +301,7 @@ useEffect(() => {
                             
                             <h5 className="text-box">Release Date: {formatDate(song.release_date)}</h5>
                           </div>
-                          <AddIcon className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(song)} />
+                          <HeaderIcon inactiveIcon={<AddIcon />} activeIcon={<DoneIcon />} className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(song)} />
                         </div>
                       ))
                 );
@@ -331,7 +334,7 @@ useEffect(() => {
                         
                         <h5 className="text-box">Release Date: {formatDate(song.release_date)}</h5>
                       </div>
-                      <AddIcon className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(song)} />
+                      <HeaderIcon inactiveIcon={<AddIcon />} activeIcon={<DoneIcon />} className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(song)} />
                     </div>
                   ))
                 );
@@ -361,7 +364,7 @@ useEffect(() => {
                               <h3 className="text-box"><b>Album: </b>{temporal.albumName}</h3>
                               <h5 className="text-box">Release Date: {formatDate(temporal.release_date)}</h5>
                           </div>
-                          <AddIcon className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(temporal)} />
+                          <HeaderIcon inactiveIcon={<AddIcon />} activeIcon={<DoneIcon />} className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(temporal)} />
                       </div>
                     );
                   }
@@ -390,7 +393,7 @@ useEffect(() => {
                           <h5 className="text-box">Release Date: {formatDate(recommendedSong.release_date)}</h5>
                           <h5 className="text-box">Recommended by: {recommendedBy}</h5>
                         </div>
-                        <AddIcon className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(recommendedSong)} />
+                        <HeaderIcon inactiveIcon={<AddIcon />} activeIcon={<DoneIcon />} className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(recommendedSong)} />
                       </div>
                     ))
                   );

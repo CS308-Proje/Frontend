@@ -6,6 +6,7 @@ import ReactSelect from "react-select";
 import "./Submission.css";
 import Navbar2 from "../Navbar2/Navbar2";
 import AddIcon from '@mui/icons-material/Add';
+import HeaderIcon from "../HeaderIcon/HeaderIcon";
 
 const Submission = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -175,7 +176,7 @@ const Submission = () => {
     try {
       console.log(trackData);
       
-      const response = await fetch("http://localhost:5000/songs", {
+      const response = await fetch("http://localhost:5001/songs", {
         method: "POST",
         credentials: "include",
         headers: {
@@ -314,7 +315,7 @@ const Submission = () => {
   const handleSpotifySearch = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/directly-from-spotify?songName=${search}`,
+        `http://localhost:5001/directly-from-spotify?songName=${search}`,
         {
           method: "GET",
           credentials: "include",
@@ -501,7 +502,9 @@ const Submission = () => {
                       </div>
                     </div>
                     <div className="add-icon-container">
-                        <AddIcon 
+                        <HeaderIcon 
+                          inactiveIcon={<AddIcon />} 
+                          activeIcon={<DoneIcon />} 
                           className= "add-icon"
                           style={{ cursor: 'pointer', fontSize: '40px' }} 
                           onClick={() => handleAddSpotifySong(song)}

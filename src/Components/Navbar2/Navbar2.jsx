@@ -34,7 +34,7 @@ const Navbar2 = ({ sidebarOpen, setSidebarOpen, setSearch }) => {
         const fetchNotifications = async () => {
             setIsLoadingNotifications(true);
             try {
-                const response = await fetch('http://localhost:5000/getAllNotification', {
+                const response = await fetch('http://localhost:5001/getAllNotification', {
                     method: 'GET',
                     credentials: 'include',
                     headers: { 'Content-Type': 'application/json' },

@@ -68,7 +68,7 @@ const Analysis = () => {
     if (endDate) queryString += `&end=${endDate}`;
     console.log("Query String:", queryString); // Log the query string
     try {
-      const response = await fetch(`http://localhost:5000/song-analysis?${queryString}`, {
+      const response = await fetch(`http://localhost:5001/song-analysis?${queryString}`, {
         method: "GET",
         credentials: "include",
         headers: { "Content-Type": "application/json" }
@@ -109,7 +109,7 @@ const Analysis = () => {
     const { startDate, endDate } = getDateValues();
     const requestBody = { artists: artistArray };
 
-    let queryString = `http://localhost:5000/artist-average-analysis`;
+    let queryString = `http://localhost:5001/artist-average-analysis`;
   // Check if startDate and endDate are provided and append them to the queryString
   if (startDate || endDate) {
     const queryParams = new URLSearchParams();
@@ -121,7 +121,7 @@ const Analysis = () => {
   console.log("Request URL:", queryString);
 
     try {
-      const response = await fetch(`http://localhost:5000/artist-average-analysis`, {
+      const response = await fetch(`http://localhost:5001/artist-average-analysis`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -151,7 +151,7 @@ const Analysis = () => {
     const { startDate, endDate } = getDateValues();
     const requestBody = { artists: artistArray };
   
-    let queryString = `http://localhost:5000/artist-songs-count-analysis`;
+    let queryString = `http://localhost:5001/artist-songs-count-analysis`;
     // Check if startDate and endDate are provided and append them to the queryString
     if (startDate || endDate) {
       const queryParams = new URLSearchParams();

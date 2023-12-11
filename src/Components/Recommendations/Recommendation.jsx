@@ -5,11 +5,12 @@ import "./Recommendation.css";
 import Navbar2 from "../Navbar2/Navbar2";
 import ReactSelect from "react-select";
 import AddIcon from '@mui/icons-material/Add';
-
+import HeaderIcon from './HeaderIcon';
 import DoneIcon from '@mui/icons-material/Done';
 import ClearIcon from '@mui/icons-material/Clear';
 import CircularProgress from '@mui/material/CircularProgress';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+
 const Recommendation = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [songs, setSongs] = useState([]);
@@ -39,6 +40,8 @@ const Recommendation = () => {
     setIsDropdownOpen(false);
     };
 
+    
+
     const handleAddSong = async (song) => {
 
       const trackData = song;
@@ -46,7 +49,7 @@ const Recommendation = () => {
       try {
         console.log(trackData);
         
-        const response = await fetch("http://localhost:5000/songs", {
+        const response = await fetch("http://localhost:5001/songs", {
           method: "POST",
           credentials: "include",
           headers: {
@@ -73,121 +76,7 @@ const Recommendation = () => {
       }
     };
 
-   /* const handleSongRatingRec = () => {
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const response = await fetch(
-              `http://localhost:5000/based-on-song-ratings`,
-              {
-                method: "GET",
-                credentials: "include",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              }
-            );
-            const s = await response.json();
-    
-            const data = Array.isArray(s.songs) ? s.songs : [];
-    
-            setSongs(data);
-          } catch (error) {
-            console.error("Error fetching data:", error);
-            setSongs([]);
-          }
-        };
-    
-        fetchData();
-    });
-  }
-
-  const handleAlbumRatingRec = () => {
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const response = await fetch(
-              `http://localhost:5000/based-on-album-ratings`,
-              {
-                method: "GET",
-                credentials: "include",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              }
-            );
-            const s = await response.json();
-    
-            const data = Array.isArray(s.songs) ? s.songs : [];
-    
-            setAlbums(data);
-          } catch (error) {
-            console.error("Error fetching data:", error);
-            setAlbums([]);
-          }
-        };
-    
-        fetchData();
-    });
-  }
-
-  const handleArtistRatingRec = () => {
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await fetch(
-            `http://localhost:5000/based-on-artist-ratings`,
-            {
-              method: "GET",
-              credentials: "include",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-          const s = await response.json();
-  
-          const data = Array.isArray(s.songs) ? s.songs : [];
-  
-          setArtists(data);
-        } catch (error) {
-          console.error("Error fetching data:", error);
-          setArtists([]);
-        }
-      };
-  
-      fetchData();
-    });0
-  }
-
-  const handleSpotifyRec = () => {
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await fetch(
-            `http://localhost:5000/based-on-spotify`,
-            {
-              method: "GET",
-              credentials: "include",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-          const s = await response.json();
-  
-          const data = Array.isArray(s.songs) ? s.songs : [];
-  
-          setSpotify(data);
-        } catch (error) {
-          console.error("Error fetching data:", error);
-          setSpotify([]);
-        }
-      };
-  
-      fetchData();
-  });
-}*/
+   
 
 useEffect(() => {
   const fetchData = async () => {
@@ -196,28 +85,28 @@ useEffect(() => {
           
           case 'song-ratings':
               setIsLoading(true); // Start loading
-              url = `http://localhost:5000/based-on-song-ratings`;
+              url = `http://localhost:5001/based-on-song-ratings`;
               break;
           case 'album-ratings':
               setIsLoading(true); // Start loading
-              url = `http://localhost:5000/based-on-album-ratings`;
+              url = `http://localhost:5001/based-on-album-ratings`;
               break;
           // Add more cases as needed
           case 'temporal-values':
               setIsLoading(true); // Start loading
-              url = 'http://localhost:5000/based-on-temporal';
+              url = 'http://localhost:5001/based-on-temporal';
               break;
           case 'artist-ratings':
               setIsLoading(true); // Start loading
-              url = 'http://localhost:5000/based-on-artist-ratings';
+              url = 'http://localhost:5001/based-on-artist-ratings';
               break;
           case 'spotify-recommendations':
               setIsLoading(true); // Start loading
-              url = 'http://localhost:5000/based-on-spotify';
+              url = 'http://localhost:5001/based-on-spotify';
               break;
           case 'friend-activity':
               setIsLoading(true);
-              url = 'http://localhost:5000/based-on-friends'
+              url = 'http://localhost:5001/based-on-friends'
               console.log("buraya geldi");
               break;
           default:
@@ -258,36 +147,6 @@ useEffect(() => {
 
   fetchData();
 }, [recommendationType]);
-
-/*const handleTemporalRec = () => {
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:5000/based-on-temporal`,
-          {
-            method: "GET",
-            credentials: "include",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const s = await response.json();
-        console.log(s);
-
-        const data = Array.isArray(s.songs) ? s.songs : [];
-
-        setTemporal(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setTemporal([]);
-      }
-    };
-
-    fetchData();
-});
-}*/
 
 
     const formatDate = (dateString) => {
@@ -377,7 +236,7 @@ useEffect(() => {
                     
                     <h5 className="text-box">Release Date: {formatDate(song.release_date)}</h5>
                   </div>
-                  <AddIcon className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(song)} />
+                  <HeaderIcon inactiveIcon={<AddIcon />} activeIcon={<DoneIcon />} className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(song)}/>
                 </div>
               ))
             );
@@ -409,7 +268,7 @@ useEffect(() => {
                     
                     <h5 className="text-box">Release Date: {formatDate(song.release_date)}</h5>
                   </div>
-                  <AddIcon className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(song)} />
+                  <HeaderIcon inactiveIcon={<AddIcon />} activeIcon={<DoneIcon />} className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(song)} />
                 </div>
               ))
               
@@ -442,7 +301,7 @@ useEffect(() => {
                             
                             <h5 className="text-box">Release Date: {formatDate(song.release_date)}</h5>
                           </div>
-                          <AddIcon className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(song)} />
+                          <HeaderIcon inactiveIcon={<AddIcon />} activeIcon={<DoneIcon />} className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(song)} />
                         </div>
                       ))
                 );
@@ -475,7 +334,7 @@ useEffect(() => {
                         
                         <h5 className="text-box">Release Date: {formatDate(song.release_date)}</h5>
                       </div>
-                      <AddIcon className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(song)} />
+                      <HeaderIcon inactiveIcon={<AddIcon />} activeIcon={<DoneIcon />} className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(song)} />
                     </div>
                   ))
                 );
@@ -490,7 +349,7 @@ useEffect(() => {
                               <div className="text1">Unfortunately, We Can't Help You</div>
                               <div className="underline1"></div>
                               <p className="recommendation-message1">
-                                You don't have any temporal values yet!
+                                Arkadas ekle asosyal
                               </p>
                            </div>
                           );
@@ -505,7 +364,7 @@ useEffect(() => {
                               <h3 className="text-box"><b>Album: </b>{temporal.albumName}</h3>
                               <h5 className="text-box">Release Date: {formatDate(temporal.release_date)}</h5>
                           </div>
-                          <AddIcon className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(temporal)} />
+                          <HeaderIcon inactiveIcon={<AddIcon />} activeIcon={<DoneIcon />} className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(temporal)} />
                       </div>
                     );
                   }
@@ -516,7 +375,7 @@ useEffect(() => {
                               <div className="text1">Unfortunately, We Can't Help You</div>
                               <div className="underline1"></div>
                               <p className="recommendation-message1">
-                                There is no friend activities yet!
+                                Arkadas ekle asosyal
                               </p>
                            </div>
                           );
@@ -534,7 +393,7 @@ useEffect(() => {
                           <h5 className="text-box">Release Date: {formatDate(recommendedSong.release_date)}</h5>
                           <h5 className="text-box">Recommended by: {recommendedBy}</h5>
                         </div>
-                        <AddIcon className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(recommendedSong)} />
+                        <HeaderIcon inactiveIcon={<AddIcon />} activeIcon={<DoneIcon />} className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(recommendedSong)} />
                       </div>
                     ))
                   );

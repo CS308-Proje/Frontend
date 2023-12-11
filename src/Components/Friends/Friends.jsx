@@ -28,13 +28,14 @@ const Friends = () => {
   const [invitations, setInvitations] = useState([]);
   const [invitationChanged, setInvitationChanged] = useState(false);
 
-  
+  const [userId, setUserId] = useState('');
 
+  
 
   useEffect(() => {
     const fetchInvitations = async () => {
       try {
-        const response = await fetch('http://localhost:5000/invitation/getallinv', {
+        const response = await fetch('http://localhost:5001/invitation/getallinv', {
           method: 'GET',
           credentials: 'include', 
           headers: { 'Content-Type': 'application/json' },
@@ -52,7 +53,7 @@ const Friends = () => {
   
     const fetchFriends = async () => {
       try {
-        const response = await fetch('http://localhost:5000/friends/all', {
+        const response = await fetch('http://localhost:5001/friends/all', {
           method: 'GET',
           credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
@@ -70,7 +71,7 @@ const Friends = () => {
   
     const fetchAllowFriendRecommendations = async () => {
       try {
-        const response = await fetch('http://localhost:5000/auth/me', {
+        const response = await fetch('http://localhost:5001/auth/me', {
           method: 'GET',
           credentials: 'include', 
           headers: { 'Content-Type': 'application/json' },
@@ -81,6 +82,7 @@ const Friends = () => {
         const data = await response.json();
         if (data.success && data.data.allowFriendRecommendations) {
           setAllowFriendRecommendations(data.data.allowFriendRecommendations);
+          setUserId(data.data._id);
         }
       } catch (error) {
         console.error('Error fetching allowFriendRecommendations:', error);
@@ -108,7 +110,7 @@ const Friends = () => {
   
   const acceptInvitation = async (invitationId) => {
     try {
-      const response = await fetch(`http://localhost:5000/invitation/update/${invitationId}`, {
+      const response = await fetch(`http://localhost:5001/invitation/update/${invitationId}`, {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
@@ -135,7 +137,7 @@ const Friends = () => {
   
   const rejectInvitation = async (invitationId) => {
     try {
-      const response = await fetch(`http://localhost:5000/invitation/update/${invitationId}`, {
+      const response = await fetch(`http://localhost:5001/invitation/update/${invitationId}`, {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
@@ -175,7 +177,7 @@ const Friends = () => {
     
     // Make API call to update friend's status on the server
     try {
-      const response = await fetch(`http://localhost:5000/friends/${endpoint}`, {
+      const response = await fetch(`http://localhost:5001/friends/${endpoint}`, {
         method: 'POST', // Or the appropriate method for your endpoint
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
@@ -209,7 +211,7 @@ const Friends = () => {
   const removeFriend = async (friendId) => {
 
     try {
-      const response = await fetch(`http://localhost:5000/friends/remove/${friendId}`, {
+      const response = await fetch(`http://localhost:5001/friends/remove/${friendId}`, {
         method: 'DELETE',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
@@ -242,7 +244,7 @@ const Friends = () => {
       try {
         // Send an invitation to the target user
         const targetUserId = username; // Assuming username is the target user ID
-        const response = await fetch(`http://localhost:5000/invitation/createInvitation/${targetUserId}`, {
+        const response = await fetch(`http://localhost:5001/invitation/createInvitation/${targetUserId}`, {
           method: 'POST',
           credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
@@ -290,11 +292,12 @@ const Friends = () => {
         
         <div className="friends-container">
         <h2 className="friends-heading">Add a New Friend</h2>
+        {userId && <p>Your ID: {userId}</p>}
           <input
             type="text"
             value={username}
             onChange={handleInputChange}
-            placeholder="Enter your friend's username"
+            placeholder="Enter your friend's ID"
             className="add-friend-input"
           />
           <button onClick={handleSubmit} className="add-friend-button">

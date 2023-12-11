@@ -2,8 +2,6 @@
   position: relative; /* Makes the Dashboard the reference point for Sidebar's absolute positioning */
 }
 
-
-
 .menu-btn10 {
   background: none;
   border: none;
@@ -22,7 +20,6 @@
   overflow-y: auto;
 }
 
-
 .Sidebar {
   width: 210px;
   height: 95vh;
@@ -32,24 +29,16 @@
   position: absolute;
   left: -210px; 
   transition: left 0.3s ease-in-out;
-  top: 100px;  /* Adjust this to the height of the navbar to position Sidebar just below it. */
+  top: 100px; /* Adjust this to the height of the navbar to position Sidebar just below it. */
 }
 
-/* Use a prop to add a class for toggling the sidebar's visibility */
 .Sidebar.open {
   left: 0; /* Move into view */
-}
-
-.main-content10 {
-  transition: margin-left 0.3s ease-in-out; /* Transition for shifting content */
 }
 
 .main-content10.shifted {
   margin-left: 210px; /* Shift the content to the right */
 }
-
-/* Rest of your CSS */
-
 
 .SidebarList {
   list-style: none;
@@ -58,7 +47,6 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-
 }
 
 .row10 {
@@ -113,113 +101,112 @@
   background: #12b04e; /* Darker green on hover */
 }
 
+.export-container {
+  display: flex;
+  flex-direction: column;
+  position: relative; /* changed from 'center' to 'relative' */
+  padding: 15px;
+  background: #000;
+  border-radius: 20px;
+  margin: 20px 5%;
+  color: #fff;
+  width: 40%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  margin-top: 10%;
+  padding-bottom: 25px;
+  margin-left: 30%;
+  margin-right: 30%;
+  align-items: center;
 
-  .export-container {
-    position: center;
-    padding: 15px;
-    background: #000;
-    border-radius: 20px;
-    margin: 20px 5%;
-    color: #fff;
-    width: 40%;
-    box-sizing: border-box;
-    border: 2px solid #ccc ;
-    margin-top: 10% ;
-    padding-bottom: 25px;
-    margin-left: 30%;
-    margin-right: 30%;
-  }
-  
-  .export-container h1 {
-    font-family: 'Josefin Sans', cursive;
-    text-align: center;
-    margin-bottom: 10px;
-    color:#fff;
-    padding: 10px;
-    font-size: 50px;
-  }
-  
-  .export-options select {
-    font-family: 'Josefin Sans', cursive;
-    text-align: center;
-    font-size: 18px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    background-color: rgb(143, 141, 141);
-    
-  }
-  .export-options button:hover {
-    background-color: #45a049;
-  }
+}
 
-  .export-buttons button {
-    font-family: 'Josefin Sans', cursive;
-    text-align: center;
-    font-size: 14px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #4CAF50;
-    color: white;
-    margin: 10px;
-  }
-  
-  .export-buttons button:hover {
-    background-color: #45a049;
-  }
-  .main-content10 {
-    text-align: center;
-    padding: 10px;
-  }
+.export-container h1 {
+  font-family: 'Josefin Sans', cursive;
+  text-align: center;
+  margin-bottom: 10px;
+  color:#fff;
+  padding: 10px;
+  font-size: 50px;
+}
 
-  .export-type-selector
-  {
-    font-size: 14 px;
-    margin: 20px;
-    font-family: 'Josefin Sans', cursive;
-    color: white;
-  }
+.export-options select {
+  font-family: 'Josefin Sans', cursive;
+  text-align: center;
+  font-size: 12px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: rgb(143, 141, 141);
+}
 
-  .export-type-selector input[type="text"] {
-    margin-left: 10px;
-  }
-  
+.export-options button:hover {
+  background-color: #45a049;
+}
 
-  #btn2 {
-    background-color: white;
-    color: black;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    margin: 10px;
-  }
+.export-buttons button {
+  font-family: 'Josefin Sans', cursive;
+  text-align: center;
+  font-size: 14px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  margin: 10px;
+}
 
+.export-buttons button:hover {
+  background-color: #45a049;
+}
 
+.main-content10 {
+  text-align: center;
+  padding: 10px;
+}
 
-  #btn3 {
-    background-color: white;
-    color: black;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    margin: 10px;
-  }
+.export-type-selector {
+  font-size: 18px; /* corrected syntax */
+  margin-bottom: 20px;
+  font-family: 'Josefin Sans', cursive;
+  color: white;
+}
 
-  #btn2:hover {
-    background-color: #45a049;
-    color : white;
-    transition: 0.5s ease-in-out;
-  }
+.export-type-selector input[type="text"] {
+  margin-left: 10px;
+}
 
+#btn10 {
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 10px;
+}
 
-  #btn3:hover {
-    background-color: #45a049;
-    color : white;
-    transition: 0.5s ease-in-out;  
-  }
+#btn20 {
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 10px;
+}
+
+#btn10:hover {
+  background-color: #45a049;
+  color: white;
+  transition: 0.5s ease-in-out;
+}
+
+#btn20:hover {
+  background-color: #45a049;
+  color: white;
+  transition: 0.5s ease-in-out;
+}

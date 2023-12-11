@@ -9,7 +9,7 @@ const ForgotPassword = () => {
   const handleSubmit = async () => {
     // We assume emailOrUsername is already defined in your component's state.
     try {
-      const response = await fetch('http://localhost:5000/auth/forgotpassword', {
+      const response = await fetch('http://localhost:5001/auth/forgotpassword', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

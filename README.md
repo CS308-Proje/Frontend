@@ -4,12 +4,19 @@
 - Log in and Sign up pages.
 - Dashboard for users.
 - A page for adding songs.
-- A page where users can see their liked songs.
+- A page where users can see their added songs.
+- A page where users can see their added albums.
+- A page where users can see their added artists.
+- Authentication is made.
+- Logout is made.
+- Friend adding is made.
+- Exporting songs is made.
+- Forgot password is made.
+- Recommendation page is made.
+
 
 # What Will We Do Now
 
-- Create profile page for users.
-- Friend adding.
-- Removing songs from liked songs.
-- Integrate backend and frontend of add songs and liked songs pages.
+- Improve the UI of our website.
+- Add more functionalities for users.
 

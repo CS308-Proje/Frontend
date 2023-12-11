@@ -7,12 +7,14 @@ import LogoImage from "../Assets/logo-white.png";
 import Sidebar from "../Sidebar/Sidebar";
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import './ExportSongs.css';
+import Navbar2 from '../Navbar2/Navbar2';
 
 const ExportSongs = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [exportCriteria, setExportCriteria] = useState({});
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [search, setSearch] = useState("");
 
   const handleExportTypeChange = (event, type) => {
     if (event.target.checked) {
@@ -107,83 +109,60 @@ const ExportSongs = () => {
 
   return (
     <div className="Dashboard">
-      <nav className="navbar">
-        <button className="menu-btn" onClick={() => setSidebarOpen(!sidebarOpen)}>
-          <MenuIcon />
-        </button>
+    <Navbar2 sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} setSearch={setSearch} />
+    <Sidebar isOpen={sidebarOpen} />
 
-        <button className="bell-btn" onClick={toggleDropdown}>
-         <NotificationsActiveIcon className="bell-icon" style={{ fontSize: 35 }} />
-        </button>
-        <div className={`dropdown-menu ${dropdownOpen ? 'dropdown-menu-visible' : ''}`}>
-          {renderDropdownItems()}
-        </div>
+    <main className={`main-content ${sidebarOpen ? 'shifted' : ''}`}>
+      <div className="export-container">
+        <h1>Export Songs</h1>
+        <div className="underline"></div>
 
-        <button className="logo-btn" onClick={navigateToDashboard}>
-          <img src={LogoImage} alt="Logo" className="logo" />
-        </button>
-
-        <div className="search-bar">
-          <input type="text" placeholder="Search..." onChange={handleSearch} />
-          <SearchIcon />
-        </div>
-
-        <button className="profile-btn" onClick={navigateToProfile}>
-          <UserIcon className="profile-icon" style={{ fontSize: 45 }} />
-        </button>
-      </nav>
-
-      <Sidebar isOpen={sidebarOpen} />
-
-      <main className={`main-content ${sidebarOpen ? 'shifted' : ''}`}>
-        <div className="export-container">
-          <h1>Export Songs</h1>
-          <div className="underline"></div>
-          <div className="export-type-selector">
-            <div>
+        <div className="export-type-selector">
+          <div>
+            <input
+              type="checkbox"
+              id="artist"
+              onChange={e => handleExportTypeChange(e, 'artist')}
+            />
+            <label htmlFor="artist">By Artist</label>
+            {exportCriteria.artist !== undefined && (
               <input
-                type="checkbox"
-                id="artist"
-                onChange={e => handleExportTypeChange(e, 'artist')}
+                type="text"
+                placeholder="Enter an artist name"
+                value={exportCriteria.artist}
+                onChange={e => handleCriteriaValueChange('artist', e.target.value)}
               />
-              <label htmlFor="artist">By Artist</label>
-              {exportCriteria.artist !== undefined && (
-                <input
-                  type="text"
-                  placeholder="Enter an artist name"
-                  value={exportCriteria.artist}
-                  onChange={e => handleCriteriaValueChange('artist', e.target.value)}
-                />
-              )}
-            </div>
-          </div>
-          <div className="export-type-selector">
-            <div>
-              <input
-                type="checkbox"
-                id="rating"
-                onChange={e => handleExportTypeChange(e, 'rating')}
-              />
-              <label htmlFor="rating">By Rating</label>
-              {exportCriteria.rating !== undefined && (
-                <input
-                  type="text"
-                  placeholder="Enter a rating 1-5"
-                  value={exportCriteria.rating}
-                  onChange={e => handleCriteriaValueChange('rating', e.target.value)}
-                />
-              )}
-            </div>
-          </div>
-          <div className="export-options">
-            <button id="btn1" onClick={() => handleExport('json')}>Export Songs as .json</button>
-            <button id="btn2" onClick={() => handleExport('csv')}>Export Songs as .csv</button>
+            )}
           </div>
         </div>
-      </main>
-    </div>
-  );
+
+        <div className="export-type-selector">
+          <div>
+            <input
+              type="checkbox"
+              id="rating"
+              onChange={e => handleExportTypeChange(e, 'rating')}
+            />
+            <label htmlFor="rating">By Rating</label>
+            {exportCriteria.rating !== undefined && (
+              <input
+                type="text"
+                placeholder="Enter a rating 1-5"
+                value={exportCriteria.rating}
+                onChange={e => handleCriteriaValueChange('rating', e.target.value)}
+              />
+            )}
+          </div>
+        </div>
+
+        <div className="export-options">
+          <button id="btn10" onClick={() => handleExport('json')}>Export Songs as .json</button>
+          <button id="btn20" onClick={() => handleExport('csv')}>Export Songs as .csv</button>
+        </div>
+      </div>
+    </main>
+  </div>
+);
 };
 
 export default ExportSongs;
-

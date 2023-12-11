@@ -1,5 +1,6 @@
-.Dashboard {
+.Dashboard1 {
   position: relative; /* Makes the Dashboard the reference point for Sidebar's absolute positioning */
+  
 }
 
 
@@ -137,6 +138,7 @@
   left: -210px; 
   transition: left 0.3s ease-in-out;
   top: 100px;  /* Adjust this to the height of the navbar to position Sidebar just below it. */
+  z-index: 1000;
 }
 
 /* Use a prop to add a class for toggling the sidebar's visibility */
@@ -146,6 +148,7 @@
 
 .main-content {
   transition: margin-left 0.3s ease-in-out; /* Transition for shifting content */
+  z-index: 1;
 }
 
 .main-content.shifted {
@@ -233,22 +236,21 @@
 
 .submission-container {
   position: absolute;
+  top: 50%; /* Adjust top as needed, use JavaScript to change when dropdown is open */
+  left: 50%;
+  transform: translate(-50%, 60%);
   padding: 20px;
   background: #000;
   border-radius: 20px;
-  margin: 20px 5%;
+  margin: 20px auto;
+  
   color: #fff;
-  width: 40%;
+  width: 90%;
   max-width: 800px;
   box-sizing: border-box;
-  z-index: 1000; /* This might be lower or not needed at all */
-  transition: transform 0.3s ease;
 }
 
-.submission-container-push-down {
-  transform: translateY(10%); /* Adjust the value to match the height of your dropdown */
-  transition: transform 0.3s ease; /* Smooth transition for the movement */
-}
+
 
 .text {
 text-align: center;
@@ -297,6 +299,7 @@ font-family: 'Josefin Sans', cursive;
   justify-content: center;
   margin-top: 20px;  /* Added margin for spacing */
   margin-bottom: 20px;
+  position: relative;
 }
 .file-info{
 font-family: 'Josefin Sans', cursive;
@@ -334,6 +337,9 @@ display: flex;
 justify-content: center;
 align-items: center;
 height: 100vh;  /* or adjust as needed */
+width: 100vw;   /* Add this to ensure the width is the full viewport width */
+position: relative;
+overflow-y: auto;
 }
 
 .dropdown-container {
@@ -433,4 +439,196 @@ font-size: 20px;
 color: #fff;
 text-align: center;
 margin-top: 20px;
+}
+
+.jsnicon {
+  max-height: 90px;
+  width: auto;
+  transition: filter 0.3s ease; /* Add transition for filter effect */
+  margin-bottom: 10px;
+  
+}
+
+/* Circular Loader Styles */
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db; /* Blue color */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Success Icon Styles */
+.success-icon {
+  color: green;
+  font-size: 40px;
+}
+
+.success-message {
+  color: green;
+  margin-top: 10px;
+}
+
+
+.jsnicon {
+  max-height: 90px;
+  width: auto;
+  margin: 0; /* Remove margin to prevent affecting layout */
+  /* ... other styles ... */
+  position:relative;
+  
+}
+
+
+/* Styles for the search bar container */
+.search-bar1 {
+  left: 50%;
+  width: 100%;
+  z-index: 10; /* Ensure it's above the scrolled content */
+}
+
+/* Styles for the input field */
+.search-bar1 input.track-input {
+  flex-grow: 1; /* Allows the input to grow and fill space */
+  margin-right: 10px; /* Spacing between input and button */
+  padding: 10px;
+  border-radius: 30px;
+  border: 2px solid #fff;
+  background-color: #000;
+  color: #fff;
+  font-size: 16px;
+}
+
+.search-bar1 input.track-input:focus {
+  outline: none;
+  border-color: #8bbe52; /* Highlight color when focused */
+}
+
+/* Styles for the search button */
+.search-bar1 button.btn {
+  padding: 10px 20px;
+  background-color: #8bbe52;
+  color: #181818;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.search-bar1 button.btn:hover {
+  background-color: #12b04e; /* Darker green on hover */
+}
+
+/* Styles for the song list */
+.song-list1 {
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* Stack song items vertically */
+  align-items: center; /* Align song items */
+  padding-top: 10px; /* Space between search bar and first song item */
+}
+
+/* Styles for each song item */
+.song-item1 {
+  width: 100%; /* Song items take full width of container */
+  padding: 10px;
+  border-bottom: 1px solid #fff; /* Separator for song items */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.song-item1:last-child {
+  border-bottom: none; /* Removes border from the last item */
+}
+.song-item1 p {
+  margin: 0; /* Removes default paragraph margins */
+}
+
+.submission-container2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: #000;
+  border-radius: 20px;
+  color: #fff;
+  width: 90%;
+  max-width: 800px;
+  /* Adjust the top value to where you want the container to start */
+  margin-top: 300px; /* Example: Change this to the desired fixed starting position */
+  box-sizing: border-box;
+  position: absolute; /* Changed to absolute to fix the position */
+  overflow: hidden; /* Hide overflow */
+  transition: max-height 0.3s ease-in; /* Smooth transition for max-height */
+}
+
+/* Set a starting max-height that will expand when there are songs */
+.submission-container2 {
+  max-height: 200px; /* Start with a smaller height */
+}
+
+
+
+.submission-container2.with-songs {
+  max-height: 70vh; /* Adjust as needed */
+  overflow-y: auto; /* Show scroll */
+  margin-top: 250px;
+}
+
+.search-results-container {
+  width: 100%;
+  max-height: 500px; /* Adjust this value to fit your design needs */
+  overflow-y: auto; /* Enable vertical scrolling */
+  position: absolute; /* Absolute position to stay at top */
+  top: 0; /* Align to the top */
+  left: 0; /* Align to the left */
+}
+
+/* This styles the scrollbar track */
+.submission-container2::-webkit-scrollbar-track {
+  background-color: #000; /* Scrollbar track color */
+  border-radius: 10px;
+}
+
+/* This styles the scrollbar handle */
+.submission-container2::-webkit-scrollbar-thumb {
+  background-color: #8bbe52; /* Scrollbar handle color */
+  border-radius: 10px;
+  border: 3px solid #000; /* Creates a border between the track and handle */
+}
+
+/* This sets the size of the scrollbar */
+.submission-container2::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+/* Optionally, you can style the scrollbar handle on hover */
+.submission-container2::-webkit-scrollbar-thumb:hover {
+  background-color: #12b04e; /* Handle color on hover */
+}
+
+.add-icon-container {
+  /* Styles to ensure the icon stays on the right */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 16px; /* Or any suitable value */
+  
+}
+
+.song-details {
+  flex-grow: 1;
+  /* Rest of your styles */
+}
+
+.add-icon:hover {
+  color: #8bbe52;
+  transition: transform 0.3s, color 0.3s;
 }

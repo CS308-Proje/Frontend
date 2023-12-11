@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './ResetPassword.css';
+import Navbar from "../Navbar/Navbar.jsx";
 
 const ResetPassword = () => {
   const [input, setInput] = useState({
@@ -8,7 +9,7 @@ const ResetPassword = () => {
     confirmPassword: ''
   });
   const [error, setError] = useState('');
-
+  const [message, setMessage] = useState('');
   const { password, confirmPassword } = input;
   const { token } = useParams(); // Extract the token from the URL
 
@@ -37,6 +38,8 @@ const ResetPassword = () => {
       if (response.ok) {
         // Handle successful password reset here
         console.log('Password successfully reset', data);
+        setMessage('Password successfully reset');
+
       } else {
         // Handle errors here
         setError(data.message || 'An error occurred while resetting the password');
@@ -48,12 +51,14 @@ const ResetPassword = () => {
   };
 
   return (
+    
     <div className="center-wrapper">
+        <Navbar/>
     <div className="reset-password-container">
      <div className="reset-instructions">Please enter your new password</div>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <input
+        <input id="reset-input"
             type="password"
             name="password"
             value={password}
@@ -63,7 +68,7 @@ const ResetPassword = () => {
           />
         </div>
         <div className="form-group">
-          <input
+          <input id="reset-input"
             type="password"
             name="confirmPassword"
             value={confirmPassword}
@@ -73,6 +78,7 @@ const ResetPassword = () => {
           />
         </div>
         {error && <div className="error-message">{error}</div>}
+        {message && <div className="error-message">{message}</div>}
         <button id="resetbtn" type="submit">Reset Password</button>
       </form>
     </div>

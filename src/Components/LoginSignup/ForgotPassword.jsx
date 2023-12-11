@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import './ForgotPassword.css';
+import Navbar from "../Navbar/Navbar";
 
 const ForgotPassword = () => {
-  const [emailOrUsername, setEmailOrUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
   const handleSubmit = async () => {
@@ -13,7 +14,7 @@ const ForgotPassword = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ emailOrUsername: emailOrUsername }),
+        body: JSON.stringify({ email: email}),
       });
   
       const data = await response.json();
@@ -33,6 +34,7 @@ const ForgotPassword = () => {
   
   return (
     <div className="forgot-container">
+      <Navbar/>
       <div className="forgot-header">
         <div className="text">Password Reset</div>
       </div>
@@ -45,8 +47,8 @@ const ForgotPassword = () => {
             id="email" 
             type="text" 
             placeholder="Email address or username" 
-            value={emailOrUsername}
-            onChange={(e) => setEmailOrUsername(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
       </div>

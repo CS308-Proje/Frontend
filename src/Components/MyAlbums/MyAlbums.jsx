@@ -1,64 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import MenuIcon from "@mui/icons-material/Menu";
-import UserIcon from "@mui/icons-material/AccountCircle";
-import SearchIcon from "@mui/icons-material/Search";
-import LogoImage from "../Assets/logo-white.png";
 import Sidebar from "../Sidebar/Sidebar";
-import Dashboard from "../Dashboard/Dashboard";
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import "./MyAlbums.css";
 import StarRating from '../Star/StarRating'; // Adjust the path as necessary if it's in a different directory
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import AddIcon from '@mui/icons-material/Add';
+import Navbar2 from "../Navbar2/Navbar2";
 
 const MyAlbums = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
   const [albums, setAlbums] = useState([]);
   const [search, setSearch] = useState("");
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [inventoryData, setInventoryData] = useState([]);
-
-  // Navigate to profile page
-  const navigateToProfile = () => {
-    navigate("/login");
-  };
-
-  // Navigate to dashboard
-  const navigateToDashboard = () => {
-    navigate("/dashboard");
-  };
-
-  // Handle search input
-  const handleSearch = (event) => {
-    console.log("Searching for:", event.target.value);
-    setSearch(event.target.value);
-  };
-
-
-  // Dropdown menu toggle
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
-  };
-
-  
-
-  const renderDropdownItems = () => {
-    // Hardcoded test data
-    const testData = [
-      { name: "Item 1", quantity: 10 },
-      { name: "Item 2", quantity: 15 },
-      { name: "Item 3", quantity: 5 }
-    ];
-  
-    return testData.map((item, index) => (
-      <div key={index} className="dropdown-item">
-        {item.name} - {item.quantity}
-      </div>
-    ));
-  };
-  
 
   // Fetch albums data
   useEffect(() => {
@@ -123,7 +76,7 @@ const MyAlbums = () => {
   
     try {
       // Send the PUT request to update the rating
-      const response = await fetch(`http://localhost:5000/albums/${albumId}`, {
+      const response = await fetch(`http://localhost:5001/albums/${albumId}`, {
         method: 'PUT',
         credentials: 'include',
         headers: {
@@ -151,33 +104,7 @@ const MyAlbums = () => {
 
   return (
     <div className="Dashboard">
-      <nav className="navbar">
-        <button className="menu-btn" onClick={() => setSidebarOpen(!sidebarOpen)}>
-          <MenuIcon />
-        </button>
-
-        <button className="bell-btn" onClick={toggleDropdown}>
-         <NotificationsActiveIcon className="bell-icon" style={{ fontSize: 35 }} />
-        </button>
-        
-        <div className={`dropdown-menu ${dropdownOpen ? 'dropdown-menu-visible' : ''}`}>
-          {renderDropdownItems()}
-        </div>
-
-        <button className="logo-btn" onClick={navigateToDashboard}>
-          <img src={LogoImage} alt="Logo" className="logo" />
-        </button>
-
-        <div className="search-bar">
-          <input type="text" placeholder="Search..." onChange={handleSearch} />
-          <SearchIcon />
-        </div>
-
-        <button className="profile-btn" onClick={navigateToProfile}>
-          <UserIcon className="profile-icon" style={{ fontSize: 45 }} />
-        </button>
-      </nav>
-
+      <Navbar2 sidebarOpen = {sidebarOpen} setSidebarOpen={setSidebarOpen} setSearch={setSearch}/>
 
       <Sidebar isOpen={sidebarOpen} />
 
@@ -202,13 +129,13 @@ const MyAlbums = () => {
               <img src={album.albumImg} className="artist-img" alt={`Artist ${album.id}`} />
               <div>
                 <h1 className="text-box"><b>{album.name}</b></h1>
-                <h2 className="text-box"><b>Artist:</b> {album.mainArtistName}</h2>
+                <h2 className="text-box"><b>Artist:</b> {album.artistId.artistName}</h2>
                 
                 <StarRating
       initialRating={album.ratingValue}
       onRating={(newRating) => updateRating(album._id, newRating)}
     />
-                <h5 className="text-box">Release Date: {formatDate(album.release_date)}</h5>
+                {/*<h5 className="text-box">Release Date: {formatDate(album.createdAt)}</h5>*/}
               </div>
             </div>
           )))}

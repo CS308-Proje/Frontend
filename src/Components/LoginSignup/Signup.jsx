@@ -5,6 +5,8 @@ import user_icon from "../Assets/person.png";
 import email_icon from "../Assets/email.png";
 import password_icon from "../Assets/password.png";
 import username_icon from "../Assets/username.png"
+import Navbar from "../Navbar/Navbar";
+
 const Signup = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
@@ -29,7 +31,7 @@ const Signup = () => {
       };
 
       try {
-        const response = await fetch("http://localhost:5001/auth/register", {
+        const response = await fetch("http://localhost:5000/auth/register", {
           method: "POST",
           credentials: "include",
           headers: {
@@ -65,6 +67,7 @@ const Signup = () => {
 
   return (
     <div className="container">
+      <Navbar/>
       <div className="header">
         <div className="text">Sign up to SRS</div>
         <div className="underline"></div>

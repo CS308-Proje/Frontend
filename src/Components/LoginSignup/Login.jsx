@@ -1,26 +1,23 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
+import { useAuth } from "../Authentication/Auth.jsx"; // Adjust this path based on your project structure
 import "./LoginSignup.css";
 import email_icon from "../Assets/email.png";
 import password_icon from "../Assets/password.png";
-
+import Navbar from "../Navbar/Navbar.jsx";
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();
-  const [error, setError] = useState("");
-  
+  const { login } = useAuth(); // Use the login function from AuthContext
+  const [error, setError] = useState(""); // Use this state to show any login errors
+
   const handleLogin = async () => {
     const emailInput = document.getElementById("email");
     const passwordInput = document.getElementById("password");
 
     const email = emailInput.value;
     const password = passwordInput.value;
-
-    const userData = {
-      email: email,
-      password: password,
-    };
 
     try {
       const response = await fetch("http://localhost:5001/auth/login", {
@@ -33,41 +30,34 @@ const Login = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Login failed");
+        const errorText = await response.text();
+        throw new Error(errorText || "Login failed");
       }
 
-      // Assuming the response returns the expected data on successful login
       const data = await response.json();
-      console.log(data); // Handle or store the response data as needed
+      console.log(data); // Log or handle the response data as needed
+
+      login(); // Update the AuthContext to reflect the user is now logged in
       navigate("/dashboard"); // Redirect to dashboard on success
     } catch (err) {
       setError(err.message);
     }
   };
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const btn = document.getElementById("btn");
-
-    if (btn) {
-      btn.addEventListener("click", handleLogin);
-    }
-  });
-
-  //navigate("/"); //* burdan user dashboardına gidecekler
-
   return (
     <div className="container">
+      <Navbar/>
       <div className="header">
         <div className="text">Log in to SRS</div>
         <div className="underline"></div>
       </div>
       <div className="inputs">
         <div className="input">
-          <img src={email_icon} alt="" />
+          <img src={email_icon} alt="Email Icon" />
           <input id="email" type="email" placeholder="Email" />
         </div>
         <div className="input">
-          <img src={password_icon} alt="" />
+          <img src={password_icon} alt="Password Icon" />
           <input id="password" type="password" placeholder="Password" />
         </div>
       </div>

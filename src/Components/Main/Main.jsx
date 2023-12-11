@@ -1,11 +1,12 @@
 import React from 'react'
 import videoBG from '../Assets/Soundwave-Loop.mp4'
-
+import Navbar from '../Navbar/Navbar'
+import "./Main.css"
 
 const Main = () => {
   return (
     <div className='Main'>
-
+      <Navbar/>
       <div className="overlay"></div>
       <video src={videoBG} autoPlay loop muted></video>
       <div className='mainpagecontent'>

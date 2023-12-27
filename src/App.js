@@ -20,15 +20,34 @@ import Analysis from "./Components/Analysis/Analysis";
 import ForgotPassword from "./Components/LoginSignup/ForgotPassword";
 import ResetPassword from './Components/ResetPassword/ResetPassword';
 import ExportSongs from "./Components/ExportSongs/ExportSongs";
-
+import AdminPage from "./Components/AdminPage/AdminPage";
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
-  const { isLoggedIn } = useAuth();
-
+  const { isLoggedIn, userRole } = useAuth();
+  
   if (!isLoggedIn) {
     // Redirect to the login page if not logged in
     return <Navigate to="/" />;
+  }
+
+  return children;
+};
+
+const AdminProtectedRoute = ({ children }) => {
+  const { isLoggedIn, userRole, loading } = useAuth();
+
+  if (loading) {
+    return <div>Loading...</div>; // Or some other loading indicator
+  }
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" />;
+  }
+
+  if (userRole !== 'admin') {
+    console.log(userRole);
+    return <Navigate to="/dashboard" />;
   }
 
   return children;
@@ -116,6 +135,14 @@ const App = () => {
               <ProtectedRoute>
                 <ExportSongs />
               </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/adminpage"
+            element={
+              <AdminProtectedRoute>
+                <AdminPage />
+              </AdminProtectedRoute>
             }
           />
         </Routes>

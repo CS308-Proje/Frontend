@@ -167,6 +167,7 @@ useEffect(() => {
         { value: 'spotify-recommendations', label: 'Based on Spotify Recommendations' },
         { value: 'temporal-values', label: 'Based on Temporal Values' },
         { value: 'friend-activity', label: 'Based on Friend Activity' },
+        { value: 'machine-learning', label: 'Based on Machine Learning' },
     ]; 
     
     const customStyles = {
@@ -349,7 +350,7 @@ useEffect(() => {
                               <div className="text1">Unfortunately, We Can't Help You</div>
                               <div className="underline1"></div>
                               <p className="recommendation-message1">
-                                Arkadas ekle asosyal
+                                You don't have any temporal value yet!
                               </p>
                            </div>
                           );
@@ -375,7 +376,7 @@ useEffect(() => {
                               <div className="text1">Unfortunately, We Can't Help You</div>
                               <div className="underline1"></div>
                               <p className="recommendation-message1">
-                                Arkadas ekle asosyal
+                                You don't have any friend activity yet!
                               </p>
                            </div>
                           );
@@ -400,7 +401,16 @@ useEffect(() => {
                 
                 
                  }
-                
+                 case "machine-learning":
+                  return(<div className="recommendation-container" style={recommendationContainerStyle}>
+                              <SentimentVeryDissatisfiedIcon style={{ fontSize: '100px', margin: '15 auto', display: 'block' }} />
+                              <div className="text1">Unfortunately, We Can't Help You</div>
+                              <div className="underline1"></div>
+                              <p className="recommendation-message1">
+                                You need to add some songs before to get a recommendation by our super trained model!
+                              </p>
+                           </div>
+                          );
 
           // Add more cases for other recommendation types
           default:

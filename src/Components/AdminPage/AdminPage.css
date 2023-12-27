@@ -1,0 +1,145 @@
+.AdminPage {
+    font-family: Arial, sans-serif;
+  }
+  
+  .user-box {
+    background-color: #181818;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative; /* Add relative positioning for absolute child elements */
+  }
+  
+  .user-box:hover {
+    background-color: #282828;
+    box-shadow: 0 1px 15px rgba(6, 95, 7, 0.7);
+    transform: scale(1.01);
+  }
+  
+  .user-box h1 {
+    color: #8bbe52;
+    margin: 10px 0;
+  }
+  .user-box h2, .user-box h3, .user-box h4 {
+    color: whitesmoke;
+  }
+  
+  /* Update and Delete buttons */
+  .user-box button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .user-box button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Delete button specific styles */
+  #delete-user-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: grey;
+    color: white;
+    border: none;
+    width: 20px;
+    height: 25px;
+    cursor: pointer;
+    font-size: 14px; /* Adjust the font size as needed */
+  }
+  
+  
+  #delete-user-btn:hover {
+    background-color: red;
+  }
+  
+  
+  
+  /* Update button specific styles */
+  #update-user-btn {
+    position: absolute;
+    top: 50%;
+    right: 50px;
+    transform: translateY(-50%);
+    background-color: grey; /* Same as other buttons */
+  }
+    
+  #update-user-btn:hover {
+    box-shadow: 0 1px 15px rgba(6, 95, 7, 0.7);
+    background-color:#8bbe52;
+  }
+
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 1000; /* High z-index to ensure it's on top */
+    display: none; /* Hide by default */
+  }
+  
+  .show-backdrop {
+    display: block; /* Show when modal is active */
+  }
+  
+  .update-user-modal {
+    position: fixed;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; /* Adjust as needed */
+    max-width: 500px; /* Maximum width */
+    padding: 20px;
+    background-color: #181818; 
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1010; /* Higher than the backdrop */
+  }
+  
+  .update-user-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .update-user-modal label {
+    margin-bottom: 5px;
+    color: white;
+    font-weight: 200;
+    font-size: large;
+  }
+  
+  .update-user-modal input,
+  .update-user-modal select {
+    padding: 5px;
+    border-radius: 2px;
+    border: 0.5px solid #ccc;
+  }
+  
+  .update-user-modal button {
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    position: center;
+  }
+  
+  .update-user-modal button:hover {
+    background-color: #45a049;
+  }
+  

@@ -98,8 +98,8 @@ const MySongs = () => {
   
     try {
       // Send the PUT request to update the rating
-      const response = await fetch(`http://localhost:5001/songs/${songId}`, {
-        method: 'PUT',
+      const response = await fetch(`http://localhost:5001/rating/rateSong/${songId}`, {
+        method: 'POST',
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
@@ -110,12 +110,7 @@ const MySongs = () => {
       // If the request was successful
       if (response.ok) {
         // Update the state with the new rating
-        setSongs(songs.map(song => {
-          if (song._id === songId) {
-            return { ...song, ratingValue: newRating };
-          }
-          return song;
-        }));
+        
       } else {
         console.error('Failed to update the rating.');
       }

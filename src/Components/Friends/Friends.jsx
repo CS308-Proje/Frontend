@@ -28,8 +28,9 @@ const Friends = () => {
   const [invitations, setInvitations] = useState([]);
   const [invitationChanged, setInvitationChanged] = useState(false);
 
-  
+  const [userId, setUserId] = useState('');
 
+  
 
   useEffect(() => {
     const fetchInvitations = async () => {
@@ -81,6 +82,7 @@ const Friends = () => {
         const data = await response.json();
         if (data.success && data.data.allowFriendRecommendations) {
           setAllowFriendRecommendations(data.data.allowFriendRecommendations);
+          setUserId(data.data._id);
         }
       } catch (error) {
         console.error('Error fetching allowFriendRecommendations:', error);
@@ -290,11 +292,12 @@ const Friends = () => {
         
         <div className="friends-container">
         <h2 className="friends-heading">Add a New Friend</h2>
+        {userId && <p>Your ID: {userId}</p>}
           <input
             type="text"
             value={username}
             onChange={handleInputChange}
-            placeholder="Enter your friend's username"
+            placeholder="Enter your friend's ID"
             className="add-friend-input"
           />
           <button onClick={handleSubmit} className="add-friend-button">

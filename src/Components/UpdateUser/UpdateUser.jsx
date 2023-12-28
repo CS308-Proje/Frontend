@@ -14,6 +14,8 @@ const UpdateUser = ({ user, onClose, onUpdate }) => {
 
   return (
     <div className="update-user-modal">
+      <h1>Update User</h1>
+      <div className="underline"></div>
       <form onSubmit={handleSubmit}>
         <label>
           Name: 
@@ -35,9 +37,9 @@ const UpdateUser = ({ user, onClose, onUpdate }) => {
           <input type="text" name="role" value={userData.role} onChange={handleInputChange} />
         </label>
 
-        <button type="submit">Update User</button>
+        <button type="submit">Update</button>
       </form>
-      <button onClick={onClose}>Close</button>
+      <button id="update-user-close" onClick={onClose}>Close</button>
     </div>
   );
 };

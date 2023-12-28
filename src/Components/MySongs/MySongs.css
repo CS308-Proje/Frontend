@@ -203,7 +203,7 @@ html, body {
   }
   
   .button {
-    background: #1ED760; /* Spotify's green for buttons */
+    background: #8bbe52; /* Spotify's green for buttons */
     color: #181818;
     border: none;
     border-radius: 25px;
@@ -217,7 +217,7 @@ html, body {
   }
   
   .button:hover {
-    background: #12b04e; /* Darker green on hover */
+    background: #7eac4a; /* Darker green on hover */
   }
 
   .song-box {
@@ -304,7 +304,7 @@ html, body {
   
   .delete-song-btn:focus,
   .delete-song-btn:hover {
-    background-color: #1ed760; /* Spotify green background on hover and focus */
+    background-color: #8bbe52; /* Spotify green background on hover and focus */
     color: #fff; /* White text color on hover and focus */
     outline: none;
   }
@@ -396,7 +396,7 @@ html, body {
   }
   
   .add-song-btn:hover {
-    background-color: #17a64a; /* Slightly darker green on hover */
+    background-color: #7eac4a; /* Slightly darker green on hover */
   }
   
 
@@ -419,7 +419,7 @@ html, body {
   
 
   .update-song-btn:hover {
-    background-color: #1ed760; /* Spotify green background on hover and focus */
+    background-color: #8bbe52; /* Spotify green background on hover and focus */
     color: #fff; /* White text color on hover and focus */
     outline: none;
   }
@@ -490,7 +490,7 @@ html, body {
     padding: 15px 20px;
     border: none;
     border-radius: 8px;
-    background-color: #1DB954; /* Spotify’s brand green */
+    background-color: #8bbe52; /* Spotify’s brand green */
     color: #fff;
     font-weight: bold;
     font-family: 'Josefin Sans', sans-serif;
@@ -499,7 +499,7 @@ html, body {
   }
   
   .update-song-modal button:hover {
-    background-color: #1ed760; /* Slightly lighter green on hover */
+    background-color: #7eac4a; /* Slightly lighter green on hover */
     transform: scale(1.05); /* Slight grow effect */
   }
   

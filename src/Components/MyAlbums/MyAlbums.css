@@ -102,7 +102,7 @@ html, body {
   .search-bar input:focus {
     color: #000;
     outline: none;
-    border-color: #8bbe52; /* Highlight color when focused */
+    border-color: #7eac4a; /* Highlight color when focused */
   }
   
   /* Styling for SearchIcon, if needed */
@@ -123,7 +123,7 @@ html, body {
   }
   
   .logo-btn:hover {
-    color: #8bbe52; /* Change color on hover */
+    color: #7eac4a; /* Change color on hover */
   }
   
   
@@ -183,7 +183,7 @@ html, body {
   
   .row:hover {
     cursor: pointer;
-    color: #8bbe52; /* Spotify's green highlight color */
+    color: #7eac4a; /* Spotify's green highlight color */
   }
   
   .row div {
@@ -203,7 +203,7 @@ html, body {
   }
   
   .button {
-    background: #1ED760; /* Spotify's green for buttons */
+    background: #8bbe52; /* Spotify's green for buttons */
     color: #181818;
     border: none;
     border-radius: 25px;
@@ -217,7 +217,7 @@ html, body {
   }
   
   .button:hover {
-    background: #12b04e; /* Darker green on hover */
+    background: #7eac4a; /* Darker green on hover */
   }
 
   .song-box {
@@ -229,8 +229,7 @@ html, body {
     margin-bottom: 16px; 
     position: relative; /* For absolute positioning of children */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    
-
+    font-family: 'Josefin Sans', cursive;
   }
 
   .song-box:hover {
@@ -304,7 +303,7 @@ html, body {
   
   .delete-song-btn:focus,
   .delete-song-btn:hover {
-    background-color: #1ed760; /* Spotify green background on hover and focus */
+    background-color: #8bbe52; /* Spotify green background on hover and focus */
     color: #fff; /* White text color on hover and focus */
     outline: none;
   }
@@ -396,6 +395,6 @@ html, body {
   }
   
   .add-song-btn:hover {
-    background-color: #17a64a; /* Slightly darker green on hover */
+    background-color: #7eac4a; /* Slightly darker green on hover */
   }
   

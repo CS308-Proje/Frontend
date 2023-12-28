@@ -54,6 +54,7 @@ font-family: 'Josefin Sans', cursive;
     margin-bottom: 10px;
     color: #8bbe52; /* Spotify green */
     font-weight: bold;
+    font-family: 'Josefin Sans', cursive;
   }
   
   .date-input {
@@ -78,7 +79,7 @@ font-family: 'Josefin Sans', cursive;
   }
   
   .submit-button:hover {
-    background-color: #1ed760; /* Lighter Spotify green */
+    background-color: #7eac4a; /* Lighter Spotify green */
   }
   
   .track-input{

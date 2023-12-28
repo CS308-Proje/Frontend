@@ -76,8 +76,8 @@ const MyAlbums = () => {
   
     try {
       // Send the PUT request to update the rating
-      const response = await fetch(`http://localhost:5001/albums/${albumId}`, {
-        method: 'PUT',
+      const response = await fetch(`http://localhost:5001/rating/rateAlbum/${albumId}`, {
+        method: 'POST',
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
@@ -88,12 +88,7 @@ const MyAlbums = () => {
       // If the request was successful
       if (response.ok) {
         // Update the state with the new rating
-        setAlbums(albums.map(album => {
-          if (album._id === albumId) {
-            return { ...album, ratingValue: newRating };
-          }
-          return album;
-        }));
+        
       } else {
         console.error('Failed to update the rating.');
       }

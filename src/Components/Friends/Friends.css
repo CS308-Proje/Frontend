@@ -4,6 +4,8 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  font-family: 'Josefin Sans', cursive;
+
 }
 
 .add-friend-input {
@@ -15,11 +17,13 @@
   font-size: 16px; /* Spotify's standard font size for inputs */
   background-color: #121212; /* Spotify's dark background for inputs */
   color: white; /* Light text for readability */
+  font-family: 'Josefin Sans', cursive;
+
 }
 
 .add-friend-button {
   padding: 10px 20px;
-  background: linear-gradient(to right, #1db954, #1ed760); /* Spotify's green gradient */
+  background: linear-gradient(to right, #8bbe52, #7eac4a); /* Spotify's green gradient */
   color: white;
   border: none;
   border-radius: 50px;
@@ -27,10 +31,12 @@
   font-size: 16px;
   margin-bottom: 40px;
   transition: background 0.3s; /* Smooth transition for hover effect */
+  font-family: 'Josefin Sans', cursive;
+
 }
 
 .add-friend-button:hover {
-  background: linear-gradient(to right, #1ed760, #1db954); /* Invert gradient on hover */
+  background: linear-gradient(to right, #8bbe52, #7eac4a); /* Invert gradient on hover */
 }
 
 .no-friends-message {
@@ -39,6 +45,8 @@
   margin-top: 40px;
   font-size: 20px; /* Slightly larger font for emphasis */
   max-width: 600px; /* Increase max-width for better line length */
+  font-family: 'Josefin Sans', cursive;
+
 }
 
 .friends-list {
@@ -56,17 +64,19 @@
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 4px 8px rgba(0,0,0,0.5); /* Increase shadow for more depth */
+  font-family: 'Josefin Sans', cursive;
 }
 
 .friend-box h1 {
   color: #ffffff;
   font-size: 18px; /* Increase font size for better visibility */
   margin: 0;
+  font-family: 'Josefin Sans', cursive;
 }
 
 
 .remove-friend-btn {
-  background-color: #1ed760; /* Spotify green for consistency */
+  background-color: #8bbe52; /* Spotify green for consistency */
   color: white;
   border: none;
   border-radius: 2000px;
@@ -84,10 +94,12 @@
 .friend-actions {
   display: flex;
   align-items: center;
+  font-family: 'Josefin Sans', cursive;
+
 }
 
 .toggle-friend-btn {
-  color: #767676; /* Grey color for the "off" state */
+  color: #B3B3B3; /* Grey color for the "off" state */
   cursor: pointer;
   margin-right: 8px;
   transition: color 0.3s ease;
@@ -95,34 +107,44 @@
 }
 
 .toggle-friend-btn.active {
-  color: #1db954; /* Spotify's green color for the "on" state */
+  color: #8bbe52; /* Spotify's green color for the "on" state */
 }
 
 .invitations-container {
   color: #fff;
   max-width: 600px;
   margin: 40px auto;
+  font-family: 'Josefin Sans', cursive;
+
 }
 
 .invitations-heading {
   text-align: center;
-  color: #1db954; /* Spotify's green for the heading */
+  color: #8bbe52; /* Spotify's green for the heading */
   margin-bottom: 20px;
+  font-family: 'Josefin Sans', cursive;
+
 }
 
 .friends-heading {
   text-align: center;
-  color: #1db954; /* Spotify's green for the heading */
+  color: #8bbe52; /* Spotify's green for the heading */
   margin-bottom: 20px;
+  font-family: 'Josefin Sans', cursive;
+
 }
 
 .no-invitations-message {
   text-align: center;
   color: #b3b3b3; /* Spotify's grey text */
+  font-family: 'Josefin Sans', cursive;
+
 }
 
 .invitations-list {
   /* Add more styling as needed */
+  font-family: 'Josefin Sans', cursive;
+
 }
 
 .invitation-box {
@@ -134,15 +156,21 @@
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+  font-family: 'Josefin Sans', cursive;
+
 }
 
 .invitation-text {
   flex-grow: 1;
   margin-right: 10px; /* Space between text and buttons */
+  font-family: 'Josefin Sans', cursive;
+
 }
 
 .invitation-actions {
   /* Adjust as necessary */
+  font-family: 'Josefin Sans', cursive;
+
 }
 
 .invitation-accept-btn,
@@ -154,20 +182,28 @@
   cursor: pointer;
   font-size: 0.9rem; /* Adjust font size to make the buttons smaller */
   transition: background-color 0.3s;
+  font-family: 'Josefin Sans', cursive;
+
 }
 
 .invitation-accept-btn {
-  background-color: #1db954; /* Spotify green for accept button */
+  background-color: #8bbe52; /* Spotify green for accept button */
   color: white;
+  font-family: 'Josefin Sans', cursive;
+
 }
 
 .invitation-accept-btn:hover {
-  background-color: #1ed760; /* A lighter green on hover */
+  background-color: #7eac4a; /* A lighter green on hover */
+  font-family: 'Josefin Sans', cursive;
+
 }
 
 .invitation-reject-btn {
   background-color: #e22134; /* A red color for reject button */
   color: white;
+  font-family: 'Josefin Sans', cursive;
+
 }
 
 .invitation-reject-btn:hover {
@@ -182,6 +218,8 @@
   justify-content: space-between;
   margin: 20px;
   gap: 20px; /* This adds space between your two sections */
+  font-family: 'Josefin Sans', cursive;
+
 }
 
 .friends-container,
@@ -193,6 +231,8 @@
   background-color: #181818; /* Spotify's standard background for elements */
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+  font-family: 'Josefin Sans', cursive;
+
 }
 
 /* Update the .friends-list and .invitations-list if you have specific styles for them */

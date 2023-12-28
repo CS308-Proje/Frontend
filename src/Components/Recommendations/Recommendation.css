@@ -10,10 +10,10 @@ html, body {
     align-items: center; /* This will center-align the child elements (including your dropdown) horizontally */
     justify-content: flex-start; /* Aligns children at the start of the container */
     height: 100vh; /* Use the full height of the viewport */
-    
     overflow-y: auto; /* Enable vertical scrolling */
     overflow-x: hidden; /* Prevent horizontal scrolling */
-    
+    font-family: 'Josefin Sans', cursive;
+
 }
 
 
@@ -24,6 +24,8 @@ html, body {
     margin-right: auto;
     width: 50%; /* Adjust as needed for your layout */
     text-align: center;
+    font-family: 'Josefin Sans', cursive;
+
 }
 
 .recommendation-dropdown select {
@@ -37,6 +39,8 @@ html, body {
     appearance: none; /* Removes default system styling */
     background-color: #fff;
     cursor: pointer;
+    font-family: 'Josefin Sans', cursive;
+
 }
 
 .recommendation-dropdown select:hover,
@@ -54,6 +58,8 @@ html, body {
     padding: 0.5rem;
     background-color: #fff;
     border-bottom: 1px solid #eee; /* Adds a line between options */
+    font-family: 'Josefin Sans', cursive;
+
 }
 
 /* If you're using a modern browser, you can add a little icon indicator */
@@ -80,10 +86,11 @@ html, body {
 
 .recommendation-container {
   position: relative;
+  font-family: 'Josefin Sans', cursive;
+
+  border: 2px solid #ccc;
   
-  
-  
-  padding: 20px;
+  padding: 30px;
   background: #000;
   border-radius: 20px;
   margin-top: 200px;
@@ -111,6 +118,8 @@ html, body {
     margin-left: -40px; /* Use half of the width value to align the tooltip */
     opacity: 0;
     transition: opacity 0.5s;
+    font-family: 'Josefin Sans', cursive;
+
   }
 
   .artist-img {
@@ -140,6 +149,8 @@ html, body {
     margin-left: -40px; /* Use half of the width value to align the tooltip */
     opacity: 0;
     transition: opacity 0.5s;
+    font-family: 'Josefin Sans', cursive;
+
   }
   
   .delete-song-btn:hover .tooltip-text {
@@ -159,6 +170,8 @@ html, body {
     margin-top: 15px;
     top: 160px;
     width: 80%;
+    font-family: 'Josefin Sans', cursive;
+
   }
 
   .song-box1:hover {

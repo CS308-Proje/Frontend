@@ -84,7 +84,7 @@
 }
 
 .button10 {
-  background: #1ED760; /* Spotify's green for buttons */
+  background: #8bbe52; /* Spotify's green for buttons */
   color: #181818;
   border: none;
   border-radius: 25px;
@@ -98,7 +98,7 @@
 }
 
 .button10:hover {
-  background: #12b04e; /* Darker green on hover */
+  background: #7eac4a; /* Darker green on hover */
 }
 
 .export-container {
@@ -137,7 +137,7 @@
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  background-color: rgb(143, 141, 141);
+  background-color: #B3B3B3;
 }
 
 .export-options button:hover {
@@ -152,13 +152,13 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #4CAF50;
+  background-color: #8bbe52;
   color: white;
   margin: 10px;
 }
 
 .export-buttons button:hover {
-  background-color: #45a049;
+  background-color: #7eac4a;
 }
 
 .main-content10 {
@@ -175,6 +175,9 @@
 
 .export-type-selector input[type="text"] {
   margin-left: 10px;
+  border-radius: 4px;
+  border: 0.5px solid #ccc;
+  padding: 3px;
 }
 
 #btn10 {
@@ -200,13 +203,13 @@
 }
 
 #btn10:hover {
-  background-color: #45a049;
+  background-color: #7eac4a;
   color: white;
   transition: 0.5s ease-in-out;
 }
 
 #btn20:hover {
-  background-color: #45a049;
+  background-color: #7eac4a;
   color: white;
   transition: 0.5s ease-in-out;
 }

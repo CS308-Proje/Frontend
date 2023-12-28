@@ -9,6 +9,7 @@
     margin: 10px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: relative; /* Add relative positioning for absolute child elements */
+    font-family: 'Josefin Sans', cursive
   }
   
   .user-box:hover {
@@ -19,10 +20,15 @@
   
   .user-box h1 {
     color: #8bbe52;
-    margin: 10px 0;
+    font-size:x-large;
+    margin: 10px 10px;
+    font-family: 'Josefin Sans', cursive
   }
   .user-box h2, .user-box h3, .user-box h4 {
     color: whitesmoke;
+    font-size:large;
+    margin: 15px 10px;
+    font-family: 'Josefin Sans', cursive
   }
   
   /* Update and Delete buttons */
@@ -55,6 +61,8 @@
     height: 25px;
     cursor: pointer;
     font-size: 14px; /* Adjust the font size as needed */
+    font-family: 'Josefin Sans', cursive;
+    border-radius: 4px;
   }
   
   
@@ -66,11 +74,18 @@
   
   /* Update button specific styles */
   #update-user-btn {
+    width: 90px;
+    height: 45px;
     position: absolute;
     top: 50%;
-    right: 50px;
+    right: 80px;
     transform: translateY(-50%);
     background-color: grey; /* Same as other buttons */
+    text-align: center;
+    font-size: medium;
+    font-weight: 100;
+    font-family: 'Josefin Sans', cursive;
+    border-radius: 4px;
   }
     
   #update-user-btn:hover {
@@ -106,6 +121,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1010; /* Higher than the backdrop */
+    font-family: 'Josefin Sans', cursive
   }
   
   .update-user-modal form {
@@ -119,13 +135,17 @@
     color: white;
     font-weight: 200;
     font-size: large;
+    margin-left: 2%;
   }
   
   .update-user-modal input,
   .update-user-modal select {
     padding: 5px;
-    border-radius: 2px;
+    border-radius: 4px;
     border: 0.5px solid #ccc;
+    width: 95%;
+    margin-left: 0px;
+    margin-top: 5px;
   }
   
   .update-user-modal button {
@@ -133,13 +153,43 @@
     margin-top: 10px;
     border: none;
     border-radius: 4px;
-    background-color: #4CAF50;
+    background-color: #8bbe52;
     color: white;
     cursor: pointer;
     position: center;
   }
-  
+
+  #update-user-close {
+    background-color: gray;
+    width: 100%;
+  }
+
+  #update-user-close:hover {
+    background-color:#7eac4a;
+  }
+
   .update-user-modal button:hover {
-    background-color: #45a049;
+    background-color: #7eac4a;
   }
   
+  .update-user-modal h1 {
+    font-family: 'Josefin Sans', cursive;
+    text-align: center;
+    margin-bottom: 10px;
+    color:#fff;
+    padding: 10px;
+    font-size: 40px;
+  }
+
+  .underline {
+
+    width: 200px;
+    height: 6px;
+    width: 400px;
+    background-color: #8bbe52;
+    border-radius: 9px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    }
+    

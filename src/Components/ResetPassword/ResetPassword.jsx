@@ -27,7 +27,7 @@ const ResetPassword = () => {
 
     try {
       const response = await fetch(`http://localhost:5001/auth/resetpassword/${token}`, {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -39,7 +39,6 @@ const ResetPassword = () => {
         // Handle successful password reset here
         console.log('Password successfully reset', data);
         setMessage('Password successfully reset');
-
       } else {
         // Handle errors here
         setError(data.message || 'An error occurred while resetting the password');
@@ -55,7 +54,8 @@ const ResetPassword = () => {
     <div className="center-wrapper">
         <Navbar/>
     <div className="reset-password-container">
-     <div className="reset-instructions">Please enter your new password</div>
+     <h1>Please enter your new password</h1>
+      <div className="underline"></div>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
         <input id="reset-input"

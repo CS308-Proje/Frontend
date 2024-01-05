@@ -14,6 +14,10 @@ margin: 0 auto;
 font-family: 'Josefin Sans', cursive;
 
 }
+.button-container{
+  display: flex;
+  justify-content: center;
+}
 
 .analysis-image {
   margin-top: 230px;
@@ -46,9 +50,6 @@ font-family: 'Josefin Sans', cursive;
 
 }
 
-
-
-
 .date-label {
     display: block;
     margin-bottom: 10px;
@@ -67,7 +68,7 @@ font-family: 'Josefin Sans', cursive;
     box-sizing: border-box;
   }
   
-  .submit-button {
+  #submit-button {
     background-color: #8bbe52; /* Spotify green */
     color: white;
     padding: 10px 20px;
@@ -76,15 +77,18 @@ font-family: 'Josefin Sans', cursive;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-family: 'Josefin Sans', cursive;
+    justify-self: center;
+    margin-top: 0px;
   }
   
-  .submit-button:hover {
+  #submit-button:hover {
     background-color: #7eac4a; /* Lighter Spotify green */
   }
   
   .track-input{
     width: 500px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
   }
 
   

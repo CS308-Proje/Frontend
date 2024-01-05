@@ -202,7 +202,7 @@
   font-weight: 400; /* Regular font weight */
 }
 .label {
-  background: #1ED760; /* Spotify's green for buttons */
+  background: #8bbe52 ; /* Spotify's green for buttons */
   color: #181818;
   border: none;
   border-radius: 25px;
@@ -215,7 +215,7 @@
   cursor: pointer;
 }
 .button {
-  background: #1ED760; /* Spotify's green for buttons */
+  background: #8bbe52 ; /* Spotify's green for buttons */
   color: #181818;
   border: none;
   border-radius: 25px;
@@ -229,7 +229,7 @@
 }
 
 .button:hover {
-  background: #12b04e; /* Darker green on hover */
+  background: #7eac4a; /* Darker green on hover */
 }
 
 
@@ -311,23 +311,26 @@ font-family: 'Josefin Sans', cursive;
 font-family: 'Josefin Sans', cursive;
 display: block;  /* This will make each span take the full width like a div */
 }
-.submission-actions button {
-font-family: 'Josefin Sans', cursive;
+.submission-actions {
+  display: flex;
+  justify-content: center; /* Center the button horizontally */
+}
+
+#uploadTrackButton {
+  font-family: 'Josefin Sans', cursive;
   margin-right: 10px;
   padding: 8px 16px;
   background-color: #8bbe52; 
   border: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   border-radius: 5px; 
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
-.submission-actions button:hover {
-  background-color: #8bbe52;
+#uploadTrackButton:hover {
+  background-color: #76a346; /* A different color for hover effect */
 }
+
 
 .submission-actions button:last-child {
   background-color: #fff;  /* Cancel button with a different style */
@@ -415,12 +418,12 @@ box-sizing: border-box; /* Include padding in width */
 
 /* Hover effect for label, if it's styled as a button */
 label.btn.file-btn:hover {
-background-color: #12b04e; /* Darker shade on hover */
+background-color: #7eac4a; /* Darker shade on hover */
 }
 
 /* Ensure that the hover effect for buttons is consistent */
 .btn:hover, label.btn.file-btn:hover {
-background-color: #12b04e; /* Darker shade on hover */
+background-color: #7eac4a; /* Darker shade on hover */
 }
 
 /* Additional styling to ensure vertical alignment if necessary */
@@ -495,6 +498,7 @@ margin-top: 20px;
 
 /* Styles for the search bar container */
 .search-bar1 {
+  margin-left: 140px;
   left: 50%;
   width: 100%;
   z-index: 10; /* Ensure it's above the scrolled content */
@@ -529,7 +533,7 @@ margin-top: 20px;
 }
 
 .search-bar1 button.btn:hover {
-  background-color: #12b04e; /* Darker green on hover */
+  background-color: #7eac4a; /* Darker green on hover */
 }
 
 /* Styles for the song list */
@@ -618,7 +622,7 @@ margin-top: 20px;
 
 /* Optionally, you can style the scrollbar handle on hover */
 .submission-container2::-webkit-scrollbar-thumb:hover {
-  background-color: #12b04e; /* Handle color on hover */
+  background-color: #7eac4a; /* Handle color on hover */
 }
 
 .add-icon-container {

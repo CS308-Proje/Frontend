@@ -445,8 +445,8 @@ const Submission = () => {
 
             {!uploading && (
               <div className="submission-actions">
-                <button onClick={handleSingleTrackSubmit}>Upload Track</button>
-              </div>
+              <button id="uploadTrackButton" onClick={handleSingleTrackSubmit}>Upload Track</button>
+            </div>            
             )}
 
             {uploading && !uploadSuccess && <div className="loader"></div>}
@@ -564,7 +564,7 @@ const Submission = () => {
             </div>
             {!uploading && (
               <div className="submission-actions">
-                <button onClick={handleFileSubmit}>File Upload</button>
+                <button id="uploadTrackButton" onClick={handleFileSubmit}>File Upload</button>
               </div>
             )}
 
@@ -622,7 +622,7 @@ const Submission = () => {
             </div>
             {!uploading && (
               <div className="submission-actions">
-                <button onClick={handleTransferDatabase}>
+                <button id="uploadTrackButton" onClick={handleTransferDatabase}>
                   Transfer Database
                 </button>
               </div>

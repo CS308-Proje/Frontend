@@ -235,7 +235,7 @@ const Analysis = () => {
   const submissionContainerStyle = {
     marginTop: isDropdownOpen ? '100px' : '20px',
     transition: 'top 0.3s ease', // Ensure the transition is smooth
-    top: '90px',
+    top: '50px',
   };
   
 
@@ -349,15 +349,16 @@ const Analysis = () => {
         placeholder="YYYY-MM-DD"
         className="date-input"
       />
-
+      </div>
+      <div className="button-container" style={submissionContainerStyle}>
       <form onSubmit={handleSubmitSong}>
         {/* ... [form content] */}
-        <button type="submit" className="submit-button">Submit</button>
+        <button id="submit-button" className="submit-button">Submit</button>
       </form>
-
+      </div>
      
 
-    </div>
+    
   </div>
 )}
 
@@ -386,15 +387,16 @@ const Analysis = () => {
         placeholder="YYYY-MM-DD"
         className="date-input"
       />
-
+      </div>
+      <div className="button-container" style={submissionContainerStyle}>
       <form onSubmit={handleSubmitAlbum}>
         {/* ... [form content] */}
-        <button type="submit" className="submit-button">Submit</button>
+        <button id="submit-button" className="submit-button">Submit</button>
       </form>
-
+      </div>
      
 
-    </div>
+    
   </div>
 )}
 
@@ -422,15 +424,14 @@ const Analysis = () => {
         placeholder="YYYY-MM-DD"
         className="date-input"
       />
-
+      </div>
+      <div className="button-container" style={submissionContainerStyle}>
       <form onSubmit={handleSubmitArtist}>
         {/* ... [form content] */}
-        <button type="submit" className="submit-button">Submit</button>
+        <button id="submit-button" className="submit-button">Submit</button>
       </form>
+      </div>
 
-     
-
-    </div>
   </div>
 )}
 
@@ -455,20 +456,19 @@ const Analysis = () => {
         className="date-input"
       />
       </div>
+      <div className="button-container" style={submissionContainerStyle}>
       <input
-  type="text"
-  placeholder="Enter artist names separated by commas"
-  className="track-input"
-  onChange={(e) => setArtistArray(e.target.value.split(','))}
-/>
-
-
-      
-
-      
+      type="text"
+      placeholder="Enter artist names separated by commas"
+      className="track-input"
+      onChange={(e) => setArtistArray(e.target.value.split(','))}
+      />
+      </div>
+      <div className="button-container" style={submissionContainerStyle}>
       <form onSubmit={handleSubmitArtistAverage}>
-        <button type="submit" className="submit-button">Submit</button>
+      <button id="submit-button" className="submit-button">Submit</button>
       </form>
+    </div>
     </div>
   )}
 
@@ -493,15 +493,19 @@ const Analysis = () => {
         className="date-input"
       />
     </div>
+    <div className="button-container" style={submissionContainerStyle}>
     <input
       type="text"
       placeholder="Enter artist names separated by commas"
       className="track-input"
       onChange={(e) => setArtistArray(e.target.value.split(','))}
     />
+    </div>
+    <div className="button-container" style={submissionContainerStyle}>
     <form onSubmit={handleSubmitArtistSongsCount}>
-      <button type="submit" className="submit-button">Submit</button>
+    <button id="submit-button" className="submit-button">Submit</button>
     </form>
+  </div>
   </div>
 )}
 

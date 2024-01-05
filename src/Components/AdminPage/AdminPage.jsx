@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from '../Sidebar/Sidebar';
 import Navbar2 from '../Navbar2/Navbar2';
-import UpdateUser from '../UpdateUser/UpdateUser'; // Adjust the path as necessary
+import UpdateUser from '../UpdateUser/UpdateUser'; 
+import AddUser from '../AddUser/AddUser';
 import './AdminPage.css';
 
 const AdminPage = () => {
@@ -10,12 +11,45 @@ const AdminPage = () => {
   const [users, setUsers] = useState([]);
   const [showUpdateScreen, setShowUpdateScreen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [search, setSearch] = useState("");
   const navigate = useNavigate();
+  const [showAddUserScreen, setShowAddUserScreen] = useState(false);
+
+
+  const fetchUsers = async () => {
+    try {
+      const url = search
+        ? `http://localhost:5001/users?username=${search}`
+        : `http://localhost:5001/users`;
+      const response = await fetch(url, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      if (data.success) {
+        setUsers(data.users);
+      } else {
+        setUsers([]);
+      }
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      setUsers([]);
+    }
+  };
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('http://localhost:5001/users', {
+        const url = search
+          ? `http://localhost:5001/users?username=${search}`
+          : `http://localhost:5001/users`;
+        const response = await fetch(url, {
           method: "GET",
           credentials: "include",
           headers: {
@@ -28,28 +62,66 @@ const AdminPage = () => {
         const data = await response.json();
         if (data.success) {
           setUsers(data.users);
+        } else {
+          setUsers([]);
         }
       } catch (error) {
         console.error('Error fetching users:', error);
+        setUsers([]);
       }
     };
-
     fetchUsers();
-  }, []);
+    if (search) {
+      fetchUsers(); // Only fetch users if there is a search query
+    } else {
+      setUsers([]); // If the search query is empty, reset the users array
+    }
+  }, [search]); // The effect depends on the 'search' state
+  
+
+
 
   const handleUpdateClick = (user) => {
     setSelectedUser(user);
     setShowUpdateScreen(true);
   };
 
-  const handleUpdate = (updatedUser) => {
-    setShowUpdateScreen(false);
+  const handleUpdate = async (updatedUser) => {
+    if (selectedUser && updatedUser) {
+      await handleUpdateUser(selectedUser._id, updatedUser);
+      await fetchUsers(); // Refetch users to update the list
+      setShowUpdateScreen(false); // Close the update screen
+    }
   };
 
   const handleClose = () => {
     setShowUpdateScreen(false);
   };
 
+  const handleUpdateUser = async (userId, updatedUserData) => {
+    try {
+      const response = await fetch(`http://localhost:5001/users/${userId}`, {
+        method: "PUT",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedUserData),
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      if (data.success) {
+        // Replace the updated user in the users state
+        setUsers(users.map(user => user._id === userId ? { ...user, ...updatedUserData } : user));
+      }
+    } catch (error) {
+      console.error('Error updating user:', error);
+    }
+  };
+  
+  
   const handleDeleteUser = async (userId) => {
     try {
       const response = await fetch(`http://localhost:5001/users/${userId}`, {
@@ -69,12 +141,34 @@ const AdminPage = () => {
     }
   };
 
+  const handleAddUser = async (newUserData) => {
+    try {
+      const response = await fetch('http://localhost:5001/users', {
+        method: 'POST', // Assuming POST is used to add a new user
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newUserData),
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      await fetchUsers(); // Refetch the users list to include the new user
+    } catch (error) {
+      console.error('Error adding user:', error);
+    }
+  };
+  
   return (
     <div className='AdminPage'>
-      <Navbar2 sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      <Navbar2 sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} setSearch={setSearch}/>
       <Sidebar isOpen={sidebarOpen} />
 
       <main className={`main-content ${sidebarOpen ? 'shifted' : ''}`}>
+      <div className="add-user-container">
+      <button id="add-user-btn" onClick={() => setShowAddUserScreen(true)}>Add User</button>
+      </div>
         {users.map(user => (
           <div key={user._id} className='user-box'>
             <button id="delete-user-btn" onClick={() => handleDeleteUser(user._id)}>X</button>
@@ -90,10 +184,18 @@ const AdminPage = () => {
       {showUpdateScreen && (
         <UpdateUser
           user={selectedUser}
-          onClose={handleClose}
+          onClose={() => setShowUpdateScreen(false)}
           onUpdate={handleUpdate}
         />
       )}
+      <div className={`modal-backdrop ${showAddUserScreen ? 'show-backdrop' : ''}`}></div>
+        {showAddUserScreen && (
+        <AddUser
+          onClose={() => setShowAddUserScreen(false)}
+          onAdd={handleAddUser}
+        />
+      )}
+
     </div>
   );
 };

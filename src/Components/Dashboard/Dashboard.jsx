@@ -23,20 +23,29 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:5001/songs', {
-          method: 'GET',
-          credentials: 'include',
-          headers: { 'Content-Type': 'application/json' },
-        });
-        const data = await response.json();
-        const songsWithLikeStatus = data.songs.map(song => ({ ...song, liked: false }));
-        setSongs(songsWithLikeStatus);
+        const response = await fetch(
+          `http://localhost:5001/songs?name=${search}`,
+          {
+            method: "GET",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const s = await response.json();
+
+        const data = Array.isArray(s.songs) ? s.songs : [];
+
+        setSongs(data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
+        setSongs([]);
       }
     };
+
     fetchData();
-  }, []);
+  }, [search]);
 
   // Toggle like status
   const toggleLike = (songId) => {

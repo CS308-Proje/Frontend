@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Main from "./Components/Main/Main";
 import Dashboard from "./Components/Dashboard/Dashboard";
-import SubmissionPage from "./Components/Submission/Submission";
+import AddSongs from "./Components/AddSongs/AddSongs";
 import MySongs from "./Components/MySongs/MySongs";
 import MyArtists from "./Components/MyArtists/MyArtists";
 import MyAlbums from "./Components/MyAlbums/MyAlbums";
@@ -74,10 +74,10 @@ const App = () => {
             }
           />
           <Route
-            path="/submitmusic"
+            path="/addsongs"
             element={
               <ProtectedRoute>
-                <SubmissionPage />
+                <AddSongs />
               </ProtectedRoute>
             }
           />

@@ -20,7 +20,7 @@ export const Sidebardata = [
     {
         title:"Add Songs",
         icon:<AddIcon></AddIcon>,
-        link:"/submitmusic"
+        link:"/addsongs"
     }
     ,
     {

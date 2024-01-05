@@ -157,11 +157,13 @@
     color: white;
     cursor: pointer;
     position: center;
+    font-family: 'Josefin Sans', cursive;
   }
 
   #update-user-close {
     background-color: gray;
     width: 100%;
+    font-family: 'Josefin Sans', cursive;
   }
 
   #update-user-close:hover {
@@ -191,5 +193,27 @@
     margin-bottom: 30px;
     margin-left: auto;
     margin-right: auto;
+    }
+    
+    .add-user-container {
+      display: flex;
+      justify-content: flex-end; /* Aligns children (button) to the right */
+      padding: 10px; /* Add padding as needed */
+    }
+
+    #add-user-btn {
+      padding: 10px 20px;
+      margin: 10px 0;
+      background-color: grey;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'Josefin Sans', cursive;
+      font-size: 16px;
+    }
+    
+    #add-user-btn:hover {
+      background-color: #8bbe52;
     }
     

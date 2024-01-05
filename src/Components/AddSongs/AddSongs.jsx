@@ -3,7 +3,7 @@ import DoneIcon from "@mui/icons-material/Done";
 import Sidebar from "../Sidebar/Sidebar";
 import jsonicon from "../Assets/jsonicon.png";
 import ReactSelect from "react-select";
-import "./Submission.css";
+import "./AddSongs.css";
 import Navbar2 from "../Navbar2/Navbar2";
 import AddIcon from '@mui/icons-material/Add';
 import HeaderIcon from "../HeaderIcon/HeaderIcon";

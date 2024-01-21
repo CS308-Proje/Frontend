@@ -44,7 +44,18 @@ const Recommendation = () => {
 
     const handleAddSong = async (song) => {
 
-      const trackData = song;
+      
+
+      const songData = {
+        songName: song.songName,
+        mainArtistName: song.mainArtistName,
+        albumName: song.albumName,
+        release_date: song.release_date,
+        albumImg: song.albumImg,
+        songId: song.songId,
+        
+      };
+      }
   
       try {
         console.log(trackData);

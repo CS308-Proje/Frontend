@@ -15,10 +15,10 @@ const Login = () => {
   const handleLogin = async () => {
     const emailInput = document.getElementById("email");
     const passwordInput = document.getElementById("password");
-
+  
     const email = emailInput.value;
     const password = passwordInput.value;
-
+  
     try {
       const response = await fetch("http://localhost:5001/auth/login", {
         method: "POST",
@@ -28,21 +28,26 @@ const Login = () => {
         },
         body: JSON.stringify({ email, password }),
       });
-
+  
       if (!response.ok) {
         const errorText = await response.text();
-        throw new Error(errorText || "Login failed");
+        // Extract the user-relevant error message
+        const errorMessageMatch = errorText.match(/Error: (.+?)!/);
+        const errorMessage = errorMessageMatch ? errorMessageMatch[1] : "Login failed";
+        throw new Error(errorMessage);
       }
-
+  
       const data = await response.json();
       console.log(data); // Log or handle the response data as needed
-
+  
       login(); // Update the AuthContext to reflect the user is now logged in
       navigate("/dashboard"); // Redirect to dashboard on success
     } catch (err) {
       setError(err.message);
     }
   };
+  
+
 
   return (
     <div className="container">

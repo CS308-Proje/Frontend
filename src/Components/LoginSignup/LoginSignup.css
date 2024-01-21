@@ -51,7 +51,7 @@ html, body {
     margin-top: 55px;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
     align-items: center;
   }
   
@@ -86,8 +86,10 @@ html, body {
 
   .submit-container {
     display: flex;
-    gap: 30px;
-    margin: 60px auto;
+    gap: 20px; /* Adjusted to ensure uniformity */
+    margin: 0 auto; /* Removed the top margin */
+    margin-bottom: 20px; /* Bottom margin before the forgot password link */
+    margin-top: 30px;
   }
   
   .submit {
@@ -113,17 +115,19 @@ html, body {
     background: #eaeaea;
     color: #B3B3B3 ;
   }
-  
   .error {
     color: red;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 25px;
+    margin-bottom: 10px;
   }
 
   .forgot-password-link {
     text-align: center;
-    margin-top: 20px; /* Adjust margin as needed */
+    margin-bottom: 20px; 
+    margin-top: 10px; 
   }
+  
   
   .forgot-link {
     color: white; /* Adjust to match your design */

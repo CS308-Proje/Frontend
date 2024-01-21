@@ -7,7 +7,7 @@ import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import AddIcon from '@mui/icons-material/Add';
 import UpdateIcon from '@mui/icons-material/Update';
 import UpdateSong from '../UpdateSong/UpdateSong'
-
+import InformationIcon from '@mui/icons-material/Info';
 import Navbar2 from "../Navbar2/Navbar2";
 
 
@@ -17,8 +17,14 @@ const MySongs = () => {
   const [songs, setSongs] = useState([]);
   const [search, setSearch] = useState("");
 
+  const [showSongInfo, setShowSongInfo] = useState(false);
   const [showUpdateScreen, setShowUpdateScreen] = useState(false);
   const [selectedSong, setSelectedSong] = useState(null);
+
+  const handleSongInfoClick = (song) => {
+    setSelectedSong(song);
+    setShowSongInfo(true);
+  };
 
   const handleUpdateClick = (song) => {
     setSelectedSong(song);
@@ -32,6 +38,8 @@ const MySongs = () => {
 
   const handleClose = () => {
     setShowUpdateScreen(false);
+    setSelectedSong(null);
+    setShowSongInfo(false);
   };
   
 
@@ -139,13 +147,17 @@ const MySongs = () => {
           songs.map((song) => (
             <div key={song._id} className="song-box">
               <button className="update-song-btn" onClick={() => handleUpdateClick(song)}>
-      <UpdateIcon style={{ fontSize: '45px', color: '#fff' } } />
-      <span className="tooltip-text2">Update Song</span>
-    </button>
+                <UpdateIcon style={{ fontSize: '45px', color: '#fff' } } />
+                <span className="tooltip-text2">Update Song</span>
+              </button>
+              <button className="song-info-btn" onClick={() => handleSongInfoClick(song)}>
+                <InformationIcon style={{ fontSize: '40px', color: '#fff' } } />
+                <span className="tooltip-text2">Song Information</span>
+              </button>
               <button className="delete-song-btn" onClick={() => deleteSong(song._id)}>
-  <RemoveCircleIcon style={{ fontSize: '40px', color: '#fff' }} />
-  <span className="tooltip-text">Remove Song</span>
-</button>
+                <RemoveCircleIcon style={{ fontSize: '40px', color: '#fff' }} />
+                <span className="tooltip-text2">Remove Song</span>
+              </button>
 
               <img src={song.albumImg} className="artist-img" alt={`Artist ${song.id}`} />
               <div>
@@ -153,9 +165,9 @@ const MySongs = () => {
                 <h2 className="text-box"><b>Artist:</b> {song.mainArtistName}</h2>
                 <h3 className="text-box"><b>Album: </b>{song.albumName}</h3>
                 <StarRating
-      initialRating={song.ratingValue}
-      onRating={(newRating) => updateRating(song._id, newRating)}
-    />
+                initialRating={song.ratingValue}
+                onRating={(newRating) => updateRating(song._id, newRating)}
+              />
                 <h5 className="text-box">Release Date: {formatDate(song.release_date)}</h5>
               </div>
             </div>
@@ -169,6 +181,24 @@ const MySongs = () => {
           onClose={handleClose}
           onUpdate={handleUpdate}
         />
+      )}
+      {showSongInfo && selectedSong && (
+        <div className="song-info-modal">
+          <div className="modal-content">
+            <img src={selectedSong.albumImg} className="artist-img" alt={`Artist ${selectedSong.id}`} />
+            <h1>{selectedSong.songName}</h1>
+            <p><b className="info-text">Artist:</b> {selectedSong.mainArtistName}</p>
+            {selectedSong.featuringArtistNames.length > 0 && (
+              <p><b className="info-text">Featuring:</b> {selectedSong.featuringArtistNames.join(', ')}</p>
+            )}
+            <p><b className="info-text">Popularity:</b> {selectedSong.popularity}</p>
+            <p><b className="info-text">Duration:</b> {selectedSong.duration_ms} ms</p>
+            <p><b className="info-text">Release Date:</b> {new Date(selectedSong.release_date).toLocaleDateString()}</p>
+            <p><b className="info-text">Created At:</b> {new Date(selectedSong.createdAt).toLocaleString()}</p>
+            <p><b className="info-text">Rating:</b> {selectedSong.ratingValue}</p>
+            <button className="close-btn1" onClick={handleClose}>Close</button>
+          </div>
+        </div>
       )}
     </div>
   );

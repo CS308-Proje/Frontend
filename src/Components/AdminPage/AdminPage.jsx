@@ -5,6 +5,8 @@ import Navbar2 from '../Navbar2/Navbar2';
 import UpdateUser from '../UpdateUser/UpdateUser'; 
 import AddUser from '../AddUser/AddUser';
 import './AdminPage.css';
+import { Line } from 'react-chartjs-2';
+import 'chart.js/auto';
 
 const AdminPage = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -14,7 +16,63 @@ const AdminPage = () => {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
   const [showAddUserScreen, setShowAddUserScreen] = useState(false);
+  const [showRegistrationChart, setShowRegistrationChart] = useState(false);
 
+  const [chartData, setChartData] = useState({
+    labels: [],
+    datasets: [
+      {
+        label: 'Registrations per Day',
+        data: [],
+        backgroundColor: '#8bbe52',
+        borderColor: '#8bbe52',
+        borderWidth: 1,
+      },
+    ],
+  });
+
+  const fetchRegistrationChartData = async () => {
+    try {
+      const response = await fetch('http://localhost:5001/admin-chart-user', {
+        method: "GET",
+        credentials: "include", // If your API requires cookies to be sent
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok && data.success) { // Check if the response is OK and the success flag is true
+        const chartLabels = data.countsArray.map(item => item.date);
+        const chartCounts = data.countsArray.map(item => item.count);
+  
+        setChartData({
+          labels: chartLabels,
+          datasets: [{
+            label: 'Registrations per Day',
+            data: chartCounts,
+            fill: false,
+            borderColor: '#8bbe52',
+            tension: 0.1
+          }]
+        });
+  
+        setShowRegistrationChart(true); // Only show the chart if the data fetch was successful
+      } else {
+        // Handle errors if the response is not OK or the success flag is false
+        console.error('Failed to fetch data:', data);
+      }
+  
+    } catch (error) {
+      console.error('Error fetching registration chart data:', error);
+    }
+  };
+
+  const handleRegistrationChartOpen = () => {
+    fetchRegistrationChartData();
+    setShowRegistrationChart(true);
+  };
 
   const fetchUsers = async () => {
     try {
@@ -167,6 +225,7 @@ const AdminPage = () => {
 
       <main className={`main-content ${sidebarOpen ? 'shifted' : ''}`}>
       <div className="add-user-container">
+      <button id="registration-chart-btn" onClick={handleRegistrationChartOpen}>Registration Chart</button> 
       <button id="add-user-btn" onClick={() => setShowAddUserScreen(true)}>Add User</button>
       </div>
         {users.map(user => (
@@ -195,8 +254,16 @@ const AdminPage = () => {
           onAdd={handleAddUser}
         />
       )}
-
+      <div className={`modal-backdrop ${showRegistrationChart ? 'show-backdrop' : ''}`}></div>
+        {showRegistrationChart && (
+          <div className="registration-chart-modal">
+            <Line data={chartData} />
+            <button onClick={() => setShowRegistrationChart(false)}>Close</button>
+          </div>
+        )}
+      
     </div>
+    
   );
 };
 

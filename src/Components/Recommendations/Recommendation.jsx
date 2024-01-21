@@ -26,7 +26,7 @@ const Recommendation = () => {
     const [songStatus, setSongStatus] = useState({});
     const [noDataMessage, setNoDataMessage] = useState("");
     const [friends, setFriend]= useState([]);
-
+    const [mls, setML] = useState([]);
     const submissionContainerStyle = {
       top: isDropdownOpen ? '100px' : '5px', // Adjust the top position when the dropdown is open
       transition: 'top 0.3s ease', // Ensure the transition is smooth
@@ -109,6 +109,10 @@ useEffect(() => {
               url = 'http://localhost:5001/based-on-friends'
               console.log("buraya geldi");
               break;
+          case 'machine-learning':
+            setIsLoading(true);
+            url = 'http://localhost:5001/based-on-ml'
+            break;
           default:
               return;
       }
@@ -136,6 +140,8 @@ useEffect(() => {
           } else if (recommendationType === 'friend-activity') {
               setFriend(data.songs || []);
               console.log(friends);
+          } else if (recommendationType === 'machine-learning') {
+            setML(data.songs || []);
           }
           // Handle other recommendation types similarly
       } catch (error) {
@@ -309,7 +315,7 @@ useEffect(() => {
                     }
 
             case "spotify-recommendations":
-              if(songs.length === 0 && !isLoading){
+              if(spotify.length === 0 && !isLoading){
                 return(<div className="recommendation-container" style={recommendationContainerStyle}>
                           <SentimentVeryDissatisfiedIcon style={{ fontSize: '100px', margin: '15 auto', display: 'block' }} />
                           <div className="text1">Unfortunately, We Can't Help You</div>
@@ -402,15 +408,37 @@ useEffect(() => {
                 
                  }
                  case "machine-learning":
-                  return(<div className="recommendation-container" style={recommendationContainerStyle}>
-                              <SentimentVeryDissatisfiedIcon style={{ fontSize: '100px', margin: '15 auto', display: 'block' }} />
-                              <div className="text1">Unfortunately, We Can't Help You</div>
-                              <div className="underline1"></div>
-                              <p className="recommendation-message1">
-                                You need to add some songs before to get a recommendation by our super trained model!
-                              </p>
-                           </div>
-                          );
+                  if(mls.length === 0 && !isLoading){
+                    return(<div className="recommendation-container" style={recommendationContainerStyle}>
+                                <SentimentVeryDissatisfiedIcon style={{ fontSize: '100px', margin: '15 auto', display: 'block' }} />
+                                <div className="text1">Unfortunately, We Can't Help You</div>
+                                <div className="underline1"></div>
+                                <p className="recommendation-message1">
+                                  You need to add some songs before to get a recommendation by our super trained model!
+                                </p>
+                            </div>
+                            );
+                  }
+                  else{
+                    return (
+
+              
+                      mls.map((song) => (
+                        <div key={song._id} className="song-box1">
+                          <img src={song.albumImg} className="artist-img" alt={`Artist ${song.id}`} />
+                          <div>
+                            <h1 className="text-box"><b>{song.songName}</b></h1>
+                            <h2 className="text-box"><b>Artist:</b> {song.mainArtistName}</h2>
+                            <h3 className="text-box"><b>Album: </b>{song.albumName}</h3>
+                            
+                            <h5 className="text-box">Release Date: {formatDate(song.release_date)}</h5>
+                          </div>
+                          <HeaderIcon inactiveIcon={<AddIcon />} activeIcon={<DoneIcon />} className="add-song-icon" style={{ fontSize: '40px' }} onClick={() => handleAddSong(song)}/>
+                        </div>
+                      ))
+                    );
+
+                  }
 
           // Add more cases for other recommendation types
           default:

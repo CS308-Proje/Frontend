@@ -1,0 +1,134 @@
+.main-content5 {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+    justify-content: flex-start; /* Align children to the top */
+    padding: 20px;
+    overflow-y: auto;
+    height: calc(100vh - 100px); /* Adjust if navbar height changes */
+    margin-top: 100px; /* Adjust if navbar top padding is needed */
+}
+
+.button-group {
+    display: flex;
+    justify-content: center; /* Center the buttons in the button group */
+    margin-top: 20px; /* Additional space below navbar */
+    width: 100%; /* Take the full width to center content */
+    max-width: 600px; /* Maximum width of button group */
+    margin-bottom: 20px;
+}
+
+.grouped-button {
+    flex: 1; /* Distribute space evenly within the button group */
+    font-family: 'Josefin Sans', sans-serif;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    outline: none;
+}
+
+/* Individual button styling */
+.grouped-button:first-child {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.grouped-button:last-child {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.grouped-button:hover {
+    background-color: #ddd;
+}
+
+.grouped-button:focus,
+.grouped-button:active {
+    box-shadow: none;
+    background-color: #ddd;
+}
+
+/* Styling for the display of data */
+.data-display {
+    width: 100%; /* Take full width of parent */
+    display: flex;
+    flex-direction: column; /* Stack song boxes vertically */
+    align-items: center; /* Center song boxes */
+    gap: 10px; /* Space between the boxes, adjust as needed */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+
+}
+
+  .song-box5 {
+    display: flex;
+    align-items: center;
+    background-color: #181818;
+    border-radius: 20px;
+    padding: 0.5px;
+    margin-bottom: 16px; /* Space between song boxes */
+    width: 80%;
+    font-family: 'Josefin Sans', sans-serif;
+  }
+
+  .song-box5:hover {
+    background-color: #282828; /* Slightly lighter on hover */
+    box-shadow: 0 1px 15px rgba(6, 95, 7, 0.7); /* More pronounced shadow on hover */
+    transform: scale(1.01); /* Slight scale on hover for an interactive feel */
+  }
+
+ 
+  
+
+  .song-box5 h1,
+  .song-box5 h2,
+  .song-box5 h3,
+  .song-box5 h4,
+  .song-box5 h5 {
+    color: #ffffff;
+    margin: 5px 0;
+    font-weight: 300; /* Adjust font weight */
+
+  }
+  
+  .song-box5 h1 {
+    color: #8bbe52; /* Highlight color for album name */
+    font-size: 24px;
+  }
+  
+  .song-box5 h2,
+  .song-box5 h3,
+  .song-box5 h4,
+  .song-box5 h5 {
+    font-size: 16px;
+  }
+  
+  .song-box5 h3 {
+
+    margin-top: 5px; /* Adjust margin for album name */
+  }
+  
+  .song-box5 h5 {
+
+    font-style: italic; /* Make release date italic */
+  }
+  
+  .chart-button {
+    position: absolute; /* Position the button relative to the next positioned ancestor or the viewport */
+    right: 20px; /* Adjust the value based on your layout */
+    
+    padding: 10px 20px;
+    margin-top: 20px; /* Same as the grouped buttons for vertical alignment */
+    background-color: #333; /* A different background color to distinguish it */
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Josefin Sans', sans-serif;
+  }
+  
+  .chart-button:hover {
+    background-color: #555; /* Slightly lighter on hover */
+  }

@@ -331,7 +331,7 @@ html, body {
     transition: opacity 0.5s;
   }
   
-  .delete-song-btn:hover .tooltip-text {
+  .delete-song-btn:hover .tooltip-text2 {
     visibility: visible;
     opacity: 1;
   }

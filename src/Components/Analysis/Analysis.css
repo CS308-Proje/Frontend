@@ -1,11 +1,15 @@
+body, html {
+  overflow-y: auto;
+}
 
 .Dashboard1 {
   min-height: 100vh; /* Minimum height of 100% of the viewport height */
   display: flex;
   flex-direction: column; /* Stack children vertically */
   ;
-  
-}
+  overflow-y: auto; /* Enables vertical scrolling */
+  }
+
 .dropdown-container2 {
   position: relative;
 top: 150px; /* Adjust as per your layout */
@@ -20,11 +24,12 @@ font-family: 'Josefin Sans', cursive;
 }
 
 .analysis-image {
-  margin-top: 230px;
-  margin-left: 25%;
-  width: 20%; /* Adjust as needed */
-  height: 10%; /* Adjust if you want a specific height, 'auto' for aspect ratio */
-  overflow-y: auto;
+  display: block; /* Use block display to apply margin: auto */
+  margin-top: 200px;
+  width: 50%; /* Increase the width to make the image bigger */
+  max-width: 600px; /* You can set a max-width to ensure it doesn't get too large on bigger screens */
+  height: auto; /* Set height to auto to maintain aspect ratio */
+  margin-bottom: 50px;
 }
 
 .chart-container {
@@ -91,4 +96,39 @@ font-family: 'Josefin Sans', cursive;
     margin-bottom: 0px;
   }
 
+  .deneme {
+    width: 100%; /* Ensures the container takes full width */
+    display: flex; /* Enables flexbox */
+    justify-content: center; /* Centers the content horizontally */
+    align-items: center; /* Centers the content vertically */
+    overflow-y: auto; /* Enables vertical scrolling */
+  }
+
+
+  .analysis-image {
+    display: block; /* Use block display to apply margin: auto */
+    margin-top: 20px; /* Reduced margin-top */
+    width: 50%; /* Increase the width to make the image bigger */
+    max-width: 600px; /* You can set a max-width to ensure it doesn't get too large on bigger screens */
+    height: auto; /* Set height to auto to maintain aspect ratio */
+  }
   
+  .favorite-songs-section .share-on-twitter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 200px; /* Reduced margin-top for closer positioning to the image */
+    color: #1DA1F2;
+    cursor: pointer;
+  }
+  
+  .favorite-songs-section .image-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .error-message {
+    color: #ff6b6b; /* red-ish color for errors */
+    text-align: center;
+    margin-top: 20px;
+  }

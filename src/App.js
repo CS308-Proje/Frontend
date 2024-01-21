@@ -21,7 +21,7 @@ import ForgotPassword from "./Components/LoginSignup/ForgotPassword";
 import ResetPassword from './Components/ResetPassword/ResetPassword';
 import ExportSongs from "./Components/ExportSongs/ExportSongs";
 import AdminPage from "./Components/AdminPage/AdminPage";
-
+import AdminSongPage from "./Components/AdminPage/AdminSongPage";
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
   const { isLoggedIn, userRole } = useAuth();
@@ -142,6 +142,14 @@ const App = () => {
             element={
               <AdminProtectedRoute>
                 <AdminPage />
+              </AdminProtectedRoute>
+            }
+          />
+          <Route
+            path="/adminsongpage"
+            element={
+              <AdminProtectedRoute>
+                <AdminSongPage />
               </AdminProtectedRoute>
             }
           />

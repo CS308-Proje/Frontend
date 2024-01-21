@@ -121,7 +121,7 @@ const MyArtists = () => {
             <div key={artist._id} className="song-box">
               <button className="delete-song-btn" onClick={() => deleteArtist(artist._id)}>
                 <RemoveCircleIcon style={{ fontSize: '40px', color: '#fff' }} />
-                <span className="tooltip-text">Remove Artist</span>
+                <span className="tooltip-text2">Remove Artist</span>
               </button>
 
               <img src={artist.artistImg} className="artist-img" alt={`Artist ${artist.id}`} />

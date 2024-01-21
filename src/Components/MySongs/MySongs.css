@@ -424,11 +424,11 @@ html, body {
     outline: none;
   }
   
-   .tooltip-text2 {
+  .tooltip-text2 {
     font-size: 12px; 
     visibility: hidden;
     width: 100px;
-    height: 20px;
+    height: 30px; /* Adjusted to account for padding */
     background-color: #555;
     color: #fff;
     text-align: center;
@@ -438,9 +438,10 @@ html, body {
     z-index: 1;
     bottom: 150%;
     left: 3%;
-    margin-left: -40px; /* Use half of the width value to align the tooltip */
+    margin-left: -40px;
     opacity: 0;
     transition: opacity 0.5s;
+    line-height: 20px; /* Set line height equal to the content area height */
   }
   
   .update-song-btn:hover .tooltip-text2 {
@@ -448,6 +449,10 @@ html, body {
     opacity: 1;
   }
 
+  .delete-song-btn:hover .tooltip-text2 {
+    visibility: visible;
+    opacity: 1;
+  }
 
   .update-song-modal {
     position: fixed;
@@ -542,4 +547,121 @@ html, body {
 .update-song-modal {
   z-index: 1000; /* Higher than the backdrop */
   /* ... other styles ... */
+}
+
+.song-info-btn {
+  background-color: transparent; /* Transparent background */
+  color: #f9f9f9; /* Spotify green text color */
+  border-radius: 50%; /* Make it a circular button */
+  cursor: pointer;
+  position: absolute;
+  right: 150px;
+  top: 50px;
+  transition: background-color 0.2s, color 0.2s; /* Smooth transition for hover effect */
+  font-size: 24px; /* Adjust font size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px; /* Adjust button width */
+  height: 30px; /* Adjust button height */
+  
+}
+
+
+.song-info-btn:hover {
+  background-color: #8bbe52 ; /* Spotify green background on hover and focus */
+  color: #fff; /* White text color on hover and focus */
+  outline: none;
+}
+
+.song-info-btn:hover .tooltip-text2 {
+  visibility: visible;
+  opacity: 1;
+  align-items: center;
+}
+
+.song-info-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 999; /* Or higher if needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.modal-content {
+  background-color: rgba(50, 50, 50, 0.95); /* Slightly transparent for a modern look */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  transition: transform 0.3s ease-out;
+  padding-bottom: 60px;
+  
+}
+.modal-content img{
+  transform: translateX(63%);
+}
+.modal-content h1{
+  font-weight: bold;
+  font-family: 'Josefin Sans', sans-serif;
+  color:#8bbe52;
+  transform: translateX(18%) translateY(-50%);
+  
+}
+.modal-content p {
+  font-size: 1.25em; /* Bigger font size for headings and paragraphs */
+  margin-bottom: 1em; /* More space between elements */
+  font-family: 'Josefin Sans', sans-serif;
+  color: #fff;
+}
+.modal-content.show {
+  transform: translateY(0);
+}
+
+.close-btn1 {
+  background-color: #8bbe52; /* Red color for the close button */
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: absolute;
+  transform: translateX(100%);
+  margin-bottom: 10px;
+  font-family: 'Josefin Sans', sans-serif;
+  padding: 15px 25px; /* Larger padding for a bigger button */
+  font-size: 1em; /* Larger font size for the text inside the button */
+  border-radius: 30px;
+}
+
+.close-btn1:hover {
+  background-color: #8bbe52; /* Slightly darker on hover */
+  box-shadow: 0 2px 10px rgba(41, 221, 17, 0.5);
+}
+
+/* Add an icon from a library like Font Awesome or use a Unicode symbol */
+.close-btn1:before {
+  
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-45%, -50%);
+  font-size: 20px;
+}
+
+.info-text{
+  font-weight: bold;
+  font-family: 'Josefin Sans', sans-serif;
+  color:#000;
 }
